@@ -1,11 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Portfolio</title>
+    <!-- Add this link tag to include Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400&family=Impact&display=swap" rel="stylesheet">
+
+    <title>Jerry Moo Kee Khong</title>
     <style>
         body {
             display: flex;
             font-family: Arial, sans-serif; 
+            align-items: center; /* Vertically center the content */
+        }
+
+        /* Apply Impact to headers */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Impact', sans-serif;
+        }
+
+        /* Apply Lexend to all body text */
+        body {
+            font-family: 'Lexend', sans-serif;
         }
 
         nav {
@@ -38,15 +52,17 @@
             flex-grow: 1;
             background-color: #f5f5dc; /* Cream color */
             padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center; /* Centers content vertically */
-            min-height: 100vh; /* Ensures the container takes up at least the viewport height */
+            overflow-y: scroll; /* Enable vertical scrolling */
+            height: 100vh; /* Set height of content to match viewport */
         }
 
         .section {
             margin-bottom: 40px;
             width: 100%; /* Takes full width of the container */
+            height: 100vh; /* Set height of each section to match viewport */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center content vertically */
         }
 
         .social-icon {
@@ -74,22 +90,38 @@
         #more a {
             text-decoration: none; /* This removes the underline */
         }
+
+
+        /* Frame styles */
+        .frame {
+            border: 5px solid #ccc; /* Gray border */
+            padding: 10px; /* Add padding to create space around the image */
+            display: inline-block; /* Make the container fit the image */
+        }
+
+        .profile-image {
+            width: 100px; /* Adjust the width of the image */
+            height: auto; /* Maintain aspect ratio */
+        }
     </style>
 </head>
 <body>
 
 <nav>
     <img src="your-image-url.jpg" alt="Your Image" id="nav-image">
-    <a href="#about">About</a>
-    <a href="#experience">Experience</a>
-    <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
-    <a href="#more">More</a>
+    <a href="#about" class="nav-link">About</a>
+    <a href="#experience" class="nav-link">Experience</a>
+    <a href="#projects" class="nav-link">Projects</a>
+    <a href="#skills" class="nav-link">Skills</a>
+    <a href="#more" class="nav-link">More</a>
 </nav>
 
 <div class="content">
     <div id="about" class="section">
-        <h2>About</h2>
+        <h2>Jerry Moo Kee Khong</h2>
+        <div class="frame">
+            <img src="your-profile-image.jpg" alt="Profile Image" class="profile-image">
+        </div>
         <p>Hello, I'm Kee Khong Jerry, a professional with five years of experience in Linux, infrastructure management, and client technical services. I hold certifications in CCNA, RHCSA, AWS, and CDCP, which bolster my expertise in network and system administration, cloud technologies, and data center operations. My focus is on delivering effective solutions and exceptional client support, blending technical proficiency with practical experience.</p>
     </div>
 
@@ -175,11 +207,15 @@
 </div>
 
 <script>
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    document.querySelectorAll('a.nav-link').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
 
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
+            const targetId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+
+            // Smooth scroll to the target section
+            targetSection.scrollIntoView({
                 behavior: 'smooth'
             });
         });
