@@ -1,124 +1,139 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
+<!DOCTYPE html>
+<html>
 <head>
-     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>My Portfolio</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif; 
+        }
 
-     <title>Jerry Moo Kee Khong</title>
+        nav {
+            background-color: black;
+            color: white;
+            padding: 20px;
+            min-width: 200px;
+            height: 100vh;
+            box-sizing: border-box;
+        }
 
-     <style type="text/css">
-        * { margin: 0; padding: 0; }
-        body { font: 16px Helvetica, Sans-Serif; line-height: 24px; background: url(images/noise.jpg); }
-        .clear { clear: both; }
-        #page-wrap { width: 800px; margin: 40px auto 60px; }
-        #pic { float: right; margin: -30px 0 0 0; }
-        h1 { margin: 0 0 16px 0; padding: 0 0 16px 0; font-size: 42px; font-weight: bold; letter-spacing: -2px; border-bottom: 1px solid #999; }
-        h2 { font-size: 20px; margin: 0 0 6px 0; position: relative; }
-        h2 span { position: absolute; bottom: 0; right: 0; font-style: italic; font-family: Georgia, Serif; font-size: 16px; color: #999; font-weight: normal; }
-        p { margin: 0 0 16px 0; }
-        a { color: #999; text-decoration: none; border-bottom: 1px dotted #999; }
-        a:hover { border-bottom-style: solid; color: black; }
-        ul { margin: 0 0 32px 17px; }
-        #objective { width: 500px; float: left; }
-        #objective p { font-family: Georgia, Serif; font-style: italic; color: #666; }
-        dt { font-style: italic; font-weight: bold; font-size: 18px; text-align: right; padding: 0 26px 0 0; width: 150px; float: left; height: 100px; border-right: 1px solid #999;  }
-        dd { width: 600px; float: right; }
-        dd.clear { float: none; margin: 0; height: 15px; }
-     </style>
+        #nav-image {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            flex-grow: 1;
+            background-color: #f5f5dc; /* Cream color */
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Centers content vertically */
+            min-height: 100vh; /* Ensures the container takes up at least the viewport height */
+        }
+
+        .section {
+            margin-bottom: 40px;
+            width: 100%; /* Takes full width of the container */
+        }
+
+        .social-icon {
+            width: 24px; /* Adjust size as needed */
+            height: 24px;
+            filter: invert(0); /* Makes the icon black */
+            margin-right: 10px;
+        }
+
+        #shareButton {
+            background: none;
+            border: none;
+            cursor: pointer;
+            /* Additional styling */
+        }
+
+    </style>
 </head>
-
 <body>
 
-    <div id="page-wrap">
-    
-        <img src="images/cthulu.png" alt="Moo" id="pic" />
-    
-        <div id="contact-info" class="vcard">
-        
-            <!-- Microformats! -->
-        
-            <h1 class="fn">Jerry Moo Kee Khong</h1>
-        
-            <p>
-                Cell: <span class="tel">+65 9061 6645</span><br />
-                Email: <a class="email" href="mkk1994@hotmail.com">mkk1994@hotmail.com</a>
-            </p>
-        </div>
-                
-        <div id="objective">
-            <p>
-                Hello, I'm Kee Khong Jerry, a professional with five years of experience in Linux, infrastructure management, and client technical services. I hold certifications in CCNA, RHCSA, AWS, and CDCP, which bolster my expertise in network and system administration, cloud technologies, and data center operations. My focus is on delivering effective solutions and exceptional client support, blending technical proficiency with practical experience.
-            </p>
-        </div>
-        
-        <div class="clear"></div>
-        
-        <dl>
-            <dd class="clear"></dd>
-            
-            <dt>Education</dt>
-            <dd>
-                <h2>Nanyang Technological University - Master of Science</h2>
-                <p><strong>Major:</strong> Information Systems<br />
-                   <strong>Status:</strong> In</p>
-            </dd>
-            
-            <dd class="clear"></dd>
-            
-            <dt>Skills</dt>
-            <dd>
-                <h2>Office skills</h2>
-                <p>Office and records management, database administration, event organization, customer support, travel coordination</p>
-                
-                <h2>Computer skills</h2>
-                <p>Microsoft productivity software (Word, Excel, etc), Adobe Creative Suite, Windows</p>
-            </dd>
-            
-            <dd class="clear"></dd>
-            
-            <dt>Experience</dt>
-            <dd>
-                <h2>Visa <span>Systems Engineer - Singapore, 2022-2024</span></h2>
-                <ul>
-                    <li>Inspired and won highest peasant death competition among servants</li>
-                    <li>Helped coordinate managers to grow cult following</li>
-                    <li>Provided untimely deaths to all who opposed</li>
-                </ul>
-                
-                <h2>Sea Group <span>Data Center Engineer Site Lead - Singapore, 2020-2022</span></h2>
-                <ul>
-                    <li>Worked on grass-roots promotional campaigns</li>
-                    <li>Reduced theft and property damage percentages</li>
-                    <li>Janitorial work, Laundry</li>
-                </ul> 
+<nav>
+    <img src="your-image-url.jpg" alt="Your Image" id="nav-image">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#more">More</a>
+</nav>
 
-                <h2>Amazon Web Services <span>Data Center Operation - Singapore, 2020 - 2020</span></h2>
-                <ul>
-                    <li>Worked on grass-roots promotional campaigns</li>
-                    <li>Reduced theft and property damage percentages</li>
-                    <li>Janitorial work, Laundry</li>
-                </ul> 
-            </dd>
-            
-            <dd class="clear"></dd>
-            
-            <dt>Hobbies</dt>
-            <dd>Bouldering, Movies, Gaming, Reading, Learning</dd>
-            
-            <dd class="clear"></dd>
-            
-            <dt>References</dt>
-            <dd>Available on request</dd>
-            
-            <dd class="clear"></dd>
-        </dl>
-        
-        <div class="clear"></div>
-    
+<div class="content">
+    <div id="about" class="section">
+        <h2>About</h2>
+        <p>Content for About section...</p>
     </div>
 
-</body>
+    <div id="experience" class="section">
+        <h2>Experience</h2>
+        <p>Content for Experience section...</p>
+    </div>
 
+    <div id="projects" class="section">
+        <h2>Projects</h2>
+        <p>Content for Projects section...</p>
+    </div>
+
+    <div id="skills" class="section">
+        <h2>Skills</h2>
+        <p>Content for Skills section...</p>
+    </div>
+
+    <div id="more" class="section">
+        <h2>More</h2>
+        <p>Content for More section...</p>
+        <a href="https://sg.linkedin.com/in/jerry-kee-khong-moo-284abb144" target="_blank">
+            <img src="Image/iconmonstr-linkedin-5-240.png" alt="LinkedIn" class="social-icon">
+        </a>
+        <a href="https://github.com/mookk4ever" target="_blank">
+            <img src="Image/github-mark.png" alt="GitHub" class="social-icon">
+        </a>
+        <a href="https://twitter.com/i/flow/login?redirect_after_login=%2Fkingkongloveme" target="_blank">
+            <img src="Image/iconmonstr-twitter-5-240 (1).png" alt="Twitter" class="social-icon">
+        </a>
+        <button id="shareButton">
+            <img src="Image/iconmonstr-share-thin-240 (1).png" alt="Share" class="social-icon">
+        </button>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+
+<script>
+    document.getElementById('shareButton').addEventListener('click', function() {
+        navigator.clipboard.writeText(window.location.href)
+            .then(() => alert('Link copied to clipboard!'))
+            .catch(err => console.error('Error in copying text: ', err));
+    });
+</script>
+
+</body>
 </html>
