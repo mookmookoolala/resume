@@ -2,14 +2,25 @@
 <html>
 <head>
     <!-- Add this link tag to include Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400&family=Impact&display=swap" rel="stylesheet">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Jerry Moo Kee Khong</title>
     <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%; 
+            width: 100%; 
+            background-color: #f5f5dc; /* Replace with your desired color */
+        }
+
         body {
             display: flex;
-            font-family: Arial, sans-serif; 
-            align-items: center; /* Vertically center the content */
+            font-family: 'Lexend', sans-serif;
+            align-items: stretch; /* Stretch to fill the container */
+            font-size: 18px;
         }
 
         /* Apply Impact to headers */
@@ -17,112 +28,319 @@
             font-family: 'Impact', sans-serif;
         }
 
-        /* Apply Lexend to all body text */
-        body {
+        /* Apply Lexend to all body text except headers */
+        body, nav a, p, label, input, textarea, button {
             font-family: 'Lexend', sans-serif;
         }
 
+        /* Revised styles for nav */
         nav {
             background-color: black;
             color: white;
             padding: 20px;
-            min-width: 200px;
-            height: 100vh;
+            width: 700px; /* Adjusted width */
+            height: 100%; /* Full height */
             box-sizing: border-box;
-        }
-
-        #nav-image {
-            width: 100%;
-            height: auto;
-            margin-bottom: 20px;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-        .content {
-            flex-grow: 1;
-            background-color: #f5f5dc; /* Cream color */
-            padding: 20px;
-            overflow-y: scroll; /* Enable vertical scrolling */
-            height: 100vh; /* Set height of content to match viewport */
-        }
-
-        .section {
-            margin-bottom: 40px;
-            width: 100%; /* Takes full width of the container */
-            height: 100vh; /* Set height of each section to match viewport */
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Center content vertically */
+        }
+
+        /* Hide dropdown-nav-container in desktop view */
+        .dropdown-nav-container {
+            display: none;
+        }
+
+
+        .full-page-div {
+            height: 100vh;
+            width: 100%;
+            box-sizing: border-box;
+            /* Additional styling as needed */
+        }
+
+
+        #Contact .form-group {
+            margin-bottom: 20px; /* Spacing between each form group */
+        }
+
+        #Contact label {
+            margin-bottom: 8px; /* Spacing between label and input field */
+        }
+
+        #Contact input[type="text"],
+        #Contact input[type="email"],
+        #Contact textarea {
+            width: 100%; /* Full width of the container */
+            padding: 10px; /* Comfortable padding inside the input fields and textarea */
+            margin-bottom: 10px; /* Spacing between input fields */
+            border: 1px solid #ccc; /* Subtle border, you can change color as needed */
+            border-radius: 4px; /* Slightly rounded corners */
+        }
+
+        #Contact textarea {
+            resize: vertical; /* Allows vertical resizing */
+        }
+
+        #Contact button[type="submit"] {
+            padding: 10px 20px; /* Padding for the button */
+            background-color: #333; /* Button background color */
+            color: white; /* Button text color */
+            border: none; /* No border for the button */
+            border-radius: 4px; /* Slightly rounded corners for the button */
+            cursor: pointer; /* Cursor changes to pointer to indicate it's clickable */
+        }
+
+
+        /* Frame Styles */
+        .frame {
+            border: 5px solid grey; /* Grey border */
+            padding: 5px; /* Padding around the image */
+            display: inline-block; /* Align with other inline or inline-block elements */
+            border-radius: 10px; /* Slightly rounded corners */
+            overflow: hidden; /* Ensures the image doesn't overflow the frame */
+        }
+
+        .frame img {
+            width: 100%; /* Ensure the image covers the full width of the frame */
+            height: auto; /* Maintain the aspect ratio */
+            display: block; /* Remove any default inline spacing */
+            object-fit: cover; /* Ensures the image covers the frame area */
+        }
+
+        .project {
+            position: relative;
+            width: 300px;
+            height: auto;
+            border-radius: 5px;
+            overflow: hidden; /* Ensure the overlay is contained within the project */
+        }
+
+        .project img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            text-decoration: none;
+            border-radius: 5px;
+            pointer-events: auto; /* Ensure overlay is clickable */
+        }
+
+        .project:hover .overlay {
+            opacity: 1;
+        }
+
+        .overlay-content {
+            text-align: center;
+        }
+
+
+        .nav-toggle {
+            display: none; /* Initially hide the hamburger menu */
+        }
+
+
+
+        /* Apply mobile styles using media query */
+        /* Responsive design */
+        @media only screen and (max-width: 768px) {
+            /* Hide the regular nav and show the dropdown nav container */
+            nav {
+                width: 100%; /* Full width on mobile */
+                display: none; /* Hide regular nav */
+            }
+
+            .dropdown-nav-container {
+                display: flex;
+                align-items: center;
+                background-color: black;
+                color: white;
+                padding: 10px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 999;
+            }
+
+                .nav-toggle {
+                position: fixed;
+                top: 20px; /* Adjust top position as needed */
+                right: 20px; /* Adjust right position as needed */
+                z-index: 1000; /* Ensure it's above other content */
+                cursor: pointer;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: black;
+            }
+
+            .nav-links a {
+                padding: 15px 20px;
+                border-bottom: 1px solid #333;
+            }
+
+            .show {
+                display: flex;
+                flex-direction: column;
+            }
         }
 
         .social-icon {
-            width: 24px; /* Adjust size as needed */
-            height: 24px;
-            filter: invert(0); /* Makes the icon black */
-            margin-right: 10px;
-        }
-
-        #shareButton {
-            background: none;
-            border: none;
-            cursor: pointer;
-            /* Additional styling */
+            width: 24px; /* Adjust the width as needed */
+            height: auto; /* Keeps the aspect ratio of the image */
+            margin-right: 10px; /* Space between icons, adjust as needed */
+            text-decoration: none;
         }
 
 
-        .link-icon {
-            width: 20px; /* Adjust size as needed */
-            height: auto;
-            margin-top: 10px;
+        /* Dropdown styles */
+        .dropdown {
+            display: none;
+            position: absolute;
+            background-color: black;
+            width: 100%;
+            z-index: 1;
+            padding: 10px 0;
+        }
+
+        .dropdown a {
+            display: block;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+        }
+
+        .dropdown a:hover {
+            background-color: #333;
         }
 
 
-        #more a {
-            text-decoration: none; /* This removes the underline */
+        nav ul {
+            list-style-type: none; /* Removes bullet points */
+            padding-left: 0; /* Removes default padding */
         }
 
 
-        /* Frame styles */
-        .frame {
-            border: 5px solid #ccc; /* Gray border */
-            padding: 10px; /* Add padding to create space around the image */
-            display: inline-block; /* Make the container fit the image */
+        nav ul {
+        list-style-type: none; /* Removes bullet points */
+        padding-left: 0; /* Removes default padding */
         }
 
-        .profile-image {
-            width: 100px; /* Adjust the width of the image */
+        nav ul li a {
+            font-family: 'Impact', sans-serif;
+            color: white;
+            text-decoration: none;
+            padding: 10px 0;
+            display: block;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline; /* Optional */
+        }
+
+        /* Content styles */
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: #f5f5dc; /* Replace with your desired color */
+            overflow-y: scroll;
+            height: 100vh; 
+        }
+
+        /* Section styles */
+        .section {
+            margin-bottom: 40px;
+            width: 100%; 
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: #f5f5dc; /* Replace with your desired color */
+        }
+
+        .contact-icons a {
+            text-decoration: none;
+        }
+
+        .project img {
+            width: 300px; /* Set the desired width */
             height: auto; /* Maintain aspect ratio */
+            object-fit: cover; /* Ensure the image covers the container */
+            border: 2px solid black; /* Add a 2px solid black border around the image */
+            border-radius: 5px; /* Add a slight border radius for rounded corners */
         }
     </style>
 </head>
 <body>
 
+
+    <div class="nav-toggle" onclick="toggleNav()">
+        <img src="Image/iconmonstr-menu-1.svg" alt="Menu">
+    </div>
+
 <nav>
-    <img src="your-image-url.jpg" alt="Your Image" id="nav-image">
-    <a href="#about" class="nav-link">About</a>
-    <a href="#experience" class="nav-link">Experience</a>
-    <a href="#projects" class="nav-link">Projects</a>
-    <a href="#skills" class="nav-link">Skills</a>
-    <a href="#more" class="nav-link">More</a>
+    <div class="frame">
+        <img src="Image/met.png" alt="Your Image">
+    </div>
+    <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#more">More</a></li>
+        <li><a href="#Services">Services</a></li>
+        <li><a href="#Contact">Contact Me</a></li>
+    </ul>
 </nav>
+
+<div class="dropdown-nav-container">
+    <div class="nav-toggle" onclick="toggleNav()">
+        <img src="Image/iconmonstr-menu-1.svg" alt="Menu">
+    </div>
+    <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#more">More</a></li>
+        <li><a href="#Services">Services</a></li>
+        <li><a href="#Contact">Contact Me</a></li>
+    </ul>
+</div>
 
 <div class="content">
     <div id="about" class="section">
         <h2>Jerry Moo Kee Khong</h2>
-        <div class="frame">
-            <img src="your-profile-image.jpg" alt="Profile Image" class="profile-image">
-        </div>
         <p>Hello, I'm Kee Khong Jerry, a professional with five years of experience in Linux, infrastructure management, and client technical services. I hold certifications in CCNA, RHCSA, AWS, and CDCP, which bolster my expertise in network and system administration, cloud technologies, and data center operations. My focus is on delivering effective solutions and exceptional client support, blending technical proficiency with practical experience.</p>
+        <div class="contact-icons">
+            <a href="mailto:your-email@example.com">
+                <img src="Image/social (3).png" alt="Mail" class="social-icon">
+            </a>
+            <a href="https://messaging-service.com">
+                <img src="Image/social-media (1).png" alt="Message" class="social-icon">
+            </a>
+        </div>
     </div>
 
     <div id="experience" class="section">
@@ -132,7 +350,17 @@
 
     <div id="projects" class="section">
         <h2>Projects</h2>
-        <p>Content for Projects section...</p>
+        <div class="project">
+            <img src="Image/Fight.png" alt="Project 1">
+            <div class="overlay">
+                <div class="overlay-content">
+                    <h3>Project 1</h3>
+                    <p>Tech Stack: HTML, CSS, JavaScript</p>
+                    <a href="index3.html">Read Blog Post</a>
+                </div>
+            </div>
+        </div>
+        <!-- Add more project entries as needed -->
     </div>
 
     <div id="skills" class="section">
@@ -190,44 +418,92 @@
 
     <div id="more" class="section">
         <h2>More</h2>
-        <p>Content for More section...</p>
-        <a href="https://sg.linkedin.com/in/jerry-kee-khong-moo-284abb144" target="_blank">
-            <img src="Image/iconmonstr-linkedin-5-240.png" alt="LinkedIn" class="social-icon">
-        </a>
-        <a href="https://github.com/mookk4ever" target="_blank">
-            <img src="Image/github-mark.png" alt="GitHub" class="social-icon">
-        </a>
-        <a href="https://twitter.com/i/flow/login?redirect_after_login=%2Fkingkongloveme" target="_blank">
-            <img src="Image/iconmonstr-twitter-5-240 (1).png" alt="Twitter" class="social-icon">
-        </a>
-        <button id="shareButton">
-            <img src="Image/iconmonstr-share-thin-240 (1).png" alt="Share" class="social-icon">
-        </button>
+    <!-- Icons Container -->
+        <div class="social-icons">
+            <a href="https://twitter.com/kingkongloveme" target="_blank">
+                <img src="Image/iconmonstr-twitter-5-240 (1).png" alt="Twitter" class="social-icon">
+            </a>
+            <a href="https://github.com/mookk4ever" target="_blank">
+                <img src="Image/github-mark.png" alt="GitHub" class="social-icon">
+            </a>
+            <a href="https://sg.linkedin.com/in/jerry-kee-khong-moo-284abb144" target="_blank">
+                <img src="Image/iconmonstr-linkedin-5-240.png" alt="LinkedIn" class="social-icon">
+            </a>
+            <button id="shareButton">
+                <img src="Image/iconmonstr-share-thin-240 (1).png" alt="Share" class="social-icon">
+            </button>
+        </div>
+    </div>
+
+    <div id="Services" class="section">
+        <h2>Services</h2>
+        <!-- Web Hosting Service -->
+        <div class="service">
+            <h3>Web Hosting</h3>
+            <p>Offering reliable and affordable web hosting solutions. Get your website online with our easy-to-use and secure hosting services.</p>
+            <!-- Additional details or a link to know more can be added here -->
+        </div>
+        
+        <!-- Node Hosting Service -->
+        <div class="service">
+            <h3>Node Hosting</h3>
+            <p>Need a node for blockchain or other purposes? Our node hosting service provides high uptime, security, and easy management.</p>
+            <!-- Additional details or a link to know more can be added here -->
+        </div>    
+    </div>
+
+    <div id="Contact" class="section">
+        <h2>Contact Me</h2>
+        <form>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
     </div>
 </div>
 
 <script>
-    document.querySelectorAll('a.nav-link').forEach(anchor => {
+    document.querySelectorAll('nav ul.nav-links a').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
 
             const targetId = this.getAttribute('href').substring(1);
             const targetSection = document.getElementById(targetId);
 
-            // Smooth scroll to the target section
-            targetSection.scrollIntoView({
-                behavior: 'smooth'
-            });
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
         });
     });
 </script>
 
 <script>
+    // Clipboard Function for Share Button
     document.getElementById('shareButton').addEventListener('click', function() {
         navigator.clipboard.writeText(window.location.href)
             .then(() => alert('Link copied to clipboard!'))
             .catch(err => console.error('Error in copying text: ', err));
     });
+</script>
+
+<script>
+    // Toggling Mobile Navigation
+    function toggleNav() {
+        var navLinks = document.querySelector('.nav-links');
+        navLinks.classList.toggle('show');
+    }
 </script>
 
 </body>
