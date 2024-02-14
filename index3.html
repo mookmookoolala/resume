@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Add this link tag to include Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+
+
+    <title>Jerry Moo Kee Khong</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif; 
+            align-items: center; /* Vertically center the content */
+            font-size: 18px; /* Increase font size to 18 pixels */
+        }
+
+        /* Apply Impact to headers */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Impact', sans-serif;
+        }
+
+        /* Apply Lexend to all body text except headers */
+        body, nav a, p, label, input, textarea, button {
+            font-family: 'Lexend', sans-serif;
+        }
+
+        nav {
+            background-color: black;
+            color: white;
+            padding: 20px;
+            min-width: 200px;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            font-family: 'Impact', sans-serif; /* Apply Impact font to navigation links */
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            flex-grow: 1;
+            background-color: #f5f5dc; /* Cream color */
+            padding: 20px;
+            overflow-y: scroll; /* Enable vertical scrolling */
+            height: 100vh; /* Set height of content to match viewport */
+        }
+
+        .section {
+            margin-bottom: 40px;
+            width: 100%; /* Takes full width of the container */
+            height: 100vh; /* Set height of each section to match viewport */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center content vertically */
+        }
+
+
+        .icon-container {
+            display: flex;
+        }
+
+        .social-icon {
+            width: 24px; /* Adjust size as needed */
+            height: 24px;
+            filter: invert(0); /* Makes the icon black */
+            margin-right: 10px; /* Add margin between icons */
+        }
+
+        #shareButton {
+            background: none;
+            border: none;
+            cursor: pointer;
+            /* Additional styling */
+        }
+
+
+        .link-icon {
+            width: 20px; /* Adjust size as needed */
+            height: auto;
+            margin-top: 10px;
+        }
+
+
+        #more a {
+            text-decoration: none; /* This removes the underline */
+        }
+
+
+        /* Frame styles */
+        .frame {
+            border: 5px solid #ccc; /* Grey border */
+            padding: 5px; /* Reduce padding */
+            display: inline-block; /* Make the container fit the image */
+            width: 100px; /* Set width of the frame */
+            height: 100px; /* Set height of the frame */
+            border-radius: 10px; /* Apply border radius */
+            overflow: hidden; /* Ensure the image doesn't overflow the frame */
+        }
+
+        .profile-image {
+            width: 100%; /* Adjust to fit the frame */
+            height: 100%; /* Maintain aspect ratio */
+            object-fit: cover; /* Ensure the image covers the frame without distortion */
+        }
+
+
+        .project {
+            position: relative; /* Make the container relative */
+            display: inline-block; /* Display projects inline */
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px; /* Apply border radius to make it slightly rounded */
+        }
+
+        .overlay:hover {
+            opacity: 1; /* Show the overlay on hover */
+        }
+
+        .overlay-content {
+            text-align: center;
+            color: white;
+        }
+
+        .overlay-content a {
+            color: white;
+            text-decoration: none;
+        }
+
+
+        .frame {
+            border: 5px solid #ccc; /* Gray border */
+            padding: 10px; /* Add padding to create space around the image */
+            display: inline-block; /* Make the container fit the image */
+        }
+
+        .social-icons {
+            display: flex;
+            align-items: center; /* Align items vertically */
+        }
+
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+
+
+        .hamburger-container {
+            display: block; /* Change to block display */
+            margin-top: 10px; /* Adjust margin as needed */
+        }
+
+
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        textarea {
+            resize: vertical; /* Allow vertical resizing of the textarea */
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Adjust the width of the form fields */
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%; /* Make the input fields take full width */
+        }
+
+
+        nav .frame {
+            margin-bottom: 20px; /* Adjust the margin-bottom value as needed */
+        }
+
+        
+        .frame img {
+            width: 100%; /* Make the image take up the entire width of the frame */
+            height: 100%; /* Make the image take up the entire height of the frame */
+            object-fit: cover; /* Ensure the image covers the entire area of the frame */
+        }
+
+
+        .contact-icons a {
+        text-decoration: none;
+    }
+
+
+    .project img {
+        width: 300px; /* Set the desired width */
+        height: auto; /* Maintain aspect ratio */
+        object-fit: cover; /* Ensure the image covers the container */
+        border: 2px solid black; /* Add a 2px solid black border around the image */
+        border-radius: 5px; /* Add a slight border radius for rounded corners */
+    }
+
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="frame">
+        <img src="Image/met.png" alt="Your Image">
+    </div>    <a href="#about" class="nav-link">About</a>
+    <a href="#experience" class="nav-link">Experience</a>
+    <a href="#projects" class="nav-link">Projects</a>
+    <a href="#skills" class="nav-link">Skills</a>
+    <a href="#more" class="nav-link">More</a>
+    <a href="#Services" class="nav-link">Services</a>
+    <a href="#Contact Me" class="nav-link">Contact Me</a>
+    <div class="hamburger-container">
+        <div class="hamburger" onclick="toggleNav()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
+</nav>
+
+<div class="content">
+    <div id="about" class="section">
+        <h2>Jerry Moo Kee Khong</h2>
+        <p>Hello, I'm Kee Khong Jerry, a professional with five years of experience in Linux, infrastructure management, and client technical services. I hold certifications in CCNA, RHCSA, AWS, and CDCP, which bolster my expertise in network and system administration, cloud technologies, and data center operations. My focus is on delivering effective solutions and exceptional client support, blending technical proficiency with practical experience.</p>
+        <div class="contact-icons">
+            <a href="mailto:your-email@example.com">
+                <img src="Image/social (3).png" alt="Mail" class="social-icon">
+            </a>
+            <a href="https://messaging-service.com">
+                <img src="Image/social-media (1).png" alt="Message" class="social-icon">
+            </a>
+        </div>
+    </div>
+
+    <div id="experience" class="section">
+        <h2>Experience</h2>
+        <p>Content for Experience section...</p>
+    </div>
+
+    <div id="projects" class="section">
+        <h2>Projects</h2>
+        <div class="project">
+            <img src="Image/Fight.png" alt="Project 1">
+            <div class="overlay">
+                <div class="overlay-content">
+                    <h3>Project 1</h3>
+                    <p>Tech Stack: HTML, CSS, JavaScript</p>
+                    <a href="index3.html">Read Blog Post</a>
+                </div>
+            </div>
+        </div>
+        <!-- Add more project entries as needed hi-->
+    </div>
+
+    <div id="skills" class="section">
+        <h2>Skills</h2>
+        <p>
+            <strong>Technical Skills:</strong>
+        </p>
+        <p>
+            <strong>Soft Skills:</strong>
+        </p>
+        <p>
+            <strong>Skills:</strong>
+        </p>
+
+        <div class="certification">
+            <p>CCNA</p>
+            <img src="Image/ccna-cert-image.jpg" alt="CCNA Certificate" class="cert-image">
+            <a href="https://link-to-ccna-certification-site" target="_blank">
+                <img src="Images/link-icon.jpg" alt="Link" class="link-icon">
+            </a>
+        </div>
+    
+        <div class="certification">
+            <p>RHCSA</p>
+            <img src="Images/rhcsa-cert-image.jpg" alt="RHCSA Certificate" class="cert-image">
+            <a href="https://link-to-ccna-certification-site" target="_blank">
+                <img src="Images/link-icon.jpg" alt="Link" class="link-icon">
+            </a>
+        </div>
+    
+        <div class="certification">
+            <p>CDCP</p>
+            <img src="Images/cdcp-cert-image.jpg" alt="CDCP Certificate" class="cert-image">
+            <a href="https://link-to-ccna-certification-site" target="_blank">
+                <img src="Images/link-icon.jpg" alt="Link" class="link-icon">
+            </a>
+        </div>
+    
+        <div class="certification">
+            <p>AWS SAA</p>
+            <img src="Images/aws-saa-cert-image.jpg" alt="AWS SAA Certificate" class="cert-image">
+            <a href="https://link-to-ccna-certification-site" target="_blank">
+                <img src="Images/link-icon.jpg" alt="Link" class="link-icon">
+            </a>
+        </div>
+    
+        <div class="certification">
+            <p>CSM</p>
+            <img src="Images/csm-cert-image.jpg" alt="CSM Certificate" class="cert-image">
+            <a href="https://link-to-ccna-certification-site" target="_blank">
+                <img src="Images/link-icon.jpg" alt="Link" class="link-icon">
+            </a>
+        </div>
+    </div>
+
+    <div id="more" class="section">
+        <h2>More</h2>
+        <p>Content for More section...</p>
+        <div class="social-icons">
+            <a href="https://sg.linkedin.com/in/jerry-kee-khong-moo-284abb144" target="_blank">
+                <img src="Image/iconmonstr-linkedin-5-240.png" alt="LinkedIn" class="social-icon">
+            </a>
+            <a href="https://github.com/mookk4ever" target="_blank">
+                <img src="Image/github-mark.png" alt="GitHub" class="social-icon">
+            </a>
+            <a href="https://twitter.com/i/flow/login?redirect_after_login=%2Fkingkongloveme" target="_blank">
+                <img src="Image/iconmonstr-twitter-5-240 (1).png" alt="Twitter" class="social-icon">
+            </a>
+            <button id="shareButton">
+                <img src="Image/iconmonstr-share-thin-240 (1).png" alt="Share" class="social-icon">
+            </button>
+        </div>
+    </div>
+
+    <div id="Services" class="section">
+        <h2>Services</h2>
+        <div class="service">
+            <h3>Web Hosting</h3>
+            <p>Web hosting for affordable rate! Contact me for more information below</p>
+        </div>
+        
+        <div class="service">
+            <h3>Node Hosting</h3>
+            <p>Need a node for normal usage, website or blockchain hosting? Contact me below!</p>
+        </div>
+    </div>
+
+    <div id="Contact Me" class="section">
+        <h2>Contact Me</h2>
+        <form id="contactForm" action="contact.php" method="post">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+<script>
+    document.querySelectorAll('a.nav-link').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+
+            // Smooth scroll to the target section
+            targetSection.scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+
+<script>
+    document.getElementById('shareButton').addEventListener('click', function() {
+        navigator.clipboard.writeText(window.location.href)
+            .then(() => alert('Link copied to clipboard!'))
+            .catch(err => console.error('Error in copying text: ', err));
+    });
+</script>
+
+<script>
+    function toggleNav() {
+        var nav = document.querySelector('nav');
+        nav.classList.toggle('show');
+    }
+</script>
+
+</body>
+</html>
