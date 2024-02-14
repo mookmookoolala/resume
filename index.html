@@ -5,7 +5,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<html>
     <title>Jerry Moo Kee Khong</title>
     <style>
         body, html {
@@ -264,6 +263,16 @@
         }
 
 
+        .social-icons a {
+            text-decoration: none; /* Remove underlines for all social icons */
+        }
+
+
+        .social-icons a:hover {
+            text-decoration: none; /* Ensure no underlines on hover */
+        }
+
+
 
         nav ul {
             list-style-type: none; /* Removes bullet points */
@@ -343,7 +352,7 @@
 </nav>
 
 <div class="dropdown-nav-container">
-    <div class="nav-toggle" onclick="toggleDropdownNav()">
+    <div class="nav-toggle" onclick="toggleNav()">
         <img src="Image/icons8-menu-50 (1).png" alt="Menu">
     </div>
     <ul class="nav-links">
@@ -493,7 +502,7 @@
             </div>
             <div class="form-group">
                 <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
+                <textarea id="message" name="message" rows="4" required></textarea>
             </div>
             <button type="submit">Submit</button>
         </form>
@@ -529,16 +538,17 @@
 <script>
     // Toggling Mobile Navigation
     function toggleNav() {
-        var navLinks = document.querySelector('.nav-links');
+        var navLinks = document.querySelector('nav .nav-links');
         navLinks.classList.toggle('show');
     }
 
     // Toggling Dropdown Navigation
     function toggleDropdownNav() {
+        console.log("Dropdown navigation toggle button clicked"); // Add this line
         var dropdownNavLinks = document.querySelector('.dropdown-nav-container .nav-links');
         dropdownNavLinks.classList.toggle('show');
     }
 </script>
 
 </body>
-</html>
+</html> 
