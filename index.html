@@ -150,10 +150,11 @@
 
 
         .nav-toggle {
-            display: none; /* Initially hide the hamburger menu */
+            display: none; /* Initially hide the hamburger menu on desktop */
+            cursor: pointer;
+            position: relative; /* Position relative to allow absolute positioning of the outline */
         }
-
-
+        
 
         /* Apply mobile styles using media query */
         /* Responsive design */
@@ -169,7 +170,7 @@
                 align-items: center;
                 background-color: black;
                 color: white;
-                padding: 10px;
+                padding: 30px; /* Increase the padding to make the black bar bigger */
                 position: fixed;
                 top: 0;
                 left: 0;
@@ -177,32 +178,81 @@
                 z-index: 999;
             }
 
-                .nav-toggle {
-                position: fixed;
-                top: 20px; /* Adjust top position as needed */
-                right: 20px; /* Adjust right position as needed */
-                z-index: 1000; /* Ensure it's above other content */
-                cursor: pointer;
+
+            .dropdown-nav-container .nav-toggle {
+                color: white; /* Change the color of the menu bar icon */
             }
 
-            .nav-links {
-                display: none;
+
+            .dropdown-nav-container .nav-links {
+                display: none; /* Initially hide the navigation links */
                 flex-direction: column;
                 position: absolute;
-                top: 60px;
+                top: 60px; /* Adjust as needed */
                 left: 0;
                 width: 100%;
                 background-color: black;
             }
 
-            .nav-links a {
+            .dropdown-nav-container .nav-links a {
                 padding: 15px 20px;
                 border-bottom: 1px solid #333;
+                color: white;
+                text-decoration: none;
             }
 
-            .show {
-                display: flex;
-                flex-direction: column;
+            .dropdown-nav-container .nav-links.show {
+                display: flex; /* Show the navigation links in a flex layout on mobile */
+            }
+
+            .nav-toggle {
+                display: block; /* Show the hamburger menu on mobile */
+                position: fixed;
+                top: 10px; /* Adjust top position as needed */
+                right: 10px; /* Adjust right position as needed */
+                z-index: 1000; /* Ensure it's above other content */
+                cursor: pointer;
+            }
+
+            /* Adjust the size of the hamburger menu icon */
+            .nav-toggle img {
+                width: 30px;
+                height: auto; /* Maintain aspect ratio */
+            }
+
+
+            .nav-toggle::before {
+                content: '';
+                position: absolute;
+                top: -3px; /* Adjust top position as needed */
+                left: -3px; /* Adjust left position as needed */
+                right: -3px; /* Adjust right position as needed */
+                bottom: -3px; /* Adjust bottom position as needed */
+                border: 1px solid grey; /* Add a 1px solid grey border */
+                border-radius: 10px; /* Use a smaller border-radius to create rounded corners */
+                z-index: -1; /* Move the outline behind the icon */
+            }
+
+
+                    /* Dropdown styles */
+            .dropdown {
+                display: none;
+                position: absolute;
+                background-color: black;
+                width: 100%;
+                z-index: 1;
+                padding: 10px 0;
+            }
+
+            .dropdown a {
+                display: block;
+                color: white;
+                padding: 10px 20px;
+                text-decoration: none;
+            }
+
+            .dropdown a:hover {
+                background-color: #333;
             }
         }
 
@@ -210,30 +260,9 @@
             width: 24px; /* Adjust the width as needed */
             height: auto; /* Keeps the aspect ratio of the image */
             margin-right: 10px; /* Space between icons, adjust as needed */
-            text-decoration: none;
+            text-decoration: none !important;
         }
 
-
-        /* Dropdown styles */
-        .dropdown {
-            display: none;
-            position: absolute;
-            background-color: black;
-            width: 100%;
-            z-index: 1;
-            padding: 10px 0;
-        }
-
-        .dropdown a {
-            display: block;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-        }
-
-        .dropdown a:hover {
-            background-color: #333;
-        }
 
 
         nav ul {
@@ -294,9 +323,8 @@
 </head>
 <body>
 
-
     <div class="nav-toggle" onclick="toggleNav()">
-        <img src="Image/iconmonstr-menu-1.svg" alt="Menu">
+        <img src="Image/icons8-menu-50 (1).png" alt="Menu">
     </div>
 
 <nav>
@@ -315,8 +343,8 @@
 </nav>
 
 <div class="dropdown-nav-container">
-    <div class="nav-toggle" onclick="toggleNav()">
-        <img src="Image/iconmonstr-menu-1.svg" alt="Menu">
+    <div class="nav-toggle" onclick="toggleDropdownNav()">
+        <img src="Image/icons8-menu-50 (1).png" alt="Menu">
     </div>
     <ul class="nav-links">
         <li><a href="#about">About</a></li>
@@ -503,6 +531,12 @@
     function toggleNav() {
         var navLinks = document.querySelector('.nav-links');
         navLinks.classList.toggle('show');
+    }
+
+    // Toggling Dropdown Navigation
+    function toggleDropdownNav() {
+        var dropdownNavLinks = document.querySelector('.dropdown-nav-container .nav-links');
+        dropdownNavLinks.classList.toggle('show');
     }
 </script>
 
