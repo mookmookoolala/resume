@@ -12,6 +12,7 @@
     <style>
       body,
       html {
+        scroll-behavior: smooth;
         margin: 0;
         padding: 0;
         height: 100%;
@@ -120,25 +121,27 @@
 
       .project {
         position: relative;
-        width: 300px;
+        width: 100%; /* Adjust width as needed */
         height: auto;
         border-radius: 5px;
         overflow: hidden; /* Ensure the overlay is contained within the project */
+        display: flex; /* Use flexbox */
       }
 
       .project img {
-        width: 100%;
-        height: auto;
-        border-radius: 5px;
-        object-fit: cover;
-      }
+        flex-shrink: 0; /* Prevent image from shrinking */
+        width: 150px; /* Set width to a fixed value */
+        height: 150px; /* Set height to a fixed value */
+        object-fit: cover; /* Ensure the image covers the container */
+        object-position: left; /* Align the image to the left */
+        }
 
       .overlay {
         position: absolute;
         top: 0;
         left: 0;
-        right: 0;
-        bottom: 0;
+        width: 300px; /* Make the overlay width match the image */
+        height: 100%; /* Make the overlay height match the image */
         background-color: rgba(0, 0, 0, 0.7);
         color: white;
         display: flex;
@@ -149,11 +152,11 @@
         text-decoration: none;
         border-radius: 5px;
         pointer-events: auto; /* Ensure overlay is clickable */
-      }
+        }
 
       .project:hover .overlay {
-        opacity: 1;
-      }
+            opacity: 1;
+        }
 
       .overlay-content {
         text-align: center;
@@ -192,39 +195,54 @@
         }
 
         .dropdown-nav-container .nav-links {
-          display: none; /* Initially hide the navigation links */
+          list-style-type: none; /* Removes bullet points */
+          padding-left: 0; /* Removes default padding */
+          display: flex;
           flex-direction: column;
           position: absolute;
-          top: 60px; /* Adjust as needed */
-          left: 0;
-          width: 100%;
-          background-color: black;
+          top: 0; /* Positions the dropdown at the top of the viewport */
+          left: 0; /* Aligns the dropdown to the left edge */
+          width: 100%; /* Ensures the dropdown takes the full width */
+          background-color: black; /* Or any color you prefer */
+          transform: translateY(-100%); /* Start above the screen */
+          transition: transform 0.3s ease; /* Animation for sliding in */
         }
 
         .dropdown-nav-container .nav-links a {
+          text-decoration: none; /* Removes underlines from links */
           padding: 15px 20px;
-          border-bottom: 1px solid #333;
+          border-bottom: none; /* Remove border */
           color: white;
           text-decoration: none;
+          display: block; /* Ensure it takes up the full width for easier clicking */
         }
 
         .dropdown-nav-container .nav-links.show {
           display: flex; /* Show the navigation links in a flex layout on mobile */
+          transform: translateY(0); /* Bring into view */
         }
 
         .nav-toggle {
-          display: block; /* Show the hamburger menu on mobile */
-          position: fixed;
-          top: 10px; /* Adjust top position as needed */
-          right: 10px; /* Adjust right position as needed */
-          z-index: 1000; /* Ensure it's above other content */
-          cursor: pointer;
+            display: block; /* Show the hamburger menu on mobile */
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1000; /* Ensure it's above other content */
+            cursor: pointer;
+            background-color: #fff; /* Adds a white background */
+            border-radius: 10px; /* Matches the frame's rounded corners */
+            width: 50px; /* Adjust as necessary */
+            height: 50px; /* Adjust as necessary */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Optional: adds shadow for depth */
         }
 
         /* Adjust the size of the hamburger menu icon */
         .nav-toggle img {
-          width: 30px;
-          height: auto; /* Maintain aspect ratio */
+            width: 25px; /* Adjust the size of the hamburger icon */
+            height: auto;
         }
 
         .nav-toggle::before {
@@ -258,6 +276,53 @@
 
         .dropdown a:hover {
           background-color: #333;
+        }
+
+
+        .project {
+            position: relative;
+            width: 100%; /* Adjust width as needed */
+            height: auto;
+            border-radius: 5px;
+            overflow: hidden; /* Ensure the overlay is contained within the project */
+        }
+
+        .project img {
+            flex-shrink: 0; /* Prevent image from shrinking */
+            width: 100%; /* Set width to fill the container */
+            height: auto; /* Maintain aspect ratio */
+            object-fit: cover; /* Ensure the image covers the container */
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%; /* Make the overlay width match the image */
+            height: 100%; /* Make the overlay height match the image */
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            text-decoration: none;
+            border-radius: 5px;
+            pointer-events: auto; /* Ensure overlay is clickable */
+        }
+
+        .project:hover .overlay {
+            opacity: 1;
+        }
+
+        .overlay-content {
+            text-align: center;
+        }
+
+
+        #skills {
+            padding-bottom: 20px; /* Add padding at the bottom */
         }
       }
 
@@ -307,16 +372,16 @@
         height: 100vh;
       }
 
-      /* Section styles */
       .section {
-        margin-bottom: 40px;
-        width: 100%;
-        height: 100vh;
+        /* Adjust the height to occupy full viewport height minus some padding */
+        height: calc(100vh - 100px); /* 100px padding top and bottom */
+        padding: 50px 0; /* Add padding to create space */
         display: flex;
         flex-direction: column;
         justify-content: center;
         background-color: #f5f5dc; /* Replace with your desired color */
-      }
+        }
+
 
       .contact-icons a {
         text-decoration: none;
@@ -324,17 +389,40 @@
 
       .project img {
         width: 300px; /* Set the desired width */
-        height: auto; /* Maintain aspect ratio */
+        height: 300px; /* Maintain aspect ratio */
         object-fit: cover; /* Ensure the image covers the container */
         border: 2px solid black; /* Add a 2px solid black border around the image */
         border-radius: 5px; /* Add a slight border radius for rounded corners */
       }
+
+
+
+    /* CSS for the certifications section */
+    .certifications-container {
+    display: flex;
+    justify-content: flex-start; /* Align items to the start (left) */
+    flex-wrap: wrap; /* Allow the items to wrap as needed */
+    gap: 20px; /* Provide some space between the items */
+    }
+
+    .certification {
+    display: flex; /* Use flexbox to layout image and text */
+    flex-direction: column; /* Stack image and text vertically */
+    align-items: flex-start; /* Align items to the start (left) */
+    text-align: left; /* Align text to the left */
+    margin: 10px 10px 10px 0; /* Add some space on the top, right, and bottom, but not on the left */
+    }
+
+    .cert-image {
+    width: 200px; /* Adjust the width as desired */
+    height: auto; /* Maintain the aspect ratio */
+    margin-bottom: 5px; /* Space between image and text */
+    }
+
+
     </style>
   </head>
   <body>
-    <div class="nav-toggle" onclick="toggleNav()">
-      <img src="Image/icons8-menu-50 (1).png" alt="Menu" />
-    </div>
 
     <nav>
       <div class="frame">
@@ -350,6 +438,11 @@
         <li><a href="#Contact">Contact Me</a></li>
       </ul>
     </nav>
+
+
+    <div class="nav-toggle" onclick="toggleNav()">
+        <img src="Image/hamburger (2).png" alt="Menu" />
+    </div>
 
     <div class="dropdown-nav-container">
       <div class="nav-toggle" onclick="toggleNav()">
@@ -379,12 +472,12 @@
           proficiency with practical experience.
         </p>
         <div class="contact-icons">
-          <a href="mailto:your-email@example.com">
-            <img src="Image/social (3).png" alt="Mail" class="social-icon" />
+          <a href="mailto:mkk1994@hotmail.com">
+            <img src="Image/mail (2).png" alt="Mail" class="social-icon" />
           </a>
           <a href="https://messaging-service.com">
             <img
-              src="Image/social-media (1).png"
+              src="Image/mobile.png"
               alt="Message"
               class="social-icon"
             />
@@ -421,82 +514,34 @@
 
       <div id="skills" class="section">
         <h2>Skills</h2>
-        <p>
-          <strong>Technical Skills:</strong>
-        </p>
-        <p>
-          <strong>Soft Skills:</strong>
-        </p>
-        <p>
-          <strong>Skills:</strong>
-        </p>
-
-        <div class="certification">
-          <p>CCNA</p>
-          <img
-            src="Image/CCNA.png"
-            alt="CCNA Certificate"
-            class="cert-image"
-          />
-          <a
-            href="https://cp.certmetrics.com/cisco/en/public/verify/credential/da72f839ab25437dba4a38443d6019e8"
-            target="_blank"
-          >
-            <img src="Image/CCNA.png" alt="Link" class="link-icon" />
-          </a>
-        </div>
-
-        <div class="certification">
-          <p>RHCSA</p>
-          <img
-            src="Image/RHCSA.png"
-            alt="RHCSA Certificate"
-            class="cert-image"
-          />
-          <a
-            href="https://rhtapps.redhat.com/verify?certId=230-103-988"
-            target="_blank"
-          >
-            <img src="Image/RHCSA.png" alt="Link" class="link-icon" />
-          </a>
-        </div>
-
-        <div class="certification">
-          <p>CDCP</p>
-          <img
-            src="Images/cdcp-cert-image.jpg"
-            alt="CDCP Certificate"
-            class="cert-image"
-          />
-          <a href="https://link-to-ccna-certification-site" target="_blank">
-            <img src="Images/link-icon.jpg" alt="Link" class="link-icon" />
-          </a>
-        </div>
-
-        <div class="certification">
-          <p>AWS SAA</p>
-          <img
-            src="Images/aws-saa-cert-image.jpg"
-            alt="AWS SAA Certificate"
-            class="cert-image"
-          />
-          <a href="https://link-to-ccna-certification-site" target="_blank">
-            <img src="Images/link-icon.jpg" alt="Link" class="link-icon" />
-          </a>
-        </div>
-
-        <div class="certification">
-          <p>CSM</p>
-          <img
-            src="Images/csm-cert-image.jpg"
-            alt="CSM Certificate"
-            class="cert-image"
-          />
-          <a href="https://link-to-ccna-certification-site" target="_blank">
-            <img src="Images/link-icon.jpg" alt="Link" class="link-icon" />
-          </a>
+        <p><strong>Technical Skills:</strong></p>
+        <p><strong>Soft Skills:</strong></p>
+        <p><strong>Skills:</strong></p>
+        
+        <div class="certifications-container">
+          <div class="certification">
+            <p>CCNA</p>
+            <a href="https://cp.certmetrics.com/cisco/en/public/verify/credential/da72f839ab25437dba4a38443d6019e8" target="_blank">
+              <img src="Image/CCNA.png" alt="CCNA Certificate" class="cert-image" />
+            </a>
+          </div>
+        
+          <div class="certification">
+            <p>RHCSA</p>
+            <a href="https://rhtapps.redhat.com/verify?certId=230-103-988" target="_blank">
+              <img src="Image/RHCSA.png" alt="RHCSA Certificate" class="cert-image" />
+            </a>
+          </div>
+        
+          <div class="certification">
+            <p>AWS SAA</p>
+            <a href="https://aws.amazon.com/certification/certified-solutions-architect-associate/" target="_blank">
+              <img src="Image/AWS_SAA.png" alt="AWS Certificate" class="cert-image" />
+            </a>
+          </div>
         </div>
       </div>
+
 
       <div id="more" class="section">
         <h2>More</h2>
@@ -577,20 +622,16 @@
 
       <div id="Contact" class="section">
         <h2>Contact Me</h2>
-        <form>
-          <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required />
-          </div>
-          <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required />
-          </div>
-          <div class="form-group">
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" rows="4" required></textarea>
-          </div>
-          <button type="submit">Submit</button>
+        <form action="https://api.staticforms.xyz/submit" method="post">
+            <input type="text" name="name" placeholder="Your Name">
+            <input type="text" name="email" placeholder="Your Email" />
+            <textarea name="message" placeholder="Your Message"></textarea>
+            <input type="text" name="honeypot" style="display:none">
+            <input type="hidden" name="accessKey" value="d0762fba-8bde-42ba-93e4-5c82f854d9f0">
+            <input type="hidden" name="subject" value="Contact us from - example.com" />
+            <input type="hidden" name="replyTo" value="@">
+            <input type="hidden" name="redirectTo" value="https://jerrymoo.com/index4.html">
+            <input type="submit" value="Submit" />
         </form>
       </div>
     </div>
@@ -625,20 +666,31 @@
     </script>
 
     <script>
-      // Toggling Mobile Navigation
-      function toggleNav() {
-        var navLinks = document.querySelector("nav .nav-links");
-        navLinks.classList.toggle("show");
-      }
-
-      // Toggling Dropdown Navigation
-      function toggleDropdownNav() {
-        console.log("Dropdown navigation toggle button clicked"); // Add this line
-        var dropdownNavLinks = document.querySelector(
-          ".dropdown-nav-container .nav-links"
-        );
+        // Toggling Mobile Navigation
+        function toggleNav() {
+        var dropdownNavLinks = document.querySelector(".dropdown-nav-container .nav-links");
         dropdownNavLinks.classList.toggle("show");
-      }
+        }
+
+        document.querySelectorAll(".dropdown-nav-container .nav-links a").forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            // Close the dropdown menu
+            var dropdownNavLinks = document.querySelector(".dropdown-nav-container .nav-links");
+            dropdownNavLinks.classList.remove("show");
+
+            // Scroll to the section
+            const targetId = this.getAttribute("href").substring(1);
+            const targetSection = document.getElementById(targetId);
+
+            if (targetSection) {
+            targetSection.scrollIntoView({
+                behavior: "smooth",
+            });
+            }
+        });
+        });
     </script>
   </body>
 </html>
