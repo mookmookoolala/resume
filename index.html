@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="icon" type="image/png" href="Image/jerry.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -135,7 +134,7 @@
         height: 150px; /* Set height to a fixed value */
         object-fit: cover; /* Ensure the image covers the container */
         object-position: left; /* Align the image to the left */
-      }
+        }
 
       .overlay {
         position: absolute;
@@ -153,11 +152,11 @@
         text-decoration: none;
         border-radius: 5px;
         pointer-events: auto; /* Ensure overlay is clickable */
-      }
+        }
 
       .project:hover .overlay {
-        opacity: 1;
-      }
+            opacity: 1;
+        }
 
       .overlay-content {
         text-align: center;
@@ -224,26 +223,26 @@
         }
 
         .nav-toggle {
-          display: block; /* Show the hamburger menu on mobile */
-          position: fixed;
-          top: 10px;
-          right: 10px;
-          z-index: 1000; /* Ensure it's above other content */
-          cursor: pointer;
-          background-color: #fff; /* Adds a white background */
-          border-radius: 10px; /* Matches the frame's rounded corners */
-          width: 50px; /* Adjust as necessary */
-          height: 50px; /* Adjust as necessary */
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: adds shadow for depth */
+            display: block; /* Show the hamburger menu on mobile */
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1000; /* Ensure it's above other content */
+            cursor: pointer;
+            background-color: #fff; /* Adds a white background */
+            border-radius: 10px; /* Matches the frame's rounded corners */
+            width: 50px; /* Adjust as necessary */
+            height: 50px; /* Adjust as necessary */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Optional: adds shadow for depth */
         }
 
         /* Adjust the size of the hamburger menu icon */
         .nav-toggle img {
-          width: 25px; /* Adjust the size of the hamburger icon */
-          height: auto;
+            width: 25px; /* Adjust the size of the hamburger icon */
+            height: auto;
         }
 
         .nav-toggle::before {
@@ -279,49 +278,51 @@
           background-color: #333;
         }
 
+
         .project {
-          position: relative;
-          width: 100%; /* Adjust width as needed */
-          height: auto;
-          border-radius: 5px;
-          overflow: hidden; /* Ensure the overlay is contained within the project */
+            position: relative;
+            width: 100%; /* Adjust width as needed */
+            height: auto;
+            border-radius: 5px;
+            overflow: hidden; /* Ensure the overlay is contained within the project */
         }
 
         .project img {
-          flex-shrink: 0; /* Prevent image from shrinking */
-          width: 100%; /* Set width to fill the container */
-          height: auto; /* Maintain aspect ratio */
-          object-fit: cover; /* Ensure the image covers the container */
+            flex-shrink: 0; /* Prevent image from shrinking */
+            width: 100%; /* Set width to fill the container */
+            height: auto; /* Maintain aspect ratio */
+            object-fit: cover; /* Ensure the image covers the container */
         }
 
         .overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%; /* Make the overlay width match the image */
-          height: 100%; /* Make the overlay height match the image */
-          background-color: rgba(0, 0, 0, 0.7);
-          color: white;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          opacity: 0;
-          transition: opacity 0.3s ease;
-          text-decoration: none;
-          border-radius: 5px;
-          pointer-events: auto; /* Ensure overlay is clickable */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%; /* Make the overlay width match the image */
+            height: 100%; /* Make the overlay height match the image */
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            text-decoration: none;
+            border-radius: 5px;
+            pointer-events: auto; /* Ensure overlay is clickable */
         }
 
         .project:hover .overlay {
-          opacity: 1;
+            opacity: 1;
         }
 
         .overlay-content {
-          text-align: center;
+            text-align: center;
         }
 
+
         #skills {
-          padding-bottom: 20px; /* Add padding at the bottom */
+            padding-bottom: 20px; /* Add padding at the bottom */
         }
       }
 
@@ -379,7 +380,8 @@
         flex-direction: column;
         justify-content: center;
         background-color: #f5f5dc; /* Replace with your desired color */
-      }
+        }
+
 
       .contact-icons a {
         text-decoration: none;
@@ -393,30 +395,35 @@
         border-radius: 5px; /* Add a slight border radius for rounded corners */
       }
 
-      /* CSS for the certifications section */
-      .certifications-container {
-        display: flex;
-        justify-content: flex-start; /* Align items to the start (left) */
-        flex-wrap: wrap; /* Allow the items to wrap as needed */
-        gap: 20px; /* Provide some space between the items */
-      }
 
-      .certification {
-        display: flex; /* Use flexbox to layout image and text */
-        flex-direction: column; /* Stack image and text vertically */
-        align-items: flex-start; /* Align items to the start (left) */
-        text-align: left; /* Align text to the left */
-        margin: 10px 10px 10px 0; /* Add some space on the top, right, and bottom, but not on the left */
-      }
 
-      .cert-image {
-        width: 200px; /* Adjust the width as desired */
-        height: auto; /* Maintain the aspect ratio */
-        margin-bottom: 5px; /* Space between image and text */
-      }
+    /* CSS for the certifications section */
+    .certifications-container {
+    display: flex;
+    justify-content: flex-start; /* Align items to the start (left) */
+    flex-wrap: wrap; /* Allow the items to wrap as needed */
+    gap: 20px; /* Provide some space between the items */
+    }
+
+    .certification {
+    display: flex; /* Use flexbox to layout image and text */
+    flex-direction: column; /* Stack image and text vertically */
+    align-items: flex-start; /* Align items to the start (left) */
+    text-align: left; /* Align text to the left */
+    margin: 10px 10px 10px 0; /* Add some space on the top, right, and bottom, but not on the left */
+    }
+
+    .cert-image {
+    width: 200px; /* Adjust the width as desired */
+    height: auto; /* Maintain the aspect ratio */
+    margin-bottom: 5px; /* Space between image and text */
+    }
+
+
     </style>
   </head>
   <body>
+
     <nav>
       <div class="frame">
         <img src="Image/met.png" alt="Your Image" />
@@ -432,8 +439,9 @@
       </ul>
     </nav>
 
+
     <div class="nav-toggle" onclick="toggleNav()">
-      <img src="Image/hamburger (2).png" alt="Menu" />
+        <img src="Image/hamburger (2).png" alt="Menu" />
     </div>
 
     <div class="dropdown-nav-container">
@@ -467,8 +475,12 @@
           <a href="mailto:mkk1994@hotmail.com">
             <img src="Image/mail (2).png" alt="Mail" class="social-icon" />
           </a>
-          <a href="https://telegram.me/mookmooklala">
-            <img src="Image/mobile.png" alt="Message" class="social-icon" />
+          <a href="https://messaging-service.com">
+            <img
+              src="Image/mobile.png"
+              alt="Message"
+              class="social-icon"
+            />
           </a>
         </div>
       </div>
@@ -505,51 +517,31 @@
         <p><strong>Technical Skills:</strong></p>
         <p><strong>Soft Skills:</strong></p>
         <p><strong>Skills:</strong></p>
-
+        
         <div class="certifications-container">
           <div class="certification">
             <p>CCNA</p>
-            <a
-              href="https://cp.certmetrics.com/cisco/en/public/verify/credential/da72f839ab25437dba4a38443d6019e8"
-              target="_blank"
-            >
-              <img
-                src="Image/CCNA.png"
-                alt="CCNA Certificate"
-                class="cert-image"
-              />
+            <a href="https://cp.certmetrics.com/cisco/en/public/verify/credential/da72f839ab25437dba4a38443d6019e8" target="_blank">
+              <img src="Image/CCNA.png" alt="CCNA Certificate" class="cert-image" />
             </a>
           </div>
-
+        
           <div class="certification">
             <p>RHCSA</p>
-            <a
-              href="https://rhtapps.redhat.com/verify?certId=230-103-988"
-              target="_blank"
-            >
-              <img
-                src="Image/RHCSA.png"
-                alt="RHCSA Certificate"
-                class="cert-image"
-              />
+            <a href="https://rhtapps.redhat.com/verify?certId=230-103-988" target="_blank">
+              <img src="Image/RHCSA.png" alt="RHCSA Certificate" class="cert-image" />
             </a>
           </div>
-
+        
           <div class="certification">
             <p>AWS SAA</p>
-            <a
-              href="https://aws.amazon.com/certification/certified-solutions-architect-associate/"
-              target="_blank"
-            >
-              <img
-                src="Image/AWS_SAA.png"
-                alt="AWS Certificate"
-                class="cert-image"
-              />
+            <a href="https://cp.certmetrics.com/amazon/en/verify/credential" target="_blank">
+              <img src="Image/Architect.png" alt="AWS Certificate" class="cert-image" />
             </a>
           </div>
         </div>
       </div>
+
 
       <div id="more" class="section">
         <h2>More</h2>
@@ -631,27 +623,15 @@
       <div id="Contact" class="section">
         <h2>Contact Me</h2>
         <form action="https://api.staticforms.xyz/submit" method="post">
-          <input type="text" name="name" placeholder="Your Name" />
-          <input type="text" name="email" placeholder="Your Email" />
-          <textarea name="message" placeholder="Your Message"></textarea>
-          <input type="text" name="honeypot" style="display: none" />
-          <input
-            type="hidden"
-            name="accessKey"
-            value="d0762fba-8bde-42ba-93e4-5c82f854d9f0"
-          />
-          <input
-            type="hidden"
-            name="subject"
-            value="Contact us from - example.com"
-          />
-          <input type="hidden" name="replyTo" value="@" />
-          <input
-            type="hidden"
-            name="redirectTo"
-            value="https://jerrymoo.com/index4.html"
-          />
-          <input type="submit" value="Submit" />
+            <input type="text" name="name" placeholder="Your Name">
+            <input type="text" name="email" placeholder="Your Email" />
+            <textarea name="message" placeholder="Your Message"></textarea>
+            <input type="text" name="honeypot" style="display:none">
+            <input type="hidden" name="accessKey" value="d0762fba-8bde-42ba-93e4-5c82f854d9f0">
+            <input type="hidden" name="subject" value="Contact us from - example.com" />
+            <input type="hidden" name="replyTo" value="@">
+            <input type="hidden" name="redirectTo" value="https://jerrymoo.com/index4.html">
+            <input type="submit" value="Submit" />
         </form>
       </div>
     </div>
@@ -686,24 +666,18 @@
     </script>
 
     <script>
-      // Toggling Mobile Navigation
-      function toggleNav() {
-        var dropdownNavLinks = document.querySelector(
-          ".dropdown-nav-container .nav-links"
-        );
+        // Toggling Mobile Navigation
+        function toggleNav() {
+        var dropdownNavLinks = document.querySelector(".dropdown-nav-container .nav-links");
         dropdownNavLinks.classList.toggle("show");
-      }
+        }
 
-      document
-        .querySelectorAll(".dropdown-nav-container .nav-links a")
-        .forEach((anchor) => {
-          anchor.addEventListener("click", function (e) {
+        document.querySelectorAll(".dropdown-nav-container .nav-links a").forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
             e.preventDefault();
 
             // Close the dropdown menu
-            var dropdownNavLinks = document.querySelector(
-              ".dropdown-nav-container .nav-links"
-            );
+            var dropdownNavLinks = document.querySelector(".dropdown-nav-container .nav-links");
             dropdownNavLinks.classList.remove("show");
 
             // Scroll to the section
@@ -711,11 +685,11 @@
             const targetSection = document.getElementById(targetId);
 
             if (targetSection) {
-              targetSection.scrollIntoView({
+            targetSection.scrollIntoView({
                 behavior: "smooth",
-              });
+            });
             }
-          });
+        });
         });
     </script>
   </body>
