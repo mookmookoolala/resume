@@ -424,6 +424,7 @@
     width: 50px; /* Adjust the size as needed */
     height: auto; /* Maintain aspect ratio */
     margin-right: 10px; /* Space between logos */
+    transition: transform 0.3s; /* Smooth transition for enlarging */
     }
 
     .skills-logos {
@@ -433,7 +434,36 @@
     margin-top: 20px; /* Space above the logo row */
     }
 
+    .skill-logo-container {
+    display: inline-block; /* Align icons in line */
+    position: relative; /* Needed for absolute positioning of the name */
+    text-align: center; /* Center the name text below the icon */
+    margin-right: 10px; /* Space between icons */
+    cursor: pointer; /* Change cursor on hover */
+    }
 
+    .skill-logo-container:hover .skill-logo {
+    transform: scale(1.2); /* Enlarge icon on hover */
+    }
+
+    .icon-name {
+    display: none; /* Hide the name initially */
+    position: absolute; /* Position it over the icon */
+    width: 100%; /* Same width as the container */
+    bottom: -20px; /* Position below the icon */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    transition: opacity 0.3s; /* Smooth transition for showing name */
+    background-color: rgba(0, 0, 0, 0.7); /* Background for readability */
+    color: white; /* Text color */
+    border-radius: 5px; /* Rounded corners */
+    padding: 2px 5px; /* Some padding around the text */
+    }
+
+    .skill-logo-container:hover .icon-name {
+    display: block; /* Show name on hover */
+    opacity: 1; /* Make it visible */
+    }
     </style>
   </head>
   <body>
@@ -526,20 +556,53 @@
         <h2>Skills</h2>
         <p><strong>Technical Skills:</strong></p>
         <div class="skills-logos">
-            <img src="Image/shell.png" alt="Logo 1" class="skill-logo" />
-            <img src="Image/networking.png" alt="Logo 2" class="skill-logo" />
-            <img src="Image/python.png" alt="Logo 3" class="skill-logo" />
-            <img src="Image/Linux.png" alt="Logo 4" class="skill-logo" />
-            <img src="Image/Aws.png" alt="Logo 5" class="skill-logo" />
-            <img src="Image/Prometheus.jpg" alt="Logo 6" class="skill-logo" />
-            <img src="Image/Docker.png" alt="Logo 7" class="skill-logo" />
+            <div class="skill-logo-container">
+                <img src="Image/shell.png" alt="Shell Scripting" class="skill-logo" />
+                <span class="icon-name">Shell Scripting</span>
+            </div>
+            <div class="skill-logo-container">
+                <img src="Image/networking.png" alt="Networking" class="skill-logo" />
+                <span class="icon-name">Networking</span>
+            </div>
+            <div class="skill-logo-container">
+                <img src="Image/python.png" alt="Python" class="skill-logo" />
+                <span class="icon-name">Python</span>
+            </div>
+            <div class="skill-logo-container">
+                <img src="Image/Linux.png" alt="Linux" class="skill-logo" />
+                <span class="icon-name">Linux</span>
+            </div>
+            <div class="skill-logo-container">
+                <img src="Image/Aws.png" alt="AWS" class="skill-logo" />
+                <span class="icon-name">AWS</span>
+            </div>
+            <div class="skill-logo-container">
+                <img src="Image/Prometheus.jpg" alt="Prometheus" class="skill-logo" />
+                <span class="icon-name">Prometheus</span>
+            </div>
+            <div class="skill-logo-container">
+                <img src="Image/Docker.png" alt="Docker" class="skill-logo" />
+                <span class="icon-name">Docker</span>
+            </div>
         </div>
         <p><strong>Soft Skills:</strong></p>
         <div class="skills-logos">
-            <img src="Image/ClientManagementIcon.svg" alt="Logo 8" class="skill-logo" />
-            <img src="Image/ProjectManagementIcon.svg" alt="Logo 9" class="skill-logo" />
-            <img src="Image/TeamManagementIcon.png" alt="Logo 10" class="skill-logo" />
-            <img src="Image/VendorManagementIcon.svg" alt="Logo 11" class="skill-logo" />
+            <div class="skill-logo-container">
+                <img src="Image/ClientManagementIcon.svg" alt="Client Management" class="skill-logo" />
+                <span class="icon-name">Client Management</span>
+            </div>
+            <div class="skill-logo-container">
+                <img src="Image/ProjectManagementIcon.svg" alt="Project Management" class="skill-logo" />
+                <span class="icon-name">Project Management</span>
+            </div>
+            <div class="skill-logo-container">
+                <img src="Image/TeamManagementIcon.png" alt="Team Management" class="skill-logo" />
+                <span class="icon-name">Team Management</span>
+            </div>
+            <div class="skill-logo-container">
+                <img src="Image/VendorManagementIcon.svg" alt="Vendor Management" class="skill-logo" />
+                <span class="icon-name">Vendor Management</span>
+            </div>
         </div>
         <p><strong>Skills:</strong></p>
         
