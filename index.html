@@ -421,8 +421,8 @@
     }
 
     .skill-logo {
-    width: 50px; /* Adjust the size as needed */
-    height: auto; /* Maintain aspect ratio */
+    width: 50px; /* Initial width */
+    height: 50px; /* Initial height */
     margin-right: 10px; /* Space between logos */
     transition: transform 0.3s; /* Smooth transition for enlarging */
     }
@@ -435,10 +435,11 @@
     }
 
     .skill-logo-container {
-    display: inline-block; /* Align icons in line */
+        display: inline-block; /* Align icons in line */
     position: relative; /* Needed for absolute positioning of the name */
     text-align: center; /* Center the name text below the icon */
     margin-right: 10px; /* Space between icons */
+    margin-bottom: 30px; /* Space below each container for the text */
     cursor: pointer; /* Change cursor on hover */
     }
 
@@ -450,14 +451,15 @@
     display: none; /* Hide the name initially */
     position: absolute; /* Position it over the icon */
     width: 100%; /* Same width as the container */
-    bottom: -20px; /* Position below the icon */
+    bottom: -25px; /* Adjust based on your layout */
     left: 50%;
     transform: translateX(-50%); /* Center horizontally */
     transition: opacity 0.3s; /* Smooth transition for showing name */
     background-color: rgba(0, 0, 0, 0.7); /* Background for readability */
     color: white; /* Text color */
-    border-radius: 5px; /* Rounded corners */
+    font-size: 12px; /* Adjust font size as needed */
     padding: 2px 5px; /* Some padding around the text */
+    white-space: nowrap; /* Prevent text from wrapping */
     }
 
     .skill-logo-container:hover .icon-name {
@@ -600,7 +602,7 @@
                 <span class="icon-name">Team Management</span>
             </div>
             <div class="skill-logo-container">
-                <img src="Image/" alt="Vendor Management" class="skill-logo" />
+                <img src="Image/VendorManagementIcon.svg" alt="Vendor Management" class="skill-logo" />
                 <span class="icon-name">Vendor Management</span>
             </div>
         </div>
