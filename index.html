@@ -146,6 +146,41 @@
         display: flex; /* Use flexbox */
       }
 
+
+      .small-project {
+        display: flex;
+        align-items: center; /* Vertical alignment */
+        margin-bottom: 10px; /* Maintain regular space between entries */
+        font-size: 16px; /* Appropriate text size */
+    }
+
+    .small-icon {
+        width: 40px; /* Set a fixed width for the icon */
+        height: 40px; /* Maintain aspect ratio with the same height */
+        margin-right: 25px; /* Space between the icon and text */
+        flex-shrink: 0; /* Prevents the icon from resizing */
+    }
+
+    .small-project a {
+        display: inline-block;  /* Ensures the link block fits the image */
+        cursor: pointer;       /* Changes the cursor to indicate a link */
+    }
+
+    .small-project a:hover .small-icon {
+        transform: scale(1.2); /* Slightly enlarges the icon on hover */
+        transition: transform 0.2s ease-in-out; /* Smooth transition for scale */
+    }
+
+    /* Specific margin for the first small project after Project 1 */
+    .first-small-project {
+        margin-top: 60px; /* Increased top margin to create more space after Project 1 */
+    }
+
+    /* Optional: Adjust bottom margin of Project 1 if needed */
+    .project:last-of-type {
+        margin-bottom: 0; /* Removes bottom margin from the last project if there's any */
+    }
+
       .project img {
         flex-shrink: 0; /* Prevent image from shrinking */
         width: 150px; /* Set width to a fixed value */
@@ -570,8 +605,27 @@
             </div>
           </div>
         </div>
+        
+        <div class="small-project first-small-project">
+            <a href="https://t.me/busstopforsingaporebot" target="_blank">
+                <img src="Image/telegram.png" alt="BusStopForSingaporeBot" class="small-icon"/>
+            </a>
+            <span>BusStopForSingaporeBot - Bot that helps you find out how long for upcoming bus arrival.</span>
+        </div>
+        
+        <div class="small-project">
+            <a href="https://t.me/princecryptobot" target="_blank">
+                <img src="Image/telegram.png" alt="Princecryptobot" class="small-icon"/>
+            </a>
+            <span>Princecryptobot - Bot that gives you near-realtime crypto prices.</span>
+        </div>
+        
+        
         <!-- Add more project entries as needed -->
       </div>
+
+
+    
 
       <div id="skills" class="section">
         <h2>Skills</h2>
