@@ -804,7 +804,7 @@
         // GET API REQUEST
         async function get_visitors() {
             try {
-                let response = await fetch('https://lqk9r6hlp1.execute-api.ap-southeast-1.amazonaws.com/default'	, {
+                let response = await fetch('https://lqk9r6hlp1.execute-api.ap-southeast-1.amazonaws.com/default/VisitorCounter'	, {
                     method: 'GET',
                 });
                 let data = await response.json();
