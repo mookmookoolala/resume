@@ -28,6 +28,23 @@
         font-size: 18px;
       }
 
+      #about {
+        position: relative; /* Needed for absolute positioning inside */
+        min-height: 300px; /* Minimum height */
+      }
+
+        #visitor-count {
+            position: absolute; /* Absolute positioning within the content area */
+            bottom: 10px; /* At the bottom */
+            left: 0; /* At the start of the content area */
+            font-size: 16px; /* Smaller font size */
+            font-style: italic; /* Italic font style */
+            background-color: #f5f5dc; /* Exact match to the content background */
+            padding: 5px 10px;
+            color: #333; /* Ensure text color contrasts well with the background */
+            border: none; /* Remove any borders that might be set */
+        }
+
       /* Apply Impact to headers */
       h1,
       h2,
@@ -526,6 +543,7 @@
             <img src="Image/mobile.png" alt="Message" class="social-icon" />
           </a>
         </div>
+        <p id="visitor-count">You are visitor number: <span id="visitors"></span></p>
       </div>
 
       <div id="experience" class="section">
@@ -782,6 +800,23 @@
             }
         });
         });
+
+        // GET API REQUEST
+        async function get_visitors() {
+            try {
+                let response = await fetch('https://lqk9r6hlp1.execute-api.ap-southeast-1.amazonaws.com/default'	, {
+                    method: 'GET',
+                });
+                let data = await response.json();
+                document.getElementById("visitors").innerHTML = data['count'];
+                console.log(data);
+                return data;
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        get_visitors();
     </script>
   </body>
 </html>
