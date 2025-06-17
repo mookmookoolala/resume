@@ -15,6 +15,9 @@
             --secondary-color: #f5f5dc;
             --text-color: #333;
             --accent-color: #007bff;
+            --card-bg: rgba(255,255,255,0.85);
+            --card-shadow: 0 4px 24px rgba(0,0,0,0.10);
+            --divider: #e0e0e0;
         }
 
         body, html {
@@ -23,8 +26,8 @@
             padding: 0;
             height: 100%;
             width: 100%;
-            background-color: var(--secondary-color);
-            font-family: "Lexend", sans-serif;
+            background: linear-gradient(135deg, #f5f5dc 0%, #e3e6f3 100%);
+            font-family: "Lexend", "Segoe UI", Arial, sans-serif;
             font-size: 18px;
         }
 
@@ -34,7 +37,8 @@
         }
 
         h1, h2, h3, h4, h5, h6 {
-            font-family: "Impact", sans-serif;
+            font-family: "Lexend", "Segoe UI", Arial, sans-serif;
+            letter-spacing: 0.5px;
         }
 
         nav {
@@ -48,6 +52,8 @@
             flex-direction: column;
             position: fixed;
             overflow-y: auto;
+            border-radius: 0 20px 20px 0;
+            box-shadow: 2px 0 16px rgba(0,0,0,0.08);
         }
 
         .frame {
@@ -59,6 +65,7 @@
             margin-bottom: 20px;
             width: 250px;
             height: 250px;
+            background: rgba(255,255,255,0.3);
         }
 
         .frame img {
@@ -73,57 +80,98 @@
         }
 
         nav ul li a {
-            font-family: "Impact", sans-serif;
+            font-family: "Lexend", "Segoe UI", Arial, sans-serif;
             color: white;
             text-decoration: none;
             padding: 10px 0;
             display: block;
+            border-radius: 8px;
+            transition: background 0.2s, color 0.2s;
+            font-weight: 500;
         }
 
+        nav ul li a.active {
+            background: rgba(0,123,255,0.12);
+            color: var(--accent-color);
+        }
         nav ul li a:hover {
+            background: rgba(0,123,255,0.18);
+            color: var(--accent-color);
             text-decoration: underline;
         }
 
         .content {
             flex-grow: 1;
-            padding: 20px;
-            margin-left: 300px;
+            padding: 40px 24px 24px 24px;
+            margin-left: 320px;
             overflow-y: auto;
             height: 100vh;
+            background: transparent;
         }
 
         .section {
             min-height: calc(100vh - 100px);
-            padding: 50px 0;
+            padding: 40px 0 30px 0;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            margin-bottom: 40px;
+            border-radius: 18px;
+            background: var(--card-bg);
+            box-shadow: var(--card-shadow);
+            animation: fadeIn 1s;
+            border: 1px solid #ece7d5;
         }
 
-        .project {
-            position: relative;
-            width: 100%;
-            height: auto;
-            border-radius: 5px;
-            overflow: hidden;
-            display: flex;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section:not(:last-child) {
+            border-bottom: 2px solid var(--divider);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        h1 { font-size: 2.5rem; font-weight: 800; }
+        h2 { font-size: 2rem; font-weight: 700; }
+        h3 { font-size: 1.3rem; font-weight: 600; }
+        p, span, li { color: var(--text-color); }
+        .project, .small-project, .certification, .skill-logo-container {
+            background: var(--card-bg);
+            box-shadow: var(--card-shadow);
+            border-radius: 12px;
             margin-bottom: 20px;
+            transition: box-shadow 0.2s, transform 0.2s, background 0.2s;
+            border: 1px solid #ece7d5;
         }
-
+        .project:hover, .small-project:hover, .certification:hover, .skill-logo-container:hover {
+            box-shadow: 0 8px 32px rgba(0,0,0,0.16);
+            transform: translateY(-4px) scale(1.02);
+            background: rgba(255,255,255,0.95);
+        }
+        .project {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            gap: 24px;
+        }
         .project img {
-            flex-shrink: 0;
-            width: 300px;
-            height: 300px;
+            width: 180px;
+            height: 180px;
             object-fit: cover;
-            border: 2px solid black;
-            border-radius: 5px;
+            border-radius: 10px;
+            border: 2px solid #eee;
         }
-
         .overlay {
             position: absolute;
             top: 0;
             left: 0;
-            width: 300px;
+            width: 180px;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.7);
             color: white;
@@ -133,82 +181,89 @@
             opacity: 0;
             transition: opacity 0.3s ease;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 10px;
             pointer-events: auto;
         }
-
         .project:hover .overlay {
             opacity: 1;
         }
-
-        /* Smaller Telegram Icon */
-        .small-project .small-icon {
-            width: 50px; /* Smaller size for telegram icons */
-            height: auto;
-        }
-
         .skills-logos {
             display: flex;
             flex-wrap: wrap;
-            justify-content: flex-start;
-            align-items: center;
+            gap: 18px;
             margin-top: 20px;
         }
-
         .skill-logo-container {
-            display: inline-block;
-            position: relative;
+            width: 90px;
+            padding: 12px 0 8px 0;
             text-align: center;
-            margin-right: 20px;
-            margin-bottom: 30px;
-            cursor: pointer;
-            width: 80px;
+            border: 1px solid #f0f0f0;
         }
-
         .skill-logo {
-            width: 50px;
-            height: 50px;
-            transition: transform 0.3s;
+            width: 48px;
+            height: 48px;
+            margin-bottom: 6px;
         }
-
-        .skill-logo-container:hover .skill-logo {
-            transform: scale(1.2);
-        }
-
         .icon-name {
-            display: none;
-            position: absolute;
-            width: 100%;
-            bottom: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            transition: opacity 0.3s;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            font-size: 12px;
-            padding: 3px;
-            border-radius: 5px;
-        }
-
-        .skill-logo-container:hover .icon-name {
             display: block;
-            opacity: 1;
+            font-size: 13px;
+            color: var(--text-color);
+            background: #f8f8f8;
+            border-radius: 6px;
+            padding: 2px 0;
+            margin-top: 2px;
         }
-
-        .social-icon {
-            width: 24px;
+        .certifications-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-top: 16px;
+        }
+        .certification {
+            flex: 1 1 180px;
+            text-align: center;
+            padding: 16px 8px;
+        }
+        .cert-image {
+            width: 90px;
             height: auto;
-            margin-right: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
-
-        .social-icons a {
-            text-decoration: none;
+        .social-icons {
+            display: flex;
+            gap: 16px;
+            margin-top: 10px;
         }
-
-        .social-icons a:hover {
-            text-decoration: none;
+        .social-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 4px;
+            transition: box-shadow 0.2s, transform 0.2s;
         }
-
+        .social-icon:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.16);
+            transform: scale(1.1);
+        }
+        #contact input[type="submit"] {
+            background: var(--accent-color);
+            color: #fff;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 0;
+            font-size: 1.1rem;
+            transition: background 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        #contact input[type="submit"]:hover {
+            background: #0056b3;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.16);
+        }
         .nav-toggle {
             display: none;
             cursor: pointer;
@@ -219,19 +274,13 @@
             background-color: #fff;
             border-radius: 5px;
             padding: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
-
-        .nav-toggle img {
-            width: 30px;
-            height: 30px;
-        }
-
-        @media only screen and (max-width: 768px) {
-            body {
-                flex-direction: column;
-                border-top: 30px solid black; /* Black border for mobile */
+        @media only screen and (max-width: 900px) {
+            .content {
+                margin-left: 0;
+                padding-top: 80px;
             }
-
             nav {
                 width: 100%;
                 height: auto;
@@ -239,64 +288,29 @@
                 top: 0;
                 left: 0;
                 z-index: 100;
-                display: none;
+                border-radius: 0 0 20px 20px;
+                box-shadow: 0 4px 24px rgba(0,0,0,0.08);
             }
-
-            nav.active {
-                display: block;
-            }
-
-            .frame {
-                display: none;
-            }
-
-            .nav-toggle {
-                display: block;
-            }
-
-            .content {
-                margin-left: 0;
-                padding-top: 60px;
-            }
-
-            .project img {
-                width: 100%;
-                height: auto;
-            }
-
-            .overlay {
-                width: 100%;
-            }
+            .frame { display: none; }
+            .nav-toggle { display: block; }
         }
-
-        /* Adjusted Certification Size */
-        .cert-image {
-            width: 100px;
-            height: auto;
-            border-radius: 5px;
-            margin-top: 10px;
+        @media only screen and (max-width: 600px) {
+            .section {
+                padding: 18px 4px;
+                margin-bottom: 18px;
+            }
+            .project img, .overlay { width: 100px; height: 100px; }
+            .skills-logos { gap: 8px; }
+            .certifications-container { gap: 8px; }
         }
-
-        /* Contact Me section: Stacked Input Fields */
-        #contact input, #contact textarea {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.2s;
         }
-
-        #contact input[type="submit"] {
-            background-color: var(--accent-color);
-            color: white;
-            cursor: pointer;
-            border: none;
-        }
-
-        #contact input[type="submit"]:hover {
-            background-color: #0056b3;
+        a:hover, a:focus {
+            color: #0056b3;
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -556,6 +570,25 @@
                 script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
                 document.body.appendChild(script);
             }
+
+            // Highlight active nav link on scroll
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('nav ul li a');
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 80;
+                    if (pageYOffset >= sectionTop) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
         </script>
     </body>
 </html>
