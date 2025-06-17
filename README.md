@@ -9,9 +9,6 @@ Welcome! This is my personal resume/portfolio site, built and deployed on AWS wi
 - **Real visitor counter** using Lambda + DynamoDB
 - **Modern, artsy UI** (bold black outlines, blue accents, handwritten headings)
 
-## Work Experience
-- **2025–Present:** SGX, FX Platform Engineer
-
 ## Architecture
 ```
 [Browser]
