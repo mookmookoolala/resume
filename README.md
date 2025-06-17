@@ -10,7 +10,6 @@ Welcome! This is my personal resume/portfolio site, built and deployed on AWS wi
 - **Modern, artsy UI** (bold black outlines, blue accents, handwritten headings)
 
 ## Work Experience
-- **2024–2025:** Matrixport, DevOps Engineer
 - **2025–Present:** SGX, FX Platform Engineer
 
 ## Architecture
