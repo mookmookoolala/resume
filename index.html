@@ -8,15 +8,15 @@
     <link rel="icon" type="image/png" href="Image/jerry.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Pacifico&family=Permanent+Marker&display=swap" rel="stylesheet" />
     <style>
         :root {
             --primary-color: #000;
             --secondary-color: #f5f5dc;
             --text-color: #333;
-            --accent-color: #007bff;
+            --accent-color: #3a5ca8;
             --card-bg: rgba(245,245,220,0.92);
-            --card-shadow: 0 4px 24px rgba(0,0,0,0.10);
+            --card-shadow: 0 8px 32px rgba(0,0,0,0.12);
             --divider: #e0e0e0;
         }
 
@@ -29,6 +29,12 @@
             background: linear-gradient(135deg, #f5f5dc 0%, #e3e6f3 100%);
             font-family: "Lexend", "Segoe UI", Arial, sans-serif;
             font-size: 18px;
+            position: relative;
+        }
+
+        /* Artsy background blobs */
+        body::before, body::after {
+            display: none;
         }
 
         body {
@@ -40,11 +46,28 @@
             font-family: "Lexend", "Segoe UI", Arial, sans-serif;
             letter-spacing: 0.5px;
         }
+        h1, h2.section-title {
+            font-size: 2.7rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            margin-bottom: 0.5em;
+            font-family: 'Permanent Marker', cursive, "Lexend", sans-serif;
+            letter-spacing: 1px;
+        }
+        h2, h3 {
+            font-weight: 700;
+        }
+        .section-title {
+            font-family: 'Permanent Marker', cursive, "Lexend", sans-serif;
+            color: var(--accent-color);
+            font-size: 2.2rem;
+            margin-bottom: 0.7em;
+        }
 
         nav {
             background-color: var(--primary-color);
             color: white;
-            padding: 20px;
+            padding: 24px 20px 24px 20px;
             width: 300px;
             height: 100vh;
             box-sizing: border-box;
@@ -52,126 +75,130 @@
             flex-direction: column;
             position: fixed;
             overflow-y: auto;
-            border-radius: 0 20px 20px 0;
-            box-shadow: 2px 0 16px rgba(0,0,0,0.08);
+            border-radius: 0 32px 32px 0;
+            box-shadow: 2px 0 32px rgba(0,0,0,0.18);
+            border-right: 6px solid #000;
+            left: 0;
+            top: 0;
+            z-index: 2001;
         }
-
-        .frame {
-            border: 5px solid grey;
-            padding: 5px;
-            display: inline-block;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            width: 250px;
-            height: 250px;
-            background: rgba(255,255,255,0.3);
-        }
-
-        .frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
         nav ul {
             list-style-type: none;
             padding-left: 0;
+            margin-top: 32px;
         }
-
         nav ul li a {
             font-family: "Lexend", "Segoe UI", Arial, sans-serif;
             color: white;
             text-decoration: none;
-            padding: 10px 0;
+            padding: 10px 0 10px 12px;
             display: block;
-            border-radius: 8px;
-            transition: background 0.2s, color 0.2s;
-            font-weight: 500;
+            border-radius: 8px 20px 20px 8px;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
         }
-
         nav ul li a.active {
-            background: rgba(0,123,255,0.12);
-            color: var(--accent-color);
+            background: var(--accent-color);
+            color: #fff;
+            box-shadow: 2px 4px 16px rgba(0,0,0,0.08);
         }
         nav ul li a:hover {
-            background: rgba(0,123,255,0.18);
             color: var(--accent-color);
-            text-decoration: underline;
+            background: rgba(0,0,0,0.08);
+        }
+        nav ul li a::after {
+            content: '';
+            display: block;
+            height: 3px;
+            width: 0;
+            background: var(--accent-color);
+            border-radius: 2px;
+            transition: width 0.3s cubic-bezier(.4,0,.2,1);
+            margin-top: 2px;
+        }
+        nav ul li a:hover::after, nav ul li a.active::after {
+            width: 32px;
+        }
+
+        .frame {
+            border: 4px solid #000;
+            padding: 5px;
+            display: inline-block;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 20px;
+            width: 120px;
+            height: 120px;
+            background: rgba(255,255,255,0.3);
+            box-shadow: 0 4px 24px #000, 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
         }
 
         .content {
             flex-grow: 1;
-            padding: 40px 24px 24px 24px;
-            margin-left: 320px;
+            padding: 48px 32px 32px 340px;
+            margin-left: 0;
             overflow-y: auto;
-            height: 100vh;
+            min-height: 100vh;
             background: transparent;
+            z-index: 1;
         }
-
         .section {
-            min-height: calc(100vh - 100px);
-            padding: 40px 0 30px 0;
+            min-height: 320px;
+            padding: 48px 32px 32px 32px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            margin-bottom: 40px;
-            border-radius: 18px;
+            margin-bottom: 48px;
+            border-radius: 28px;
             background: var(--card-bg);
             box-shadow: var(--card-shadow);
-            animation: fadeIn 1s;
-            border: 1px solid #ece7d5;
+            border: 4px solid #000;
+            position: relative;
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         .section:not(:last-child) {
-            border-bottom: 2px solid var(--divider);
+            border-bottom: 4px solid #000;
         }
-
-        h1, h2, h3, h4, h5, h6 {
-            margin-top: 0;
-            margin-bottom: 12px;
-        }
-
-        h1 { font-size: 2.5rem; font-weight: 800; }
-        h2 { font-size: 2rem; font-weight: 700; }
-        h3 { font-size: 1.3rem; font-weight: 600; }
-        p, span, li { color: var(--text-color); }
         .project, .small-project, .certification, .skill-logo-container {
             background: var(--card-bg);
             box-shadow: var(--card-shadow);
-            border-radius: 12px;
-            margin-bottom: 20px;
+            border-radius: 18px;
+            margin-bottom: 24px;
             transition: box-shadow 0.2s, transform 0.2s, background 0.2s;
-            border: 1px solid #ece7d5;
+            border: 3px solid #000;
+            position: relative;
         }
         .project:hover, .small-project:hover, .certification:hover, .skill-logo-container:hover {
-            box-shadow: 0 8px 32px rgba(0,0,0,0.16);
-            transform: translateY(-4px) scale(1.02);
-            background: rgba(255,255,255,0.95);
+            box-shadow: 0 12px 36px rgba(0,0,0,0.18);
+            transform: translateY(-6px) scale(1.03) rotate(-1deg);
+            background: #fffbe7;
         }
         .project {
             display: flex;
             align-items: center;
-            padding: 16px;
-            gap: 24px;
+            padding: 20px;
+            gap: 32px;
         }
         .project img {
-            width: 180px;
-            height: 180px;
+            width: 160px;
+            height: 160px;
             object-fit: cover;
-            border-radius: 10px;
-            border: 2px solid #eee;
+            border-radius: 16px;
+            border: 3px solid #000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
         .overlay {
             position: absolute;
             top: 0;
             left: 0;
-            width: 180px;
+            width: 160px;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.7);
             color: white;
@@ -181,7 +208,7 @@
             opacity: 0;
             transition: opacity 0.3s ease;
             text-decoration: none;
-            border-radius: 10px;
+            border-radius: 16px;
             pointer-events: auto;
         }
         .project:hover .overlay {
@@ -190,124 +217,179 @@
         .skills-logos {
             display: flex;
             flex-wrap: wrap;
-            gap: 18px;
+            gap: 22px;
             margin-top: 20px;
         }
         .skill-logo-container {
-            width: 90px;
-            padding: 12px 0 8px 0;
+            width: 120px;
+            padding: 20px 0 12px 0;
             text-align: center;
-            border: 1px solid #f0f0f0;
+            border: 3px solid #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.7);
         }
         .skill-logo {
-            width: 48px;
-            height: 48px;
-            margin-bottom: 6px;
+            width: 54px;
+            height: 54px;
+            margin-bottom: 10px;
+            background: #f5f5dc;
+            border-radius: 14px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+            padding: 10px;
+            display: block;
+            border: 2px solid #000;
         }
         .icon-name {
             display: block;
-            font-size: 13px;
+            font-size: 15px;
             color: var(--text-color);
             background: #f8f8f8;
-            border-radius: 6px;
-            padding: 2px 0;
+            border-radius: 8px;
+            padding: 3px 0;
             margin-top: 2px;
         }
         .certifications-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 24px;
+            gap: 28px;
             margin-top: 16px;
         }
         .certification {
             flex: 1 1 180px;
             text-align: center;
-            padding: 16px 8px;
+            padding: 18px 10px;
         }
         .cert-image {
-            width: 90px;
+            width: 100px;
             height: auto;
-            border-radius: 8px;
+            border-radius: 10px;
             margin-top: 10px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: 3px solid #000;
         }
         .social-icons {
             display: flex;
-            gap: 16px;
+            gap: 18px;
             margin-top: 10px;
         }
         .social-icon {
-            width: 28px;
-            height: 28px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             background: #fff;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            padding: 4px;
+            padding: 6px;
             transition: box-shadow 0.2s, transform 0.2s;
+            border: 2px solid #000;
         }
         .social-icon:hover {
             box-shadow: 0 4px 16px rgba(0,0,0,0.16);
-            transform: scale(1.1);
+            transform: scale(1.1) rotate(-3deg);
+            background: var(--accent-color);
         }
         #contact input[type="submit"] {
             background: var(--accent-color);
             color: #fff;
-            font-weight: 600;
-            border: none;
-            border-radius: 8px;
-            padding: 12px 0;
+            font-weight: 700;
+            border: 3px solid #000;
+            border-radius: 10px;
+            padding: 14px 0;
             font-size: 1.1rem;
             transition: background 0.2s, box-shadow 0.2s;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            letter-spacing: 1px;
         }
         #contact input[type="submit"]:hover {
-            background: #0056b3;
+            background: #fffbe7;
+            color: var(--accent-color);
             box-shadow: 0 4px 16px rgba(0,0,0,0.16);
         }
         .nav-toggle {
             display: none;
-            cursor: pointer;
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            z-index: 1000;
-            background-color: #fff;
-            border-radius: 5px;
-            padding: 5px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-        .nav-toggle img {
-            max-width: 40px;
-            max-height: 40px;
-            width: 40px;
-            height: 40px;
         }
         @media only screen and (max-width: 900px) {
-            .content {
-                margin-left: 0;
-                padding-top: 80px;
-            }
             nav {
-                width: 100%;
-                height: auto;
+                display: none;
+            }
+            .mobile-topnav {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
                 position: fixed;
                 top: 0;
                 left: 0;
-                z-index: 100;
-                border-radius: 0 0 20px 20px;
-                box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+                width: 100vw;
+                background: var(--primary-color);
+                color: white;
+                z-index: 3000;
+                padding: 0 16px;
+                height: 60px;
+                box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+                border-bottom: 4px solid #000;
             }
-            .frame { display: none; }
-            .nav-toggle { display: block; }
-        }
-        @media only screen and (max-width: 600px) {
+            .mobile-topnav .mobile-title {
+                font-family: 'Permanent Marker', cursive, "Lexend", sans-serif;
+                font-size: 1.3rem;
+                color: var(--accent-color);
+                letter-spacing: 1px;
+            }
+            .mobile-topnav .nav-toggle {
+                display: block;
+                background: none;
+                border: none;
+                padding: 0;
+                margin: 0;
+                cursor: pointer;
+            }
+            .mobile-menu {
+                display: none;
+                flex-direction: column;
+                position: fixed;
+                top: 60px;
+                left: 0;
+                width: 100vw;
+                background: var(--primary-color);
+                z-index: 2999;
+                box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+                border-bottom-left-radius: 24px;
+                border-bottom-right-radius: 24px;
+                animation: fadeInMenu 0.3s;
+            }
+            .mobile-menu.open {
+                display: flex;
+            }
+            .mobile-menu a {
+                color: white;
+                font-family: "Lexend", "Segoe UI", Arial, sans-serif;
+                font-weight: 600;
+                padding: 18px 24px;
+                text-decoration: none;
+                border-bottom: 1px solid rgba(255,255,255,0.08);
+                transition: background 0.2s, color 0.2s;
+            }
+            .mobile-menu a:last-child {
+                border-bottom: none;
+            }
+            .mobile-menu a.active, .mobile-menu a:hover {
+                color: var(--accent-color);
+                background: rgba(0,0,0,0.08);
+            }
+            @keyframes fadeInMenu {
+                from { opacity: 0; transform: translateY(-20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .content {
+                padding: 80px 8px 8px 8px;
+            }
             .section {
-                padding: 18px 4px;
-                margin-bottom: 18px;
+                padding: 24px 8px 16px 8px;
+                margin-bottom: 24px;
             }
-            .project img, .overlay { width: 100px; height: 100px; }
-            .skills-logos { gap: 8px; }
-            .certifications-container { gap: 8px; }
+            .skills-logos { gap: 10px; }
+            .certifications-container { gap: 10px; }
         }
         a {
             color: var(--accent-color);
@@ -315,8 +397,18 @@
             transition: color 0.2s;
         }
         a:hover, a:focus {
-            color: #0056b3;
-            text-decoration: underline;
+            color: var(--accent-color);
+            text-decoration: underline wavy var(--accent-color);
+        }
+        .contact-icons {
+            display: inline-flex;
+            gap: 16px;
+            align-items: center;
+        }
+        .contact-icons a {
+            text-decoration: none !important;
+            border: none;
+            box-shadow: none;
         }
     </style>
 </head>
@@ -336,6 +428,25 @@
         </ul>
     </nav>
 
+    <!-- Mobile Top Nav -->
+    <div class="mobile-topnav" id="mobileTopnav" style="display:none;">
+        <span class="mobile-title">Jerry Moo Kee Khong</span>
+        <button class="nav-toggle" id="mobileNavToggle" aria-label="Toggle menu">
+            <img src="Image/hamburger (2).png" alt="Menu" style="width:36px;height:36px;" />
+        </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#more">More</a>
+        <a href="#collaboration">Collaboration</a>
+        <a href="#contact">Contact Me</a>
+    </div>
+
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeNav()"></div>
+
     <div class="nav-toggle" onclick="toggleNav()">
         <img src="Image/hamburger (2).png" alt="Menu" />
     </div>
@@ -345,18 +456,17 @@
             <h1>Jerry Moo Kee Khong</h1>
             <p>Hello, I'm Kee Khong Jerry, a professional with five years of experience in Linux, infrastructure management, and client technical services. I hold certifications in CCNA, RHCSA, AWS, and CDCP, which bolster my expertise in network and system administration, cloud technologies, and data center operations. My focus is on delivering effective solutions and exceptional client support, blending technical proficiency with practical experience.</p>
             <div class="contact-icons">
-                <a href="mailto:mkk1994@hotmail.com">
-                    <img src="Image/mail (2).png" alt="Mail" class="social-icon" />
-                </a>
-                <a href="https://telegram.me/mookmooklala">
-                    <img src="Image/mobile.png" alt="Message" class="social-icon" />
-                </a>
+                <a href="mailto:mkk1994@hotmail.com"><img src="Image/mail (2).png" alt="Mail" class="social-icon" /></a><a href="https://telegram.me/mookmooklala"><img src="Image/mobile.png" alt="Message" class="social-icon" /></a>
             </div>
             <p id="visitor-count">You are visitor number: <span id="visitors">Loading...</span></p>
         </section>
 
         <section id="experience" class="section">
             <h2>Experience</h2>
+            <h3>SGX FX - Platform Engineer</h3>
+            <p>2025-Present</p>
+            <h3>Matrixport - DevOps Engineer</h3>
+            <p>2024-2025</p>
             <h3>VISA - Systems Engineer</h3>
             <p>2022-Present</p>
             <h3>Sea Group - Data Center Engineer Site Lead</h3>
@@ -525,7 +635,27 @@
         <script>
             function toggleNav() {
                 var nav = document.getElementById('main-nav');
-                nav.classList.toggle('active');
+                var overlay = document.getElementById('sidebarOverlay');
+                if (window.innerWidth <= 900) {
+                    var isActive = nav.classList.toggle('active');
+                    if (isActive) {
+                        overlay.classList.add('active');
+                        nav.classList.remove('mobile-hidden');
+                    } else {
+                        overlay.classList.remove('active');
+                        nav.classList.add('mobile-hidden');
+                    }
+                }
+            }
+
+            function closeNav() {
+                var nav = document.getElementById('main-nav');
+                var overlay = document.getElementById('sidebarOverlay');
+                if (window.innerWidth <= 900) {
+                    nav.classList.remove('active');
+                    nav.classList.add('mobile-hidden');
+                    overlay.classList.remove('active');
+                }
             }
 
             document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
@@ -534,8 +664,8 @@
                     document.querySelector(this.getAttribute('href')).scrollIntoView({
                         behavior: 'smooth'
                     });
-                    if (window.innerWidth <= 768) {
-                        toggleNav(); // Close nav on mobile after clicking a link
+                    if (window.innerWidth <= 900) {
+                        closeNav(); // Close nav on mobile after clicking a link
                     }
                 });
             });
@@ -595,6 +725,52 @@
                     }
                 });
             });
+
+            // Mobile top nav logic
+            function setMobileNavDisplay() {
+                const mobileTopnav = document.getElementById('mobileTopnav');
+                const mobileMenu = document.getElementById('mobileMenu');
+                if (window.innerWidth <= 900) {
+                    mobileTopnav.style.display = 'flex';
+                } else {
+                    mobileTopnav.style.display = 'none';
+                    mobileMenu.classList.remove('open');
+                }
+            }
+            setMobileNavDisplay();
+            window.addEventListener('resize', setMobileNavDisplay);
+
+            document.getElementById('mobileNavToggle').addEventListener('click', function() {
+                const menu = document.getElementById('mobileMenu');
+                menu.classList.toggle('open');
+            });
+
+            // Close mobile menu on link click
+            document.querySelectorAll('.mobile-menu a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    document.getElementById('mobileMenu').classList.remove('open');
+                });
+            });
+
+            // Highlight active link in mobile menu
+            function updateMobileMenuActive() {
+                const sections = document.querySelectorAll('.section');
+                const navLinks = document.querySelectorAll('.mobile-menu a');
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    if (pageYOffset >= sectionTop) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            window.addEventListener('scroll', updateMobileMenuActive);
         </script>
     </body>
 </html>

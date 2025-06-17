@@ -3,110 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Post</title>
+    <title>My AWS Static Website Project: S3 + CloudFront + Route53 + Visitor Counter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Permanent+Marker&display=swap" rel="stylesheet" />
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f5f5dc; /* Cream color */
-            color: #333; /* Dark gray text color */
-            margin: 0;
-            padding: 20px;
+        :root {
+            --primary-color: #000;
+            --secondary-color: #f5f5dc;
+            --text-color: #333;
+            --accent-color: #3a5ca8;
+            --card-bg: rgba(245,245,220,0.92);
         }
-
+        body {
+            font-family: 'Lexend', 'Arial', sans-serif;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
         .container {
             max-width: 800px;
-            margin: 0 auto;
-            background-color: #fff; /* White container background */
+            margin: 40px auto;
+            background-color: var(--card-bg);
+            padding: 32px 24px;
+            border-radius: 24px;
+            border: 4px solid #000;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+        }
+        h1, .section-title {
+            font-family: 'Permanent Marker', cursive, 'Lexend', sans-serif;
+            color: var(--accent-color);
+            font-size: 2.2rem;
+            margin-bottom: 0.7em;
+            letter-spacing: 1px;
+        }
+        h2 {
+            font-family: 'Permanent Marker', cursive, 'Lexend', sans-serif;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-top: 2em;
+            margin-bottom: 0.5em;
+        }
+        .project-outline {
+            border: 3px solid #000;
+            border-radius: 16px;
+            background: #fffbe7;
             padding: 20px;
-            border-radius: 5px; /* Rounded corners */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+            margin-bottom: 32px;
         }
-
-        h1 {
-            color: #333; /* Dark gray header color */
-            text-align: center;
+        .step {
+            border: 3px solid #000;
+            border-radius: 14px;
+            background: #fff;
+            margin-bottom: 24px;
+            padding: 18px 16px;
         }
-
-        p {
-            line-height: 1.6;
-            margin-bottom: 20px;
+        pre, code {
+            background: #f5f5dc;
+            color: #222;
+            border: 2px solid #000;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: 'Fira Mono', 'Consolas', monospace;
+            padding: 8px 12px;
+            display: block;
+            margin: 12px 0;
+            overflow-x: auto;
         }
-
         .image-container {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
-
         .blog-image {
             max-width: 100%;
             height: auto;
-            border-radius: 5px; /* Rounded corners for the image */
+            border-radius: 12px;
+            border: 4px solid #000;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
-
-        .overlay {
-            position: relative;
-            display: inline-block;
-            border-radius: 5px;
-            overflow: hidden;
+        a {
+            color: var(--accent-color);
+            text-decoration: underline wavy var(--accent-color);
+            font-weight: 600;
         }
-
-        .overlay img {
-            transition: transform 0.3s ease;
+        a:hover {
+            color: #000;
+            background: #fffbe7;
         }
-
-        .overlay:hover img {
-            transform: scale(1.1);
-        }
-
-        .overlay::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .overlay:hover::after {
-            opacity: 1;
-        }
-
-        .text-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: #fff;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .text-overlay a {
-            color: #fff;
-            text-decoration: none;
+        @media (max-width: 600px) {
+            .container { padding: 12px 2vw; }
+            .project-outline, .step { padding: 10px 4px; }
         }
     </style>
 </head>
 <body>
-
 <div class="container">
-    <h1>Full steps on hosting website on AWS cloud</h1>
+    <h1>My AWS Static Website Project</h1>
     <div class="image-container">
-        <div class="overlay">
-            <img src="your-image-url.jpg" alt="Blog Image" class="blog-image">
-            <div class="text-overlay">
-                <a href="blog-post-link.html">Read More</a>
-            </div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS Logo" class="blog-image" />
+    </div>
+    <div class="project-outline">
+        <strong>Project Outline:</strong>
+        <ul>
+            <li>Host my personal website using AWS S3 (storage), CloudFront (CDN), and Route53 (DNS).</li>
+            <li>Make it fast, global, and cheap to run.</li>
+            <li>Add a real visitor counter using DynamoDB and Lambda (not just localStorage!).</li>
+        </ul>
+    </div>
+    <div class="step">
+        <h2>Introduction</h2>
+        <p>Hey bro! Here's how I built my own static website on AWS. I wanted something fast, global, and easy to update. Plus, I wanted a real visitor counter that works for everyone, not just me. Here's how I did it, step by step!</p>
+    </div>
+    <div class="step">
+        <h2>Architecture Overview</h2>
+        <ul>
+            <li><strong>S3</strong>: Stores all my website files (HTML, CSS, images, etc).</li>
+            <li><strong>CloudFront</strong>: Distributes my site globally for speed.</li>
+            <li><strong>Route53</strong>: Handles my custom domain and DNS.</li>
+            <li><strong>Lambda + DynamoDB</strong>: Counts visitors and stores the count in the cloud.</li>
+        </ul>
+        <div class="image-container">
+            <img src="https://d1.awsstatic.com/architecture-diagrams/ArchitectureDiagrams/static-website-hosting-ra.png" alt="AWS Static Site Diagram" class="blog-image" style="max-width:500px;" />
         </div>
     </div>
-    <p>Technology used: S3, Cloudfront, Route53, HTML, CSS</p>
-    <p>HTML</p>
-    <p>Project in progress, blog post will be fully updated very soon once completed.</p>
-</div>
+    <div class="step">
+        <h2>Step 1: Prepare Your Static Site</h2>
+        <p>I built my site with HTML, CSS, and a bit of JavaScript. Make sure you have an <code>index.html</code> and any images or assets you want to use.</p>
+    </div>
+    <div class="step">
+        <h2>Step 2: Create and Configure S3 Bucket</h2>
+        <p>Create an S3 bucket named after your domain (e.g., <code>mycoolwebsite.com</code>). Upload your files. Make the bucket public for static hosting.</p>
+        <p><strong>Example S3 Bucket Policy:</strong></p>
+        <pre><code>{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "PublicReadGetObject",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::mycoolwebsite.com/*"
+    }
+  ]
+}</code></pre>
+    </div>
+    <div class="step">
+        <h2>Step 3: Set Up CloudFront</h2>
+        <p>Create a CloudFront distribution. Set your S3 bucket's <strong>website endpoint</strong> as the origin (not the REST endpoint!).</p>
+        <ul>
+            <li>Origin Domain: <code>mycoolwebsite.com.s3-website-ap-southeast-1.amazonaws.com</code></li>
+            <li>Viewer Protocol Policy: Redirect HTTP to HTTPS</li>
+            <li>Default Root Object: <code>index.html</code></li>
+        </ul>
+    </div>
+    <div class="step">
+        <h2>Step 4: Connect Domain with Route53</h2>
+        <p>In Route53, create a hosted zone for your domain. Add an <strong>A record (alias)</strong> pointing to your CloudFront distribution.</p>
+        <pre><code>Type: A (Alias)
+Name: mycoolwebsite.com
+Alias Target: dxxxxxxxxxxxx.cloudfront.net</code></pre>
+    </div>
+    <div class="step">
+        <h2>Step 5: Add a Real Visitor Counter (DynamoDB + Lambda)</h2>
+        <p>I wanted a real visitor counter that works for everyone, not just me. Here's how I did it:</p>
+        <ol>
+            <li><strong>Create a DynamoDB table</strong> (e.g., <code>VisitorCount</code>) with a primary key <code>id</code> (string).</li>
+            <li><strong>Create a Lambda function</strong> (Node.js or Python) that increments and returns the count.</li>
+            <li><strong>Expose the Lambda via API Gateway</strong> (so your site can call it from JS).</li>
+        </ol>
+        <p><strong>Example Lambda (Node.js):</strong></p>
+        <pre><code>const AWS = require('aws-sdk');
+const dynamo = new AWS.DynamoDB.DocumentClient();
 
+exports.handler = async (event) => {
+    const params = {
+        TableName: 'VisitorCount',
+        Key: { id: 'main' },
+        UpdateExpression: 'ADD #c :inc',
+        ExpressionAttributeNames: { '#c': 'count' },
+        ExpressionAttributeValues: { ':inc': 1 },
+        ReturnValues: 'UPDATED_NEW'
+    };
+    const result = await dynamo.update(params).promise();
+    return {
+        statusCode: 200,
+        headers: { 'Access-Control-Allow-Origin': '*' },
+        body: JSON.stringify({ count: result.Attributes.count })
+    };
+};
+</code></pre>
+        <p><strong>Example JS to call the API from your site:</strong></p>
+        <pre><code>&lt;script&gt;
+fetch('https://your-api-id.execute-api.ap-southeast-1.amazonaws.com/default/VisitorCounter')
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById('visitors').textContent = data.count;
+  });
+&lt;/script&gt;
+</code></pre>
+        <p>Now, every time someone visits, the counter goes up for everyone!</p>
+    </div>
+    <div class="step">
+        <h2>Deployment & Testing</h2>
+        <p>Once everything is set up, visit your domain. You should see your site, and the visitor counter should work for everyone. If something's not working, check your S3 permissions, CloudFront settings, and Lambda/API Gateway logs.</p>
+    </div>
+    <div class="step">
+        <h2>Conclusion & Lessons Learned</h2>
+        <p>This project taught me a lot about AWS and how the cloud works. Using DynamoDB and Lambda for the counter was a fun way to make my site interactive. If you want to try it, start simple and build up step by step. Good luck, bro!</p>
+    </div>
+</div>
 </body>
 </html>
