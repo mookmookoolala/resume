@@ -315,7 +315,7 @@
                 display: none;
             }
             .mobile-topnav {
-                display: flex;
+                display: flex !important;
                 align-items: center;
                 justify-content: space-between;
                 position: fixed;
@@ -410,6 +410,11 @@
             border: none;
             box-shadow: none;
         }
+        .small-icon {
+            width: 32px !important;
+            height: 32px !important;
+            object-fit: contain;
+        }
     </style>
 </head>
 <body>
@@ -429,7 +434,7 @@
     </nav>
 
     <!-- Mobile Top Nav -->
-    <div class="mobile-topnav" id="mobileTopnav" style="display:none;">
+    <div class="mobile-topnav" id="mobileTopnav">
         <span class="mobile-title">Jerry Moo Kee Khong</span>
         <button class="nav-toggle" id="mobileNavToggle" aria-label="Toggle menu">
             <img src="Image/hamburger (2).png" alt="Menu" style="width:36px;height:36px;" />
