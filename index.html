@@ -1,781 +1,1214 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio of Jerry Moo Kee Khong, a professional with expertise in Linux, infrastructure management, and client technical services.">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portfolio of Jerry Moo Kee Khong, a professional with expertise in Linux, infrastructure management, and client technical services."
+    />
     <title>Jerry Moo Kee Khong</title>
     <link rel="icon" type="image/png" href="Image/jerry.png" />
+    <link rel="canonical" href="https://jerrymoo.com/" />
+    <meta property="og:title" content="Jerry Moo Kee Khong" />
+    <meta
+      property="og:description"
+      content="Portfolio of Jerry Moo Kee Khong, covering Linux, infrastructure, and client technical services."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jerrymoo.com/" />
+    <meta property="og:image" content="https://jerrymoo.com/Image/jerry.png" />
+    <meta name="twitter:card" content="summary" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Pacifico&family=Permanent+Marker&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Pacifico&family=Permanent+Marker&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        :root {
-            --primary-color: #000;
-            --secondary-color: #f5f5dc;
-            --text-color: #333;
-            --accent-color: #3a5ca8;
-            --card-bg: rgba(245,245,220,0.92);
-            --card-shadow: 0 8px 32px rgba(0,0,0,0.12);
-            --divider: #e0e0e0;
-        }
+      :root {
+        --primary-color: #000;
+        --secondary-color: #f5f5dc;
+        --text-color: #333;
+        --accent-color: #3a5ca8;
+        --card-bg: rgba(245, 245, 220, 0.92);
+        --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        --divider: #e0e0e0;
+        --border-color: #000;
+        --border-strong: #000;
+        --border-width: 3px;
+        --radius-xl: 28px;
+        --radius-lg: 20px;
+        --radius-md: 14px;
+        --accent-gradient: linear-gradient(135deg, #3a5ca8 0%, #6f8dd6 100%);
+      }
 
-        body, html {
-            scroll-behavior: smooth;
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-            background: linear-gradient(135deg, #f5f5dc 0%, #e3e6f3 100%);
-            font-family: "Lexend", "Segoe UI", Arial, sans-serif;
-            font-size: 18px;
-            position: relative;
-        }
+      body,
+      html {
+        scroll-behavior: smooth;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(135deg, #f5f5dc 0%, #e3e6f3 100%);
+        font-family: "Lexend", "Segoe UI", Arial, sans-serif;
+        font-size: 18px;
+        position: relative;
+      }
 
-        /* Artsy background blobs */
-        body::before, body::after {
-            display: none;
-        }
+      /* Artsy background blobs */
+      body::before,
+      body::after {
+        display: none;
+      }
 
-        body {
-            display: flex;
-            align-items: stretch;
-        }
+      body {
+        display: flex;
+        align-items: stretch;
+      }
 
-        h1, h2, h3, h4, h5, h6 {
-            font-family: "Lexend", "Segoe UI", Arial, sans-serif;
-            letter-spacing: 0.5px;
-        }
-        h1, h2.section-title {
-            font-size: 2.7rem;
-            font-weight: 900;
-            color: var(--primary-color);
-            margin-bottom: 0.5em;
-            font-family: 'Permanent Marker', cursive, "Lexend", sans-serif;
-            letter-spacing: 1px;
-        }
-        h2, h3 {
-            font-weight: 700;
-        }
-        .section-title {
-            font-family: 'Permanent Marker', cursive, "Lexend", sans-serif;
-            color: var(--accent-color);
-            font-size: 2.2rem;
-            margin-bottom: 0.7em;
-        }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Lexend", "Segoe UI", Arial, sans-serif;
+        letter-spacing: 0.5px;
+      }
+      h1,
+      h2.section-title {
+        font-size: clamp(2.2rem, 2rem + 1.2vw, 3rem);
+        font-weight: 900;
+        color: var(--primary-color);
+        margin-bottom: 0.5em;
+        font-family: "Permanent Marker", cursive, "Lexend", sans-serif;
+        letter-spacing: 1px;
+      }
+      h2,
+      h3 {
+        font-weight: 700;
+      }
+      .section h2 {
+        position: relative;
+        padding-bottom: 10px;
+      }
+      .section h2::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 6px;
+        width: 64px;
+        background: #000;
+        border-radius: 6px;
+        box-shadow: 0 2px 0 #000;
+      }
+      .section-title {
+        font-family: "Permanent Marker", cursive, "Lexend", sans-serif;
+        color: var(--accent-color);
+        font-size: 2.2rem;
+        margin-bottom: 0.7em;
+      }
 
+      nav {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 24px 20px 24px 20px;
+        width: 300px;
+        height: 100vh;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        overflow-y: auto;
+        border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
+        box-shadow: 2px 0 32px rgba(0, 0, 0, 0.16);
+        border-right: var(--border-width) solid var(--border-strong);
+        left: 0;
+        top: 0;
+        z-index: 2001;
+      }
+      nav ul {
+        list-style-type: none;
+        padding-left: 0;
+        margin-top: 32px;
+      }
+      nav ul li a {
+        font-family: "Lexend", "Segoe UI", Arial, sans-serif;
+        color: white;
+        text-decoration: none;
+        padding: 10px 0 10px 12px;
+        display: inline-block;
+        border-radius: 8px 20px 20px 8px;
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        font-weight: 600;
+        cursor: pointer;
+        position: relative;
+      }
+      nav ul li a.active {
+        background: var(--accent-color);
+        color: #fff;
+        box-shadow: 2px 4px 16px rgba(0, 0, 0, 0.08);
+      }
+      nav ul li a:hover {
+        color: var(--accent-color);
+        background: rgba(0, 0, 0, 0.08);
+        text-decoration: none;
+      }
+      nav ul li a::after {
+        content: "";
+        position: absolute;
+        left: var(--underline-left, 12px);
+        bottom: 6px;
+        height: 3px;
+        width: var(--underline-width, calc(100% - 24px));
+        background: var(--accent-color);
+        border-radius: 2px;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: transform;
+        pointer-events: none;
+      }
+      nav ul li a:hover::after,
+      nav ul li a.active::after {
+        transform: scaleX(1);
+      }
+
+      .frame {
+        border: var(--border-width) solid var(--border-color);
+        padding: 5px;
+        display: inline-block;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-bottom: 20px;
+        width: 120px;
+        height: 120px;
+        background: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+      }
+      .frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+
+      .content {
+        flex-grow: 1;
+        padding: 48px 32px 32px 340px;
+        margin-left: 0;
+        overflow-y: auto;
+        min-height: 100vh;
+        background: transparent;
+        z-index: 1;
+      }
+      .section {
+        min-height: 320px;
+        padding: 48px 32px 32px 32px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 48px auto;
+        max-width: 1100px;
+        border-radius: var(--radius-xl);
+        background: var(--card-bg);
+        box-shadow: var(--card-shadow);
+        border: var(--border-width) solid var(--border-color);
+        position: relative;
+        backdrop-filter: saturate(180%) blur(8px);
+      }
+      .section:not(:last-child) {
+        border-bottom: var(--border-width) solid var(--border-color);
+      }
+      .project,
+      .small-project,
+      .certification,
+      .skill-logo-container {
+        background: var(--card-bg);
+        box-shadow: var(--card-shadow);
+        border-radius: var(--radius-lg);
+        margin-bottom: 24px;
+        transition: box-shadow 0.2s, transform 0.2s, background 0.2s;
+        border: var(--border-width) solid var(--border-color);
+        position: relative;
+      }
+      .project:hover,
+      .small-project:hover,
+      .certification:hover,
+      .skill-logo-container:hover {
+        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.16);
+        transform: translateY(-4px) scale(1.02);
+        background: #fffbe7;
+      }
+      .project {
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        gap: 32px;
+      }
+      .project img {
+        width: 160px;
+        height: 160px;
+        object-fit: cover;
+        border-radius: 16px;
+        border: var(--border-width) solid var(--border-color);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      }
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 160px;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        text-decoration: none;
+        border-radius: 16px;
+        pointer-events: auto;
+      }
+      .project:hover .overlay {
+        opacity: 1;
+      }
+      .skills-logos {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 22px;
+        margin-top: 20px;
+      }
+      .small-project {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px;
+      }
+      .skill-logo-container {
+        width: 120px;
+        padding: 20px 0 12px 0;
+        text-align: center;
+        border: 3px solid #000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.7);
+      }
+      .skill-logo {
+        width: 54px;
+        height: 54px;
+        margin-bottom: 10px;
+        background: #f5f5dc;
+        border-radius: var(--radius-md);
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+        padding: 10px;
+        display: block;
+        border: var(--border-width) solid var(--border-color);
+      }
+      .icon-name {
+        display: block;
+        font-size: 15px;
+        color: var(--text-color);
+        background: #f8f8f8;
+        border-radius: 8px;
+        padding: 3px 0;
+        margin-top: 2px;
+      }
+      .certifications-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 28px;
+        margin-top: 16px;
+      }
+      .certification {
+        flex: 1 1 180px;
+        text-align: center;
+        padding: 18px 10px;
+      }
+      .cert-image {
+        width: 100px;
+        height: auto;
+        border-radius: 10px;
+        margin-top: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        border: var(--border-width) solid var(--border-color);
+      }
+      .social-icons {
+        display: flex;
+        gap: 18px;
+        margin-top: 10px;
+      }
+      .social-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        padding: 6px;
+        transition: box-shadow 0.2s, transform 0.2s;
+        border: var(--border-width) solid var(--border-color);
+      }
+      .social-icon:hover {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.16);
+        transform: scale(1.1) rotate(-3deg);
+        background: var(--accent-color);
+      }
+      #contact input[type="submit"] {
+        background: var(--accent-gradient);
+        color: #fff;
+        font-weight: 700;
+        border: var(--border-width) solid var(--border-color);
+        border-radius: 10px;
+        padding: 14px 0;
+        font-size: 1.1rem;
+        transition: background 0.2s, box-shadow 0.2s;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        letter-spacing: 1px;
+      }
+      #contact input[type="submit"]:hover {
+        background: #fffbe7;
+        color: var(--accent-color);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.16);
+      }
+      .nav-toggle {
+        display: none;
+      }
+      @media only screen and (max-width: 900px) {
         nav {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 24px 20px 24px 20px;
-            width: 300px;
-            height: 100vh;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            position: fixed;
-            overflow-y: auto;
-            border-radius: 0 32px 32px 0;
-            box-shadow: 2px 0 32px rgba(0,0,0,0.18);
-            border-right: 6px solid #000;
-            left: 0;
-            top: 0;
-            z-index: 2001;
+          display: none;
         }
-        nav ul {
-            list-style-type: none;
-            padding-left: 0;
-            margin-top: 32px;
+        .mobile-topnav {
+          display: flex !important;
+          align-items: center;
+          justify-content: space-between;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          background: var(--primary-color);
+          color: white;
+          z-index: 3000;
+          padding: 0 16px;
+          height: 60px;
+          box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+          border-bottom: var(--border-width) solid var(--border-strong);
         }
-        nav ul li a {
-            font-family: "Lexend", "Segoe UI", Arial, sans-serif;
-            color: white;
-            text-decoration: none;
-            padding: 10px 0 10px 12px;
-            display: block;
-            border-radius: 8px 20px 20px 8px;
-            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-            font-weight: 600;
-            cursor: pointer;
-            position: relative;
+        .mobile-topnav .mobile-title {
+          font-family: "Permanent Marker", cursive, "Lexend", sans-serif;
+          font-size: 1.3rem;
+          color: var(--accent-color);
+          letter-spacing: 1px;
         }
-        nav ul li a.active {
-            background: var(--accent-color);
-            color: #fff;
-            box-shadow: 2px 4px 16px rgba(0,0,0,0.08);
+        .mobile-topnav .nav-toggle {
+          display: block;
+          background: none;
+          border: none;
+          padding: 0;
+          margin: 0;
+          cursor: pointer;
         }
-        nav ul li a:hover {
-            color: var(--accent-color);
-            background: rgba(0,0,0,0.08);
+        .mobile-menu {
+          display: none;
+          flex-direction: column;
+          position: fixed;
+          top: 60px;
+          left: 0;
+          width: 100vw;
+          background: var(--primary-color);
+          z-index: 2999;
+          box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+          border-bottom-left-radius: 24px;
+          border-bottom-right-radius: 24px;
+          animation: fadeInMenu 0.3s;
         }
-        nav ul li a::after {
-            content: '';
-            display: block;
-            height: 3px;
-            width: 0;
-            background: var(--accent-color);
-            border-radius: 2px;
-            transition: width 0.3s cubic-bezier(.4,0,.2,1);
-            margin-top: 2px;
+        .mobile-menu.open {
+          display: flex;
         }
-        nav ul li a:hover::after, nav ul li a.active::after {
-            width: 32px;
+        .mobile-menu a {
+          color: white;
+          font-family: "Lexend", "Segoe UI", Arial, sans-serif;
+          font-weight: 600;
+          padding: 18px 24px;
+          text-decoration: none;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+          transition: background 0.2s, color 0.2s;
         }
-
-        .frame {
-            border: 4px solid #000;
-            padding: 5px;
-            display: inline-block;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-bottom: 20px;
-            width: 120px;
-            height: 120px;
-            background: rgba(255,255,255,0.3);
-            box-shadow: 0 4px 24px #000, 0 2px 8px rgba(0,0,0,0.08);
+        .mobile-menu a:last-child {
+          border-bottom: none;
         }
-        .frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
+        .mobile-menu a.active,
+        .mobile-menu a:hover {
+          color: var(--accent-color);
+          background: rgba(0, 0, 0, 0.08);
         }
-
+        .mobile-menu a:hover,
+        .mobile-menu a:focus {
+          text-decoration: none;
+        }
+        @keyframes fadeInMenu {
+          from {
+            opacity: 0;
+            transform: translateY(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
         .content {
-            flex-grow: 1;
-            padding: 48px 32px 32px 340px;
-            margin-left: 0;
-            overflow-y: auto;
-            min-height: 100vh;
-            background: transparent;
-            z-index: 1;
+          padding: 80px 8px 8px 8px;
         }
         .section {
-            min-height: 320px;
-            padding: 48px 32px 32px 32px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            margin-bottom: 48px;
-            border-radius: 28px;
-            background: var(--card-bg);
-            box-shadow: var(--card-shadow);
-            border: 4px solid #000;
-            position: relative;
-        }
-        .section:not(:last-child) {
-            border-bottom: 4px solid #000;
-        }
-        .project, .small-project, .certification, .skill-logo-container {
-            background: var(--card-bg);
-            box-shadow: var(--card-shadow);
-            border-radius: 18px;
-            margin-bottom: 24px;
-            transition: box-shadow 0.2s, transform 0.2s, background 0.2s;
-            border: 3px solid #000;
-            position: relative;
-        }
-        .project:hover, .small-project:hover, .certification:hover, .skill-logo-container:hover {
-            box-shadow: 0 12px 36px rgba(0,0,0,0.18);
-            transform: translateY(-6px) scale(1.03) rotate(-1deg);
-            background: #fffbe7;
-        }
-        .project {
-            display: flex;
-            align-items: center;
-            padding: 20px;
-            gap: 32px;
-        }
-        .project img {
-            width: 160px;
-            height: 160px;
-            object-fit: cover;
-            border-radius: 16px;
-            border: 3px solid #000;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 160px;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            text-decoration: none;
-            border-radius: 16px;
-            pointer-events: auto;
-        }
-        .project:hover .overlay {
-            opacity: 1;
+          padding: 24px 8px 16px 8px;
+          margin-bottom: 24px;
         }
         .skills-logos {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 22px;
-            margin-top: 20px;
-        }
-        .skill-logo-container {
-            width: 120px;
-            padding: 20px 0 12px 0;
-            text-align: center;
-            border: 3px solid #000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255,255,255,0.7);
-        }
-        .skill-logo {
-            width: 54px;
-            height: 54px;
-            margin-bottom: 10px;
-            background: #f5f5dc;
-            border-radius: 14px;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-            padding: 10px;
-            display: block;
-            border: 2px solid #000;
-        }
-        .icon-name {
-            display: block;
-            font-size: 15px;
-            color: var(--text-color);
-            background: #f8f8f8;
-            border-radius: 8px;
-            padding: 3px 0;
-            margin-top: 2px;
+          gap: 10px;
         }
         .certifications-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 28px;
-            margin-top: 16px;
+          gap: 10px;
         }
-        .certification {
-            flex: 1 1 180px;
-            text-align: center;
-            padding: 18px 10px;
+      }
+      a {
+        color: var(--accent-color);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      a:hover,
+      a:focus {
+        color: var(--accent-color);
+        text-decoration: underline wavy var(--accent-color);
+      }
+      a:focus-visible {
+        outline: 3px solid var(--accent-color);
+        outline-offset: 2px;
+      }
+      nav ul li a:focus-visible {
+        background: rgba(0, 0, 0, 0.08);
+      }
+      .contact-icons {
+        display: inline-flex;
+        gap: 16px;
+        align-items: center;
+      }
+      .contact-icons a {
+        text-decoration: none !important;
+        border: none;
+        box-shadow: none;
+      }
+      .small-icon {
+        width: 32px !important;
+        height: 32px !important;
+        object-fit: contain;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --primary-color: #0f1115;
+          --secondary-color: #0f121a;
+          --text-color: #e6e6e6;
+          --card-bg: rgba(20, 22, 28, 0.6);
+          --border-color: rgba(255, 255, 255, 0.08);
+          --border-strong: rgba(255, 255, 255, 0.12);
         }
-        .cert-image {
-            width: 100px;
-            height: auto;
-            border-radius: 10px;
-            margin-top: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            border: 3px solid #000;
+        body,
+        html {
+          background: linear-gradient(135deg, #0f121a 0%, #131a24 100%);
         }
-        .social-icons {
-            display: flex;
-            gap: 18px;
-            margin-top: 10px;
-        }
-        .social-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: #fff;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            padding: 6px;
-            transition: box-shadow 0.2s, transform 0.2s;
-            border: 2px solid #000;
+        nav ul li a:hover {
+          color: var(--accent-color);
+          background: rgba(255, 255, 255, 0.06);
         }
         .social-icon:hover {
-            box-shadow: 0 4px 16px rgba(0,0,0,0.16);
-            transform: scale(1.1) rotate(-3deg);
-            background: var(--accent-color);
+          background: var(--accent-color);
         }
-        #contact input[type="submit"] {
-            background: var(--accent-color);
-            color: #fff;
-            font-weight: 700;
-            border: 3px solid #000;
-            border-radius: 10px;
-            padding: 14px 0;
-            font-size: 1.1rem;
-            transition: background 0.2s, box-shadow 0.2s;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            letter-spacing: 1px;
-        }
-        #contact input[type="submit"]:hover {
-            background: #fffbe7;
-            color: var(--accent-color);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.16);
-        }
-        .nav-toggle {
-            display: none;
-        }
-        @media only screen and (max-width: 900px) {
-            nav {
-                display: none;
-            }
-            .mobile-topnav {
-                display: flex !important;
-                align-items: center;
-                justify-content: space-between;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100vw;
-                background: var(--primary-color);
-                color: white;
-                z-index: 3000;
-                padding: 0 16px;
-                height: 60px;
-                box-shadow: 0 2px 16px rgba(0,0,0,0.10);
-                border-bottom: 4px solid #000;
-            }
-            .mobile-topnav .mobile-title {
-                font-family: 'Permanent Marker', cursive, "Lexend", sans-serif;
-                font-size: 1.3rem;
-                color: var(--accent-color);
-                letter-spacing: 1px;
-            }
-            .mobile-topnav .nav-toggle {
-                display: block;
-                background: none;
-                border: none;
-                padding: 0;
-                margin: 0;
-                cursor: pointer;
-            }
-            .mobile-menu {
-                display: none;
-                flex-direction: column;
-                position: fixed;
-                top: 60px;
-                left: 0;
-                width: 100vw;
-                background: var(--primary-color);
-                z-index: 2999;
-                box-shadow: 0 4px 24px rgba(0,0,0,0.12);
-                border-bottom-left-radius: 24px;
-                border-bottom-right-radius: 24px;
-                animation: fadeInMenu 0.3s;
-            }
-            .mobile-menu.open {
-                display: flex;
-            }
-            .mobile-menu a {
-                color: white;
-                font-family: "Lexend", "Segoe UI", Arial, sans-serif;
-                font-weight: 600;
-                padding: 18px 24px;
-                text-decoration: none;
-                border-bottom: 1px solid rgba(255,255,255,0.08);
-                transition: background 0.2s, color 0.2s;
-            }
-            .mobile-menu a:last-child {
-                border-bottom: none;
-            }
-            .mobile-menu a.active, .mobile-menu a:hover {
-                color: var(--accent-color);
-                background: rgba(0,0,0,0.08);
-            }
-            @keyframes fadeInMenu {
-                from { opacity: 0; transform: translateY(-20px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
-            .content {
-                padding: 80px 8px 8px 8px;
-            }
-            .section {
-                padding: 24px 8px 16px 8px;
-                margin-bottom: 24px;
-            }
-            .skills-logos { gap: 10px; }
-            .certifications-container { gap: 10px; }
-        }
-        a {
-            color: var(--accent-color);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        a:hover, a:focus {
-            color: var(--accent-color);
-            text-decoration: underline wavy var(--accent-color);
-        }
-        .contact-icons {
-            display: inline-flex;
-            gap: 16px;
-            align-items: center;
-        }
-        .contact-icons a {
-            text-decoration: none !important;
-            border: none;
-            box-shadow: none;
-        }
-        .small-icon {
-            width: 32px !important;
-            height: 32px !important;
-            object-fit: contain;
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <nav id="main-nav">
-        <div class="frame">
-            <img src="Image/met.png" alt="Profile Picture" />
-        </div>
-        <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#more">More</a></li>
-            <li><a href="#collaboration">Collaboration</a></li>
-            <li><a href="#contact">Contact Me</a></li>
-        </ul>
+      <div class="frame">
+        <img src="Image/met.png" alt="Profile Picture" loading="lazy" />
+      </div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#more">More</a></li>
+        <li><a href="#collaboration">Collaboration</a></li>
+        <li><a href="#contact">Contact Me</a></li>
+      </ul>
     </nav>
 
     <!-- Mobile Top Nav -->
     <div class="mobile-topnav" id="mobileTopnav">
-        <span class="mobile-title">Jerry Moo Kee Khong</span>
-        <button class="nav-toggle" id="mobileNavToggle" aria-label="Toggle menu">
-            <img src="Image/hamburger (2).png" alt="Menu" style="width:36px;height:36px;" />
-        </button>
+      <span class="mobile-title">Jerry Moo Kee Khong</span>
+      <button class="nav-toggle" id="mobileNavToggle" aria-label="Toggle menu">
+        <img
+          src="Image/hamburger (2).png"
+          alt="Menu"
+          style="width: 36px; height: 36px"
+          loading="lazy"
+        />
+      </button>
     </div>
     <div class="mobile-menu" id="mobileMenu">
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#more">More</a>
-        <a href="#collaboration">Collaboration</a>
-        <a href="#contact">Contact Me</a>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#more">More</a>
+      <a href="#collaboration">Collaboration</a>
+      <a href="#contact">Contact Me</a>
     </div>
 
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeNav()"></div>
 
     <div class="nav-toggle" onclick="toggleNav()">
-        <img src="Image/hamburger (2).png" alt="Menu" />
+      <img src="Image/hamburger (2).png" alt="Menu" />
     </div>
 
     <main class="content">
-        <section id="about" class="section">
-            <h1>Jerry Moo Kee Khong</h1>
-            <p>Hello, I'm Kee Khong Jerry, a professional with five years of experience in Linux, infrastructure management, and client technical services. I hold certifications in CCNA, RHCSA, AWS, and CDCP, which bolster my expertise in network and system administration, cloud technologies, and data center operations. My focus is on delivering effective solutions and exceptional client support, blending technical proficiency with practical experience.</p>
-            <div class="contact-icons">
-                <a href="mailto:mkk1994@hotmail.com"><img src="Image/mail (2).png" alt="Mail" class="social-icon" /></a><a href="https://telegram.me/mookmooklala"><img src="Image/mobile.png" alt="Message" class="social-icon" /></a>
-            </div>
-            <p id="visitor-count">You are visitor number: <span id="visitors">Loading...</span></p>
-        </section>
+      <section id="about" class="section">
+        <h1>Jerry Moo Kee Khong</h1>
+        <p>
+          I'm a Site Reliability and Platform Engineer focused on trade
+          operations platforms. I design, run, and harden production services
+          across Linux and data center environments, with a strong emphasis on
+          automation, observability, incident response, capacity management, and
+          release engineering for reliable change.
+        </p>
+        <p>
+          I hold CCNA, RHCSA, AWS, and CDCP certifications. My recent work spans
+          low‑latency trading systems, infrastructure as code, service
+          monitoring with Prometheus/Grafana, and hands‑on data center
+          operations (rack/stack, network, and lifecycle management).
+        </p>
+        <div class="contact-icons">
+          <a href="mailto:mkk1994@hotmail.com"
+            ><img
+              src="Image/mail (2).png"
+              alt="Mail"
+              class="social-icon"
+              loading="lazy" /></a
+          ><a href="https://telegram.me/mookmooklala"
+            ><img
+              src="Image/mobile.png"
+              alt="Message"
+              class="social-icon"
+              loading="lazy"
+          /></a>
+        </div>
+        <p id="visitor-count">
+          You are visitor number: <span id="visitors">Loading...</span>
+        </p>
+      </section>
 
-        <section id="experience" class="section">
-            <h2>Experience</h2>
-            <h3>SGX FX - Platform Engineer</h3>
-            <p>2025-Present</p>
-            <h3>Matrixport - DevOps Engineer</h3>
-            <p>2024-2025</p>
-            <h3>VISA - Systems Engineer</h3>
-            <p>2022-2023</p>
-            <h3>Sea Group - Data Center Engineer Site Lead</h3>
-            <p>2020-2022</p>
-            <h3>Amazon Web Services - Data Center Operation</h3>
-            <p>2020-2020</p>
-        </section>
+      <section id="experience" class="section">
+        <h2>Experience</h2>
+        <h3>SGX FX - Platform Engineer</h3>
+        <p>2025-Present</p>
+        <h3>Matrixport - DevOps Engineer</h3>
+        <p>2024-2025</p>
+        <h3>VISA - Systems Engineer</h3>
+        <p>2022-2023</p>
+        <h3>Sea Group - Data Center Engineer Site Lead</h3>
+        <p>2020-2022</p>
+        <h3>Amazon Web Services - Data Center Operation</h3>
+        <p>2020-2020</p>
+      </section>
 
-        <section id="projects" class="section">
-            <h2>Projects</h2>
-            <div class="project">
-                <img src="Image/Fight.png" alt="Project 1" />
-                <div class="overlay">
-                    <div class="overlay-content">
-                        <h3>Project 1</h3>
-                        <p>Tech Stack: HTML, CSS, JavaScript</p>
-                        <a href="index3.html">Read Blog Post</a>
-                    </div>
-                </div>
+      <section id="projects" class="section">
+        <h2>Projects</h2>
+        <div class="project">
+          <img src="Image/Fight.png" alt="Project 1" loading="lazy" />
+          <div class="overlay">
+            <div class="overlay-content">
+              <h3>Project 1</h3>
+              <p>Tech Stack: HTML, CSS, JavaScript</p>
+              <a href="index3.html">Read Blog Post</a>
             </div>
-            
-            <div class="small-project first-small-project">
-                <a href="https://t.me/busstopforsingaporebot" target="_blank">
-                    <img src="Image/telegram.png" alt="BusStopForSingaporeBot" class="small-icon"/>
-                </a>
-                <span>BusStopForSingaporeBot - Bot that helps you find out how long for upcoming bus arrival.</span>
-            </div>
-            
-            <div class="small-project">
-                <a href="https://t.me/princecryptobot" target="_blank">
-                    <img src="Image/telegram.png" alt="Princecryptobot" class="small-icon"/>
-                </a>
-                <span>Princecryptobot - Bot that gives you near-realtime crypto prices.</span>
-            </div>
-        </section>
+          </div>
+        </div>
 
-        <section id="skills" class="section">
-            <h2>Skills</h2>
-            <p><strong>Technical Skills:</strong></p>
-            <div class="skills-logos">
-                <div class="skill-logo-container">
-                    <img src="Image/shell.png" alt="Shell Scripting" class="skill-logo" />
-                    <span class="icon-name">Shell Scripting</span>
-                </div>
-                <div class="skill-logo-container">
-                    <img src="Image/networking.png" alt="Networking" class="skill-logo" />
-                    <span class="icon-name">Networking</span>
-                </div>
-                <div class="skill-logo-container">
-                    <img src="Image/python.png" alt="Python" class="skill-logo" />
-                    <span class="icon-name">Python</span>
-                </div>
-                <div class="skill-logo-container">
-                    <img src="Image/Linux.png" alt="Linux" class="skill-logo" />
-                    <span class="icon-name">Linux</span>
-                </div>
-                <div class="skill-logo-container">
-                    <img src="Image/Aws.png" alt="AWS" class="skill-logo" />
-                    <span class="icon-name">AWS</span>
-                </div>
-                <div class="skill-logo-container">
-                    <img src="Image/Prometheus.jpg" alt="Prometheus" class="skill-logo" />
-                    <span class="icon-name">Prometheus</span>
-                </div>
-                <div class="skill-logo-container">
-                    <img src="Image/Docker.png" alt="Docker" class="skill-logo" />
-                    <span class="icon-name">Docker</span>
-                </div>
-            </div>
-            <p><strong>Soft Skills:</strong></p>
-            <div class="skills-logos">
-                <div class="skill-logo-container">
-                    <img src="Image/ClientManagementIcon.svg" alt="Client Management" class="skill-logo" />
-                    <span class="icon-name">Client Management</span>
-                </div>
-                <div class="skill-logo-container">
-                    <img src="Image/ProjectManagementIcon1234.webp" alt="Project Management" class="skill-logo" />
-                    <span class="icon-name">Project Management</span>
-                </div>
-                <div class="skill-logo-container">
-                    <img src="Image/TeamManagementIcon.png" alt="Team Management" class="skill-logo" />
-                    <span class="icon-name">Team Management</span>
-                </div>
-                <div class="skill-logo-container">
-                    <img src="Image/VendorManagementIcon.svg" alt="Vendor Management" class="skill-logo" />
-                    <span class="icon-name">Vendor Management</span>
-                </div>
-            </div>
-            <p><strong>Certifications:</strong></p>
-            <div class="certifications-container">
-                <div class="certification">
-                    <p>CCNA</p>
-                    <a href="https://cp.certmetrics.com/cisco/en/public/verify/credential/da72f839ab25437dba4a38443d6019e8" target="_blank">
-                       <img src="Image/CCNA.png" alt="CCNA Certificate" class="cert-image" />
-                    </a>
-                </div>
-                <div class="certification">
-                    <p>RHCSA</p>
-                    <a href="https://rhtapps.redhat.com/verify?certId=230-103-988" target="_blank">
-                        <img src="Image/RHCSA.png" alt="RHCSA Certificate" class="cert-image" />
-                    </a>
-                </div>
-                <div class="certification">
-                    <p>AWS SAA</p>
-                    <a href="https://cp.certmetrics.com/amazon/en/verify/credential" target="_blank">
-                        <img src="Image/Architect.png" alt="AWS Certificate" class="cert-image" />
-                    </a>
-                </div>
-            </div>
-        </section>        
-            <section id="more" class="section">
-                <h2>More</h2>
-                <h3>Education</h3>
-                <h4>Nanyang Technological University - Master of science, Information systems</h4>
-                <p>2023 - 2025</p>
-                <h4>University of college dublin - Bachelor of Business Studies, Management</h4>
-                <p>2019 - 2021</p>
-                <h4>Ngee Ann Polytechnic - Diploma in Electrical Engineer with minor in business mangement</h4>
-                <p>2011 - 2014</p>
+        <div class="small-project first-small-project">
+          <a
+            href="https://t.me/busstopforsingaporebot"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="Image/telegram.png"
+              alt="BusStopForSingaporeBot"
+              class="small-icon"
+            />
+          </a>
+          <span
+            >BusStopForSingaporeBot - Bot that helps you find out how long for
+            upcoming bus arrival.</span
+          >
+        </div>
 
-                <h2>Socials</h2>
-                <div class="social-icons">
-                    <a href="https://twitter.com/kingkongloveme" target="_blank">
-                        <img src="Image/iconmonstr-twitter-5-240 (1).png" alt="Twitter" class="social-icon" />
-                    </a>
-                    <a href="https://github.com/mookmookoolala" target="_blank">
-                        <img src="Image/github-mark.png" alt="GitHub" class="social-icon" />
-                    </a>
-                    <a href="https://sg.linkedin.com/in/jerry-kee-khong-moo-284abb144" target="_blank">
-                        <img src="Image/iconmonstr-linkedin-5-240.png" alt="LinkedIn" class="social-icon" />
-                    </a>
-                    <button id="shareButton">
-                        <img src="Image/iconmonstr-share-thin-240 (1).png" alt="Share" class="social-icon" />
-                    </button>
-                </div>
-            </section>
+        <div class="small-project">
+          <a
+            href="https://t.me/princecryptobot"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="Image/telegram.png"
+              alt="Princecryptobot"
+              class="small-icon"
+            />
+          </a>
+          <span
+            >Princecryptobot - Bot that gives you near-realtime crypto
+            prices.</span
+          >
+        </div>
+      </section>
 
-            <section id="collaboration" class="section">
-                <h2>Collaboration</h2>
-                <div class="collaboration">
-                    <h3>Web Hosting</h3>
-                    <p>Want to create a website for your shop or small business? Let's work on it together!</p>
-                </div>
-                <div class="collaboration">
-                    <h3>Node Hosting</h3>
-                    <p>Looking at all your friends earning those sweet airdrops from blockchain nodes or want to run some services? Let's work on it together!</p>
-                </div>
-            </section>
+      <section id="skills" class="section">
+        <h2>Skills</h2>
+        <p><strong>Technical Skills:</strong></p>
+        <div class="skills-logos">
+          <div class="skill-logo-container">
+            <img
+              src="Image/shell.png"
+              alt="Shell Scripting"
+              class="skill-logo"
+              loading="lazy"
+            />
+            <span class="icon-name">Shell Scripting</span>
+          </div>
+          <div class="skill-logo-container">
+            <img
+              src="Image/networking.png"
+              alt="Networking"
+              class="skill-logo"
+              loading="lazy"
+            />
+            <span class="icon-name">Networking</span>
+          </div>
+          <div class="skill-logo-container">
+            <img
+              src="Image/python.png"
+              alt="Python"
+              class="skill-logo"
+              loading="lazy"
+            />
+            <span class="icon-name">Python</span>
+          </div>
+          <div class="skill-logo-container">
+            <img
+              src="Image/Linux.png"
+              alt="Linux"
+              class="skill-logo"
+              loading="lazy"
+            />
+            <span class="icon-name">Linux</span>
+          </div>
+          <div class="skill-logo-container">
+            <img
+              src="Image/Aws.png"
+              alt="AWS"
+              class="skill-logo"
+              loading="lazy"
+            />
+            <span class="icon-name">AWS</span>
+          </div>
+          <div class="skill-logo-container">
+            <img
+              src="Image/Prometheus.jpg"
+              alt="Prometheus"
+              class="skill-logo"
+              loading="lazy"
+            />
+            <span class="icon-name">Prometheus</span>
+          </div>
+          <div class="skill-logo-container">
+            <img
+              src="Image/Docker.png"
+              alt="Docker"
+              class="skill-logo"
+              loading="lazy"
+            />
+            <span class="icon-name">Docker</span>
+          </div>
+        </div>
+        <p><strong>Soft Skills:</strong></p>
+        <div class="skills-logos">
+          <div class="skill-logo-container">
+            <img
+              src="Image/ClientManagementIcon.svg"
+              alt="Client Management"
+              class="skill-logo"
+              loading="lazy"
+            />
+            <span class="icon-name">Client Management</span>
+          </div>
+          <div class="skill-logo-container">
+            <img
+              src="Image/ProjectManagementIcon1234.webp"
+              alt="Project Management"
+              class="skill-logo"
+              loading="lazy"
+            />
+            <span class="icon-name">Project Management</span>
+          </div>
+          <div class="skill-logo-container">
+            <img
+              src="Image/TeamManagementIcon.png"
+              alt="Team Management"
+              class="skill-logo"
+              loading="lazy"
+            />
+            <span class="icon-name">Team Management</span>
+          </div>
+          <div class="skill-logo-container">
+            <img
+              src="Image/VendorManagementIcon.svg"
+              alt="Vendor Management"
+              class="skill-logo"
+              loading="lazy"
+            />
+            <span class="icon-name">Vendor Management</span>
+          </div>
+        </div>
+        <p><strong>Certifications:</strong></p>
+        <div class="certifications-container">
+          <div class="certification">
+            <p>CCNA</p>
+            <a
+              href="https://cp.certmetrics.com/cisco/en/public/verify/credential/da72f839ab25437dba4a38443d6019e8"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="Image/CCNA.png"
+                alt="CCNA Certificate"
+                class="cert-image"
+                loading="lazy"
+              />
+            </a>
+          </div>
+          <div class="certification">
+            <p>RHCSA</p>
+            <a
+              href="https://rhtapps.redhat.com/verify?certId=230-103-988"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="Image/RHCSA.png"
+                alt="RHCSA Certificate"
+                class="cert-image"
+                loading="lazy"
+              />
+            </a>
+          </div>
+          <div class="certification">
+            <p>AWS SAA</p>
+            <a
+              href="https://cp.certmetrics.com/amazon/en/verify/credential"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="Image/Architect.png"
+                alt="AWS Certificate"
+                class="cert-image"
+                loading="lazy"
+              />
+            </a>
+          </div>
+        </div>
+      </section>
+      <section id="more" class="section">
+        <h2>More</h2>
+        <h3>Education</h3>
+        <h4>
+          Nanyang Technological University - Master of Science, Information
+          Systems
+        </h4>
+        <p>2023 - 2025</p>
+        <h4>
+          University College Dublin - Bachelor of Business Studies, Management
+        </h4>
+        <p>2019 - 2021</p>
+        <h4>
+          Ngee Ann Polytechnic - Diploma in Electrical Engineering with minor in
+          Business Management
+        </h4>
+        <p>2011 - 2014</p>
 
-            <section id="contact" class="section">
-                <h2>Contact Me</h2>
-                <form action="https://api.staticforms.xyz/submit" method="post">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                    <textarea name="message" placeholder="Your Message" required></textarea>
-                    <input type="text" name="honeypot" style="display:none">
-                    <input type="hidden" name="accessKey" value="d0762fba-8bde-42ba-93e4-5c82f854d9f0">
-                    <input type="hidden" name="subject" value="Contact us from - example.com">
-                    <input type="hidden" name="replyTo" value="@">
-                    <input type="hidden" name="redirectTo" value="https://jerrymoo.com/index4.html">
-                    <input type="submit" value="Submit">
-                </form>
-            </section>
-        </main>
+        <h2>Socials</h2>
+        <div class="social-icons">
+          <a
+            href="https://twitter.com/kingkongloveme"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Twitter"
+          >
+            <img
+              src="Image/iconmonstr-twitter-5-240 (1).png"
+              alt="Twitter"
+              class="social-icon"
+              loading="lazy"
+            />
+          </a>
+          <a
+            href="https://github.com/mookmookoolala"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+          >
+            <img
+              src="Image/github-mark.png"
+              alt="GitHub"
+              class="social-icon"
+              loading="lazy"
+            />
+          </a>
+          <a
+            href="https://sg.linkedin.com/in/jerry-kee-khong-moo-284abb144"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <img
+              src="Image/iconmonstr-linkedin-5-240.png"
+              alt="LinkedIn"
+              class="social-icon"
+              loading="lazy"
+            />
+          </a>
+          <button id="shareButton" aria-label="Share this page">
+            <img
+              src="Image/iconmonstr-share-thin-240 (1).png"
+              alt="Share"
+              class="social-icon"
+              loading="lazy"
+            />
+          </button>
+        </div>
+      </section>
 
-        <script>
-            function toggleNav() {
-                var nav = document.getElementById('main-nav');
-                var overlay = document.getElementById('sidebarOverlay');
-                if (window.innerWidth <= 900) {
-                    var isActive = nav.classList.toggle('active');
-                    if (isActive) {
-                        overlay.classList.add('active');
-                        nav.classList.remove('mobile-hidden');
-                    } else {
-                        overlay.classList.remove('active');
-                        nav.classList.add('mobile-hidden');
-                    }
-                }
+      <section id="collaboration" class="section">
+        <h2>Collaboration</h2>
+        <div class="collaboration">
+          <h3>Web Hosting</h3>
+          <p>
+            Want to create a website for your shop or small business? Let's work
+            on it together!
+          </p>
+        </div>
+        <div class="collaboration">
+          <h3>Node Hosting</h3>
+          <p>
+            Looking at all your friends earning those sweet airdrops from
+            blockchain nodes or want to run some services? Let's work on it
+            together!
+          </p>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <h2>Contact Me</h2>
+        <form action="https://api.staticforms.xyz/submit" method="post">
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <textarea
+            name="message"
+            placeholder="Your Message"
+            required
+          ></textarea>
+          <input type="text" name="honeypot" style="display: none" />
+          <input
+            type="hidden"
+            name="accessKey"
+            value="d0762fba-8bde-42ba-93e4-5c82f854d9f0"
+          />
+          <input
+            type="hidden"
+            name="subject"
+            value="Contact from jerrymoo.com"
+          />
+          <input type="hidden" name="replyTo" value="@" />
+          <input
+            type="hidden"
+            name="redirectTo"
+            value="https://jerrymoo.com/index4.html"
+          />
+          <input type="submit" value="Submit" />
+        </form>
+      </section>
+    </main>
+
+    <script>
+      function toggleNav() {
+        var nav = document.getElementById("main-nav");
+        var overlay = document.getElementById("sidebarOverlay");
+        if (window.innerWidth <= 900) {
+          var isActive = nav.classList.toggle("active");
+          if (isActive) {
+            overlay.classList.add("active");
+            nav.classList.remove("mobile-hidden");
+          } else {
+            overlay.classList.remove("active");
+            nav.classList.add("mobile-hidden");
+          }
+        }
+      }
+
+      function closeNav() {
+        var nav = document.getElementById("main-nav");
+        var overlay = document.getElementById("sidebarOverlay");
+        if (window.innerWidth <= 900) {
+          nav.classList.remove("active");
+          nav.classList.add("mobile-hidden");
+          overlay.classList.remove("active");
+        }
+      }
+
+      document.querySelectorAll('nav a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+          if (window.innerWidth <= 900) {
+            closeNav(); // Close nav on mobile after clicking a link
+          }
+        });
+      });
+
+      // Clipboard Function for Share Button
+      document
+        .getElementById("shareButton")
+        .addEventListener("click", function () {
+          navigator.clipboard
+            .writeText(window.location.href)
+            .then(() => alert("Link copied to clipboard!"))
+            .catch((err) => console.error("Error in copying text: ", err));
+        });
+
+      // Visitor counter
+      async function getVisitors() {
+        try {
+          let response = await fetch(
+            "https://lqk9r6hlp1.execute-api.ap-southeast-1.amazonaws.com/default/VisitorCounter",
+            {
+              method: "GET",
             }
+          );
+          if (!response.ok) throw new Error("Network response was not ok");
+          let data = await response.json();
+          document.getElementById("visitors").textContent = data.count;
+        } catch (err) {
+          console.error("Error fetching visitor count:", err);
+          document.getElementById("visitors").textContent =
+            "Error loading count";
+        }
+      }
 
-            function closeNav() {
-                var nav = document.getElementById('main-nav');
-                var overlay = document.getElementById('sidebarOverlay');
-                if (window.innerWidth <= 900) {
-                    nav.classList.remove('active');
-                    nav.classList.add('mobile-hidden');
-                    overlay.classList.remove('active');
-                }
-            }
+      getVisitors();
 
-            document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                    if (window.innerWidth <= 900) {
-                        closeNav(); // Close nav on mobile after clicking a link
-                    }
-                });
+      // Lazy loading images
+      if ("loading" in HTMLImageElement.prototype) {
+        const images = document.querySelectorAll("img[loading='lazy']");
+        images.forEach((img) => {
+          img.src = img.src;
+        });
+      } else {
+        // Fallback for browsers that don't support lazy loading
+        const script = document.createElement("script");
+        script.src =
+          "https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js";
+        document.body.appendChild(script);
+      }
+
+      // Highlight active nav link on scroll
+      const sections = document.querySelectorAll(".section");
+      const navLinks = document.querySelectorAll("nav ul li a");
+      window.addEventListener("scroll", () => {
+        let current = "";
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop - 80;
+          if (pageYOffset >= sectionTop) {
+            current = section.getAttribute("id");
+          }
+        });
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          link.removeAttribute("aria-current");
+          if (link.getAttribute("href") === `#${current}`) {
+            link.classList.add("active");
+            link.setAttribute("aria-current", "page");
+          }
+        });
+      });
+
+      // Mobile top nav logic
+      function setMobileNavDisplay() {
+        const mobileTopnav = document.getElementById("mobileTopnav");
+        const mobileMenu = document.getElementById("mobileMenu");
+        if (window.innerWidth <= 900) {
+          mobileTopnav.style.display = "flex";
+        } else {
+          mobileTopnav.style.display = "none";
+          mobileMenu.classList.remove("open");
+        }
+      }
+      setMobileNavDisplay();
+      window.addEventListener("resize", setMobileNavDisplay);
+
+      document
+        .getElementById("mobileNavToggle")
+        .addEventListener("click", function () {
+          const menu = document.getElementById("mobileMenu");
+          menu.classList.toggle("open");
+        });
+
+      // Close mobile menu on link click
+      document.querySelectorAll(".mobile-menu a").forEach((link) => {
+        link.addEventListener("click", function (e) {
+          document.getElementById("mobileMenu").classList.remove("open");
+        });
+      });
+
+      // Highlight active link in mobile menu
+      function updateMobileMenuActive() {
+        const sections = document.querySelectorAll(".section");
+        const navLinks = document.querySelectorAll(".mobile-menu a");
+        let current = "";
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop - 100;
+          if (pageYOffset >= sectionTop) {
+            current = section.getAttribute("id");
+          }
+        });
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          link.removeAttribute("aria-current");
+          if (link.getAttribute("href") === `#${current}`) {
+            link.classList.add("active");
+            link.setAttribute("aria-current", "page");
+          }
+        });
+      }
+      window.addEventListener("scroll", updateMobileMenuActive);
+    </script>
+    <script>
+      (function () {
+        const qs = new URLSearchParams(location.search);
+        if (qs.get("test") !== "1") return;
+        function show(results) {
+          const d = document.createElement("div");
+          d.style.position = "fixed";
+          d.style.right = "16px";
+          d.style.bottom = "16px";
+          d.style.zIndex = "4000";
+          d.style.background = "rgba(0,0,0,0.8)";
+          d.style.color = "#fff";
+          d.style.padding = "12px 16px";
+          d.style.borderRadius = "12px";
+          d.style.fontFamily = "Lexend, Arial, sans-serif";
+          d.style.fontSize = "14px";
+          d.style.boxShadow = "0 8px 24px rgba(0,0,0,0.24)";
+          const pass = results.filter((r) => r.pass).length;
+          const fail = results.length - pass;
+          d.textContent = `UI tests: ${pass} passed, ${fail} failed`;
+          document.body.appendChild(d);
+        }
+        function has(sel) {
+          return !!document.querySelector(sel);
+        }
+        function all(sel) {
+          return Array.from(document.querySelectorAll(sel));
+        }
+        function attr(el, a) {
+          return el && el.getAttribute(a);
+        }
+        async function run() {
+          const results = [];
+          results.push({
+            name: "canonical",
+            pass: has('link[rel="canonical"][href*="jerrymoo.com"]'),
+          });
+          results.push({
+            name: "og tags",
+            pass:
+              has('meta[property="og:title"]') &&
+              has('meta[property="og:description"]'),
+          });
+          const skillImgs = all("img.skill-logo");
+          results.push({
+            name: "lazy skill images",
+            pass: skillImgs.every((i) => attr(i, "loading") === "lazy"),
+          });
+          const certImgs = all(".cert-image");
+          results.push({
+            name: "lazy cert images",
+            pass: certImgs.every((i) => attr(i, "loading") === "lazy"),
+          });
+          const ext = all('a[target="_blank"]');
+          results.push({
+            name: "noopener on external",
+            pass: ext.every((a) => String(a.rel).includes("noopener")),
+          });
+          const sections = all(".section");
+          if (sections[1]) {
+            window.scrollTo(0, sections[1].offsetTop + 100);
+            await new Promise((r) => setTimeout(r, 200));
+            const active = document.querySelector("nav ul li a.active");
+            results.push({ name: "active link highlight", pass: !!active });
+            results.push({
+              name: "aria-current set",
+              pass: active && active.getAttribute("aria-current") === "page",
             });
-
-            // Clipboard Function for Share Button
-            document.getElementById("shareButton").addEventListener("click", function () {
-                navigator.clipboard.writeText(window.location.href)
-                    .then(() => alert("Link copied to clipboard!"))
-                    .catch((err) => console.error("Error in copying text: ", err));
+          }
+          const btn = document.getElementById("mobileNavToggle");
+          const menu = document.getElementById("mobileMenu");
+          if (btn && menu) {
+            btn.click();
+            await new Promise((r) => setTimeout(r, 100));
+            const open = menu.classList.contains("open");
+            results.push({ name: "mobile menu toggle", pass: open });
+            menu.classList.remove("open");
+          }
+          let alerted = "";
+          const origAlert = window.alert;
+          window.alert = function (m) {
+            alerted = m;
+          };
+          const origClipboard = navigator.clipboard;
+          navigator.clipboard = {
+            writeText: function () {
+              return Promise.resolve();
+            },
+          };
+          const share = document.getElementById("shareButton");
+          if (share) {
+            share.click();
+            await new Promise((r) => setTimeout(r, 150));
+            results.push({
+              name: "share action",
+              pass: alerted === "Link copied to clipboard!",
             });
-
-            // Visitor counter
-            async function getVisitors() {
-                try {
-                    let response = await fetch('https://lqk9r6hlp1.execute-api.ap-southeast-1.amazonaws.com/default/VisitorCounter', {
-                        method: 'GET',
-                    });
-                    if (!response.ok) throw new Error('Network response was not ok');
-                    let data = await response.json();
-                    document.getElementById("visitors").textContent = data.count;
-                } catch (err) {
-                    console.error('Error fetching visitor count:', err);
-                    document.getElementById("visitors").textContent = 'Error loading count';
-                }
-            }
-
-            getVisitors();
-
-            // Lazy loading images
-            if ('loading' in HTMLImageElement.prototype) {
-                const images = document.querySelectorAll("img[loading='lazy']");
-                images.forEach(img => {
-                    img.src = img.src;
-                });
-            } else {
-                // Fallback for browsers that don't support lazy loading
-                const script = document.createElement('script');
-                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
-                document.body.appendChild(script);
-            }
-
-            // Highlight active nav link on scroll
-            const sections = document.querySelectorAll('.section');
-            const navLinks = document.querySelectorAll('nav ul li a');
-            window.addEventListener('scroll', () => {
-                let current = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop - 80;
-                    if (pageYOffset >= sectionTop) {
-                        current = section.getAttribute('id');
-                    }
-                });
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${current}`) {
-                        link.classList.add('active');
-                    }
-                });
-            });
-
-            // Mobile top nav logic
-            function setMobileNavDisplay() {
-                const mobileTopnav = document.getElementById('mobileTopnav');
-                const mobileMenu = document.getElementById('mobileMenu');
-                if (window.innerWidth <= 900) {
-                    mobileTopnav.style.display = 'flex';
-                } else {
-                    mobileTopnav.style.display = 'none';
-                    mobileMenu.classList.remove('open');
-                }
-            }
-            setMobileNavDisplay();
-            window.addEventListener('resize', setMobileNavDisplay);
-
-            document.getElementById('mobileNavToggle').addEventListener('click', function() {
-                const menu = document.getElementById('mobileMenu');
-                menu.classList.toggle('open');
-            });
-
-            // Close mobile menu on link click
-            document.querySelectorAll('.mobile-menu a').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    document.getElementById('mobileMenu').classList.remove('open');
-                });
-            });
-
-            // Highlight active link in mobile menu
-            function updateMobileMenuActive() {
-                const sections = document.querySelectorAll('.section');
-                const navLinks = document.querySelectorAll('.mobile-menu a');
-                let current = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop - 100;
-                    if (pageYOffset >= sectionTop) {
-                        current = section.getAttribute('id');
-                    }
-                });
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${current}`) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-            window.addEventListener('scroll', updateMobileMenuActive);
-        </script>
-    </body>
+          }
+          window.alert = origAlert;
+          navigator.clipboard = origClipboard;
+          show(results);
+        }
+        run();
+      })();
+    </script>
+  </body>
 </html>
