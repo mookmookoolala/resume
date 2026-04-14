@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My AWS Static Website Project: S3 + CloudFront + Route53 + Visitor Counter</title>
+    <title>AWS Static Resume Website: S3, CloudFront, Route53, Lambda, and DynamoDB</title>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Permanent+Marker&display=swap" rel="stylesheet" />
     <style>
         :root {
@@ -98,42 +98,44 @@
 </head>
 <body>
 <div class="container">
-    <h1>My AWS Static Website Project</h1>
+    <h1>AWS Static Resume Website</h1>
     <div class="image-container">
         <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS Logo" class="blog-image" loading="lazy" />
     </div>
     <div class="project-outline">
-        <strong>Project Outline:</strong>
+        <strong>Project Overview:</strong>
         <ul>
-            <li>Host my personal website using AWS S3 (storage), CloudFront (CDN), and Route53 (DNS).</li>
-            <li>Make it fast, global, and cheap to run.</li>
-            <li>Add a real visitor counter using DynamoDB and Lambda (not just localStorage!).</li>
+            <li>Host a personal resume site on AWS using S3, CloudFront, and Route53.</li>
+            <li>Deliver a fast, globally accessible static site with low operational overhead.</li>
+            <li>Implement a shared visitor counter with Lambda, API Gateway, and DynamoDB.</li>
         </ul>
     </div>
     <div class="step">
-        <h2>Introduction</h2>
-        <p>Hey bro! Here's how I built my own static website on AWS. I wanted something fast, global, and easy to update. Plus, I wanted a real visitor counter that works for everyone, not just me. Here's how I did it, step by step!</p>
+        <h2>Overview</h2>
+        <p>This project documents how I built and deployed my personal resume site on AWS. The goal was to create a lightweight portfolio that is easy to maintain, globally available, and backed by a simple serverless component for a real visitor counter.</p>
+        <p>The result is a static website architecture that is inexpensive to run, straightforward to update, and a practical example of combining core AWS services into a small production-style deployment.</p>
     </div>
     <div class="step">
         <h2>Architecture Overview</h2>
         <ul>
-            <li><strong>S3</strong>: Stores all my website files (HTML, CSS, images, etc).</li>
-            <li><strong>CloudFront</strong>: Distributes my site globally for speed.</li>
-            <li><strong>Route53</strong>: Handles my custom domain and DNS.</li>
-            <li><strong>Lambda + DynamoDB</strong>: Counts visitors and stores the count in the cloud.</li>
+            <li><strong>S3</strong>: Stores the static website assets, including HTML, CSS, JavaScript, and images.</li>
+            <li><strong>CloudFront</strong>: Caches and serves the site globally with HTTPS support.</li>
+            <li><strong>Route53</strong>: Manages the custom domain and DNS routing.</li>
+            <li><strong>Lambda + DynamoDB</strong>: Powers a shared visitor counter through a serverless API.</li>
         </ul>
         <div class="image-container">
             <img src="https://d1.awsstatic.com/architecture-diagrams/ArchitectureDiagrams/static-website-hosting-ra.png" alt="AWS Static Site Diagram" class="blog-image" style="max-width:500px;" loading="lazy" />
         </div>
     </div>
     <div class="step">
-        <h2>Step 1: Prepare Your Static Site</h2>
-        <p>I built my site with HTML, CSS, and a bit of JavaScript. Make sure you have an <code>index.html</code> and any images or assets you want to use.</p>
+        <h2>Step 1: Prepare the Static Site</h2>
+        <p>The frontend was built with HTML, CSS, and a small amount of JavaScript. At a minimum, the deployment requires an <code>index.html</code> entry point and any supporting assets such as images, icons, or additional pages.</p>
+        <p>Because the site is static, updates are simple: modify the files locally and upload the latest version to the hosting bucket.</p>
     </div>
     <div class="step">
-        <h2>Step 2: Create and Configure S3 Bucket</h2>
-        <p>Create an S3 bucket named after your domain (e.g., <code>mycoolwebsite.com</code>). Upload your files. Make the bucket public for static hosting.</p>
-        <p><strong>Example S3 Bucket Policy:</strong></p>
+        <h2>Step 2: Configure the S3 Bucket</h2>
+        <p>I created an S3 bucket aligned with the site domain and uploaded the static assets to it. S3 acts as the origin for the website content and provides a simple deployment target for future updates.</p>
+        <p>For a basic static hosting setup, the bucket can expose public read access to the site objects. An example policy is shown below:</p>
         <pre><code>{
   "Version": "2012-10-17",
   "Statement": [
@@ -149,7 +151,8 @@
     </div>
     <div class="step">
         <h2>Step 3: Set Up CloudFront</h2>
-        <p>Create a CloudFront distribution. Set your S3 bucket's <strong>website endpoint</strong> as the origin (not the REST endpoint!).</p>
+        <p>I placed CloudFront in front of the S3 origin to improve global performance, enable HTTPS, and provide a cleaner public entry point for the website.</p>
+        <p>In this setup, the S3 <strong>website endpoint</strong> is used as the origin rather than the REST endpoint.</p>
         <ul>
             <li>Origin Domain: <code>mycoolwebsite.com.s3-website-ap-southeast-1.amazonaws.com</code></li>
             <li>Viewer Protocol Policy: Redirect HTTP to HTTPS</li>
@@ -157,21 +160,21 @@
         </ul>
     </div>
     <div class="step">
-        <h2>Step 4: Connect Domain with Route53</h2>
-        <p>In Route53, create a hosted zone for your domain. Add an <strong>A record (alias)</strong> pointing to your CloudFront distribution.</p>
+        <h2>Step 4: Connect the Domain with Route53</h2>
+        <p>Route53 was used to manage DNS for the custom domain. The public record is an <strong>A alias record</strong> pointing to the CloudFront distribution, which keeps the URL clean and avoids exposing the distribution domain to visitors.</p>
         <pre><code>Type: A (Alias)
 Name: mycoolwebsite.com
 Alias Target: dxxxxxxxxxxxx.cloudfront.net</code></pre>
     </div>
     <div class="step">
-        <h2>Step 5: Add a Real Visitor Counter (DynamoDB + Lambda)</h2>
-        <p>I wanted a real visitor counter that works for everyone, not just me. Here's how I did it:</p>
+        <h2>Step 5: Add a Shared Visitor Counter</h2>
+        <p>To make the site slightly more dynamic, I added a visitor counter backed by DynamoDB and Lambda. Unlike a browser-only solution, this approach keeps a shared count that is visible to every visitor.</p>
         <ol>
-            <li><strong>Create a DynamoDB table</strong> (e.g., <code>VisitorCount</code>) with a primary key <code>id</code> (string).</li>
-            <li><strong>Create a Lambda function</strong> (Node.js or Python) that increments and returns the count.</li>
-            <li><strong>Expose the Lambda via API Gateway</strong> (so your site can call it from JS).</li>
+            <li><strong>Create a DynamoDB table</strong> such as <code>VisitorCount</code> with a primary key like <code>id</code>.</li>
+            <li><strong>Create a Lambda function</strong> that increments the stored count and returns the updated value.</li>
+            <li><strong>Expose the function through API Gateway</strong> so the static site can request the current count from JavaScript.</li>
         </ol>
-        <p><strong>Example Lambda (Node.js):</strong></p>
+        <p><strong>Example Lambda function (Node.js):</strong></p>
         <pre><code>const AWS = require('aws-sdk');
 const dynamo = new AWS.DynamoDB.DocumentClient();
 
@@ -192,7 +195,7 @@ exports.handler = async (event) => {
     };
 };
 </code></pre>
-        <p><strong>Example JS to call the API from your site:</strong></p>
+        <p><strong>Example client-side request:</strong></p>
         <pre><code>&lt;script&gt;
 fetch('https://your-api-id.execute-api.ap-southeast-1.amazonaws.com/default/VisitorCounter')
   .then(res => res.json())
@@ -201,15 +204,17 @@ fetch('https://your-api-id.execute-api.ap-southeast-1.amazonaws.com/default/Visi
   });
 &lt;/script&gt;
 </code></pre>
-        <p>Now, every time someone visits, the counter goes up for everyone!</p>
+        <p>With this in place, each page load can retrieve and display a shared visitor count from the backend service.</p>
     </div>
     <div class="step">
-        <h2>Deployment & Testing</h2>
-        <p>Once everything is set up, visit your domain. You should see your site, and the visitor counter should work for everyone. If something's not working, check your S3 permissions, CloudFront settings, and Lambda/API Gateway logs.</p>
+        <h2>Deployment and Validation</h2>
+        <p>After the infrastructure was configured, I validated the deployment by checking content delivery through the custom domain, confirming HTTPS redirection, and verifying that the visitor counter updated successfully through the API.</p>
+        <p>For troubleshooting, the main checkpoints were S3 object access, CloudFront origin settings, and Lambda or API Gateway logs.</p>
     </div>
     <div class="step">
-        <h2>Conclusion & Lessons Learned</h2>
-        <p>This project taught me a lot about AWS and how the cloud works. Using DynamoDB and Lambda for the counter was a fun way to make my site interactive. If you want to try it, start simple and build up step by step. Good luck, bro!</p>
+        <h2>Outcome and Key Takeaways</h2>
+        <p>This project was a useful exercise in building a small but complete cloud-hosted application. It combines static hosting, CDN delivery, DNS management, and serverless components in a way that is practical, low-cost, and easy to reason about.</p>
+        <p>Beyond serving as my personal website, it also works as a compact case study for deploying frontend assets on AWS and extending a static site with lightweight backend functionality.</p>
     </div>
 </div>
 </body>

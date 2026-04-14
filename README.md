@@ -31,11 +31,11 @@ Welcome! This is my personal resume/portfolio site, built and deployed on AWS wi
 
 ## How to Use / Deploy
 1. **Clone this repo**
-2. Edit your site content in `index.html` and `index3.html` (project blog)
+2. Edit your site content in `index.html` and `project.html` (project case study)
 3. Upload to an S3 bucket (enable static website hosting)
 4. Set up CloudFront to point to your S3 website endpoint
 5. Use Route53 to point your domain to CloudFront
-6. (Optional) Deploy the visitor counter Lambda and DynamoDB table (see `index3.html` for code)
+6. (Optional) Deploy the visitor counter Lambda and DynamoDB table (see `project.html` for code)
 
 ## Visitor Counter (Serverless)
 - Lambda function increments a count in DynamoDB
