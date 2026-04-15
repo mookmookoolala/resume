@@ -23,8 +23,18 @@ h2{font-family:"Permanent Marker",cursive;font-size:1.7rem;border-bottom:2px sol
 h2::after{content:"→";position:absolute;right:-18px;color:var(--red)}h3{margin:12px 0 4px;font-family:"Permanent Marker",cursive;font-size:1.2rem}
 .project{display:flex;gap:16px;padding:14px;margin-bottom:14px;background:#fff9;border:2px solid var(--border);border-radius:var(--hand);position:relative}
 .project img{width:130px;height:130px;object-fit:cover;border-radius:12px;border:1px solid var(--border)}
-.overlay{position:absolute;left:14px;top:14px;width:130px;height:130px;background:rgba(0,0,0,.72);color:#fff;display:flex;align-items:center;justify-content:center;opacity:0;transition:.2s;border-radius:12px;text-align:center;padding:8px}
+.project-copy{display:flex;flex-direction:column;justify-content:center;gap:6px;max-width:560px}
+.project-copy p{margin:0;line-height:1.45}
+.project-meta{font-family:"Architects Daughter",cursive;color:var(--blue)}
+.project-link{align-self:flex-start;padding:6px 10px;border:2px solid var(--border);border-radius:12px;background:#fff;font-family:"Architects Daughter",cursive}
+.overlay{position:absolute;left:14px;top:14px;width:110px;min-height:72px;background:rgba(0,0,0,.78);color:#fff;display:flex;align-items:center;justify-content:center;opacity:0;transition:.2s;border-radius:12px;text-align:center;padding:8px}
+.overlay div{display:flex;flex-direction:column;gap:4px}
+.overlay h3{font-size:.95rem;margin:0}
+.overlay p{font-size:.72rem;line-height:1.25;margin:0}
+.overlay a{font-size:.75rem}
 .project:hover .overlay{opacity:1}.overlay a{color:#fff;text-decoration:underline}
+.toast{position:fixed;right:16px;bottom:16px;padding:10px 14px;background:rgba(10,10,10,.9);color:var(--paper);border:2px solid var(--border);border-radius:12px;font-family:"Architects Daughter",cursive;opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .2s,transform .2s;z-index:200}
+.toast.show{opacity:1;transform:translateY(0)}
 .skills-logos{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:12px;margin-top:10px}
 .skill-logo-container{text-align:center;padding:12px;background:#fff9;border:2px solid var(--border);border-radius:var(--hand)}
 .skill-logo{width:44px;height:44px;padding:5px;background:var(--paper);border:1px solid var(--border);border-radius:8px}
@@ -38,7 +48,7 @@ h2::after{content:"→";position:absolute;right:-18px;color:var(--red)}h3{margin
 .annotation{font-family:"Shadows Into Light",cursive;color:var(--red);margin-left:6px}
 a{color:var(--blue);text-decoration:none}a:hover{color:var(--red);text-decoration:underline wavy var(--red)}nav a:hover{text-decoration:none!important}
 .mobile-topnav,.mobile-menu{display:none}
-@media(max-width:860px){nav{display:none}.mobile-topnav{display:flex;position:fixed;top:0;left:0;right:0;height:52px;background:var(--paper);border-bottom:2px solid var(--border);align-items:center;justify-content:space-between;padding:0 12px;z-index:100}.mobile-topnav span{font-family:"Permanent Marker",cursive;color:var(--blue)}.mobile-menu{position:fixed;top:52px;left:0;right:0;background:var(--paper);border-bottom:2px solid var(--border);display:none;flex-direction:column;z-index:99}.mobile-menu.open{display:flex}.mobile-menu a{padding:12px 16px;border-bottom:1px solid #eee;font-family:"Architects Daughter",cursive;color:var(--ink);text-decoration:none!important}.content{padding:64px 14px 20px}.project{flex-direction:column;text-align:left;align-items:flex-start}.project img{width:110px;height:110px;transform:none}.overlay{width:110px;height:110px;left:14px;transform:none;top:14px}}
+@media(max-width:860px){nav{display:none}.mobile-topnav{display:flex;position:fixed;top:0;left:0;right:0;height:52px;background:var(--paper);border-bottom:2px solid var(--border);align-items:center;justify-content:space-between;padding:0 12px;z-index:100}.mobile-topnav span{font-family:"Permanent Marker",cursive;color:var(--blue)}.mobile-menu{position:fixed;top:52px;left:0;right:0;background:var(--paper);border-bottom:2px solid var(--border);display:none;flex-direction:column;z-index:99}.mobile-menu.open{display:flex}.mobile-menu a{padding:12px 16px;border-bottom:1px solid #eee;font-family:"Architects Daughter",cursive;color:var(--ink);text-decoration:none!important}.content{padding:64px 14px 20px}.project{flex-direction:column;text-align:left;align-items:flex-start}.project img{width:110px;height:110px;transform:none}.project-copy{max-width:none}.overlay{width:100px;min-height:68px;left:14px;transform:none;top:14px;padding:6px}}
 #contact form{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:680px;margin-top:10px}
 #contact input,#contact textarea{padding:10px;border:2px solid var(--border);border-radius:var(--hand);font-family:"Kalam",cursive;background:#fff}
 #contact textarea{grid-column:1/-1;min-height:130px}#contact input[type=submit]{grid-column:1/-1;background:var(--ink);color:var(--paper);font-family:"Permanent Marker",cursive;padding:10px;border:2px solid var(--border);box-shadow:2px 2px 0 var(--ink);cursor:pointer}
@@ -61,7 +71,7 @@ I'm a Site Reliability and Platform Engineer focused on trade operations platfor
 <span class="annotation">5 years deep →</span>
 </p>
 <p>I hold CCNA, RHCSA, AWS, and CDCP certifications. My recent work spans low‑latency trading systems, infrastructure as code, service monitoring with Prometheus/Grafana, and hands‑on data center operations (rack/stack, network, and lifecycle management).</p>
-<div style="display:flex;gap:10px;margin:12px 0"><a href="mailto:mkk1994@hotmail.com"><img src="Image/mail (2).png" class="social-icon" alt="Mail"></a><a href="https://telegram.me/mookmooklala"><img src="Image/mobile.png" class="social-icon" alt="Telegram"></a></div>
+<div style="display:flex;gap:10px;margin:12px 0"><a href="mailto:mkk1994@hotmail.com" aria-label="Send email to Jerry Moo Kee Khong"><img src="Image/mail (2).png" class="social-icon" alt="Email"></a><a href="https://telegram.me/mookmooklala" aria-label="Open Jerry Moo Kee Khong Telegram profile"><img src="Image/mobile.png" class="social-icon" alt="Telegram"></a></div>
 <p>You are visitor number: <span id="v">Loading...</span></p>
 </section>
 
@@ -74,26 +84,26 @@ I'm a Site Reliability and Platform Engineer focused on trade operations platfor
 </section>
 
 <section id="projects" class="section"><h2>Projects</h2>
-<div class="project"><img src="Image/Fight.png" alt="AWS static resume website project"><div class="overlay"><div><h3>AWS Static Resume Website</h3><p>Tech Stack: HTML, CSS, JavaScript, AWS</p><a href="project.html">Read Blog Post</a></div></div></div>
-<div class="small-project"><a href="https://t.me/busstopforsingaporebot" target="_blank" rel="noopener noreferrer"><img src="Image/telegram.png" width="24" alt="Telegram"></a><span>BusStopForSingaporeBot - Bot that helps you find out how long for upcoming bus arrival. <span class="annotation">Used daily →</span></span></div>
-<div class="small-project"><a href="https://t.me/princecryptobot" target="_blank" rel="noopener noreferrer"><img src="Image/telegram.png" width="24" alt="Telegram"></a><span>Princecryptobot - Bot that gives you near-realtime crypto prices. <span class="annotation">Built for speed</span></span></div>
+<div class="project"><img src="Image/Fight.png" alt="Preview of the AWS static resume website"><div class="overlay"><div><h3>AWS Static Resume Website</h3><p>HTML, CSS, JS, AWS</p><a href="project.html">Read More</a></div></div><div class="project-copy"><h3>AWS Static Resume Website</h3><p class="project-meta">HTML, CSS, JavaScript, AWS</p><p>A personal resume site deployed on AWS with CloudFront delivery, Route53 DNS, and a serverless visitor counter powered by Lambda and DynamoDB.</p><a href="project.html" class="project-link">Read Project Case Study</a></div></div>
+<div class="small-project"><a href="https://t.me/busstopforsingaporebot" target="_blank" rel="noopener noreferrer" aria-label="Open BusStopForSingaporeBot on Telegram"><img src="Image/telegram.png" width="24" alt="Telegram"></a><span>BusStopForSingaporeBot - Bot that helps you find out how long for upcoming bus arrival. <span class="annotation">Used daily →</span></span></div>
+<div class="small-project"><a href="https://t.me/princecryptobot" target="_blank" rel="noopener noreferrer" aria-label="Open Princecryptobot on Telegram"><img src="Image/telegram.png" width="24" alt="Telegram"></a><span>Princecryptobot - Bot that gives you near-realtime crypto prices. <span class="annotation">Built for speed</span></span></div>
 </section>
 
 <section id="skills" class="section"><h2>Skills</h2>
 <p><strong>Technical Skills:</strong></p><div class="skills-logos">
-<div class="skill-logo-container"><img src="Image/shell.png" class="skill-logo" alt=""><span class="icon-name">Shell Scripting</span></div>
-<div class="skill-logo-container"><img src="Image/networking.png" class="skill-logo" alt=""><span class="icon-name">Networking</span></div>
-<div class="skill-logo-container"><img src="Image/python.png" class="skill-logo" alt=""><span class="icon-name">Python</span></div>
-<div class="skill-logo-container"><img src="Image/Linux.png" class="skill-logo" alt=""><span class="icon-name">Linux</span></div>
-<div class="skill-logo-container"><img src="Image/Aws.png" class="skill-logo" alt=""><span class="icon-name">AWS</span></div>
-<div class="skill-logo-container"><img src="Image/Prometheus.jpg" class="skill-logo" alt=""><span class="icon-name">Prometheus</span></div>
-<div class="skill-logo-container"><img src="Image/Docker.png" class="skill-logo" alt=""><span class="icon-name">Docker</span></div>
+<div class="skill-logo-container"><img src="Image/shell.png" class="skill-logo" alt="Shell scripting icon"><span class="icon-name">Shell Scripting</span></div>
+<div class="skill-logo-container"><img src="Image/networking.png" class="skill-logo" alt="Networking icon"><span class="icon-name">Networking</span></div>
+<div class="skill-logo-container"><img src="Image/python.png" class="skill-logo" alt="Python icon"><span class="icon-name">Python</span></div>
+<div class="skill-logo-container"><img src="Image/Linux.png" class="skill-logo" alt="Linux icon"><span class="icon-name">Linux</span></div>
+<div class="skill-logo-container"><img src="Image/Aws.png" class="skill-logo" alt="AWS icon"><span class="icon-name">AWS</span></div>
+<div class="skill-logo-container"><img src="Image/Prometheus.jpg" class="skill-logo" alt="Prometheus icon"><span class="icon-name">Prometheus</span></div>
+<div class="skill-logo-container"><img src="Image/Docker.png" class="skill-logo" alt="Docker icon"><span class="icon-name">Docker</span></div>
 </div>
 <p style="margin-top:18px"><strong>Soft Skills:</strong></p><div class="skills-logos">
-<div class="skill-logo-container"><img src="Image/ClientManagementIcon.svg" class="skill-logo" alt=""><span class="icon-name">Client Management</span></div>
-<div class="skill-logo-container"><img src="Image/ProjectManagementIcon1234.webp" class="skill-logo" alt=""><span class="icon-name">Project Management</span></div>
-<div class="skill-logo-container"><img src="Image/TeamManagementIcon.png" class="skill-logo" alt=""><span class="icon-name">Team Management</span></div>
-<div class="skill-logo-container"><img src="Image/VendorManagementIcon.svg" class="skill-logo" alt=""><span class="icon-name">Vendor Management</span></div>
+<div class="skill-logo-container"><img src="Image/ClientManagementIcon.svg" class="skill-logo" alt="Client management icon"><span class="icon-name">Client Management</span></div>
+<div class="skill-logo-container"><img src="Image/ProjectManagementIcon1234.webp" class="skill-logo" alt="Project management icon"><span class="icon-name">Project Management</span></div>
+<div class="skill-logo-container"><img src="Image/TeamManagementIcon.png" class="skill-logo" alt="Team management icon"><span class="icon-name">Team Management</span></div>
+<div class="skill-logo-container"><img src="Image/VendorManagementIcon.svg" class="skill-logo" alt="Vendor management icon"><span class="icon-name">Vendor Management</span></div>
 </div>
 <p style="margin-top:18px"><strong>Certifications:</strong></p><div class="certifications-container">
 <div class="certification"><p>CCNA</p><a href="https://cp.certmetrics.com/cisco/en/public/verify/credential/da72f839ab25437dba4a38443d6019e8" target="_blank" rel="noopener noreferrer"><img src="Image/CCNA.png" class="cert-image" alt="CCNA certificate"></a></div>
@@ -105,7 +115,7 @@ I'm a Site Reliability and Platform Engineer focused on trade operations platfor
 <h4>Nanyang Technological University - Master of Science, Information Systems</h4><p style="color:var(--blue);font-family:'Architects Daughter',cursive">2023 - 2025</p>
 <h4>University College Dublin - Bachelor of Business Studies, Management</h4><p style="color:var(--blue);font-family:'Architects Daughter',cursive">2019 - 2021</p>
 <h4>Ngee Ann Polytechnic - Diploma in Electrical Engineering with minor in Business Management</h4><p style="color:var(--blue);font-family:'Architects Daughter',cursive">2011 - 2014</p>
-<h2 style="margin-top:28px">Socials</h2><div style="display:flex;gap:12px"><a href="https://twitter.com/kingkongloveme" target="_blank" rel="noopener noreferrer"><img src="Image/iconmonstr-twitter-5-240 (1).png" class="social-icon" alt="Twitter"></a><a href="https://github.com/mookmookoolala" target="_blank" rel="noopener noreferrer"><img src="Image/github-mark.png" class="social-icon" alt="GitHub"></a><a href="https://sg.linkedin.com/in/jerry-kee-khong-moo-284abb144" target="_blank" rel="noopener noreferrer"><img src="Image/iconmonstr-linkedin-5-240.png" class="social-icon" alt="LinkedIn"></a><button id="share" style="background:none;border:none;cursor:pointer"><img src="Image/iconmonstr-share-thin-240 (1).png" class="social-icon" alt="Share"></button></div></section>
+<h2 style="margin-top:28px">Socials</h2><div style="display:flex;gap:12px"><a href="https://twitter.com/kingkongloveme" target="_blank" rel="noopener noreferrer" aria-label="Open Twitter profile"><img src="Image/iconmonstr-twitter-5-240 (1).png" class="social-icon" alt="Twitter"></a><a href="https://github.com/mookmookoolala" target="_blank" rel="noopener noreferrer" aria-label="Open GitHub profile"><img src="Image/github-mark.png" class="social-icon" alt="GitHub"></a><a href="https://sg.linkedin.com/in/jerry-kee-khong-moo-284abb144" target="_blank" rel="noopener noreferrer" aria-label="Open LinkedIn profile"><img src="Image/iconmonstr-linkedin-5-240.png" class="social-icon" alt="LinkedIn"></a><button id="share" style="background:none;border:none;cursor:pointer" aria-label="Copy site link"><img src="Image/iconmonstr-share-thin-240 (1).png" class="social-icon" alt="Share"></button></div></section>
 
 <section id="collaboration" class="section"><h2>Collaboration</h2>
 <div><h3>Web Hosting</h3><p>Want to create a website for your shop or small business? Let's work on it together!</p></div>
@@ -125,11 +135,13 @@ I'm a Site Reliability and Platform Engineer focused on trade operations platfor
 <input type="submit" value="Submit">
 </form></section>
 </main>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
 <script>
 const menuButton = document.getElementById('mb');
 const mobileMenu = document.getElementById('mm');
 const visitorCount = document.getElementById('v');
 const shareButton = document.getElementById('share');
+const toast = document.getElementById('toast');
 const sections = document.querySelectorAll('.section');
 const navLinks = document.querySelectorAll('nav a');
 
@@ -159,11 +171,20 @@ fetch('https://lqk9r6hlp1.execute-api.ap-southeast-1.amazonaws.com/default/Visit
 shareButton?.addEventListener('click', async () => {
   try {
     await navigator.clipboard.writeText(location.href);
-    alert('Link copied!');
+    showToast('Link copied!');
   } catch {
-    alert('Unable to copy the link automatically.');
+    showToast('Unable to copy the link automatically.');
   }
 });
+
+let toastTimer;
+function showToast(message) {
+  if (!toast) return;
+  toast.textContent = message;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
+}
 
 function updateActiveNav() {
   let currentSection = 'about';
