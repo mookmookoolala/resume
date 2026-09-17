@@ -16,7 +16,6 @@ function initTerminal() {
 
   if (!modal || !input || !body) return;
 
-  // Toggle modal
   openBtns.forEach((btn) => {
     btn.addEventListener('click', () => openTerminal());
   });
@@ -29,7 +28,6 @@ function initTerminal() {
     if (e.target === modal) closeTerminal();
   });
 
-  // Shortcut key (Ctrl + ` or Cmd + K)
   document.addEventListener('keydown', (e) => {
     if ((e.metaKey || e.ctrlKey) && (e.key === 'k' || e.key === '`')) {
       e.preventDefault();
@@ -52,7 +50,6 @@ function initTerminal() {
     modal.classList.remove('open');
   }
 
-  // Handle command input
   input.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       const cmdText = input.value.trim();
@@ -63,7 +60,6 @@ function initTerminal() {
     }
   });
 
-  // Quick command chips
   chipBtns.forEach((chip) => {
     chip.addEventListener('click', () => {
       const cmdText = chip.getAttribute('data-cmd');
@@ -93,11 +89,11 @@ function initTerminal() {
           <div style="display: grid; grid-template-columns: 100px 1fr; gap: 4px; color: #94A3B8;">
             <div><strong style="color: #38BDF8;">whoami</strong></div><div>About Jerry & SRE Focus</div>
             <div><strong style="color: #38BDF8;">skills</strong></div><div>Technical skill set & stack</div>
+            <div><strong style="color: #38BDF8;">projects</strong></div><div>Projects & Home Lab (AWS, K8s, Bots)</div>
             <div><strong style="color: #38BDF8;">exp</strong></div><div>Career experience timeline</div>
             <div><strong style="color: #38BDF8;">certs</strong></div><div>Verified certifications (RHCE, CCNA, AWS)</div>
             <div><strong style="color: #38BDF8;">aws</strong></div><div>Architecture summary of this site</div>
             <div><strong style="color: #38BDF8;">contact</strong></div><div>Email & Telegram handles</div>
-            <div><strong style="color: #38BDF8;">uname</strong></div><div>Kernel & system info</div>
             <div><strong style="color: #38BDF8;">clear</strong></div><div>Clear terminal screen</div>
           </div>
         `);
@@ -107,18 +103,29 @@ function initTerminal() {
         appendLine(`
           <div style="color: #4ADE80; font-weight: bold;">Jerry Moo Kee Khong</div>
           <div style="color: #E2E8F0;">Site Reliability & Platform Engineer @ SGX FX</div>
-          <div style="color: #94A3B8; margin-top: 4px;">Red Hat Certified Engineer (RHCE) & CCNA Network Specialist.</div>
-          <div style="color: #94A3B8;">Focus: Low-latency trade platforms, Linux kernel tuning, AWS automation, and infrastructure resilience.</div>
+          <div style="color: #94A3B8; margin-top: 4px;">RHCE & CCNA Network Specialist.</div>
+          <div style="color: #94A3B8;">Focus: Linux systems, trade platform reliability, networking, and home lab experimentation.</div>
+        `);
+        break;
+
+      case 'projects':
+        appendLine(`
+          <div style="color: #F8FAFC; font-weight: bold;">🛠️ Projects & Labs:</div>
+          <div>• <span style="color: #38BDF8;">AWS Static Resume Website</span> — Personal portfolio hosted on AWS (S3, CloudFront, Lambda, DynamoDB)</div>
+          <div>• <span style="color: #38BDF8;">proxmox-k8s-lab</span> — Home lab on Proxmox VE running Kubernetes clusters</div>
+          <div>• <span style="color: #38BDF8;">BusStopForSingaporeBot</span> — Telegram bot for real-time SG bus arrival timings</div>
+          <div>• <span style="color: #38BDF8;">Princecryptobot</span> — Near-realtime crypto price bot</div>
+          <div>• <span style="color: #38BDF8;">GoidBot</span> — Telegram bot utility for getting user & chat IDs</div>
         `);
         break;
 
       case 'skills':
         appendLine(`
           <div style="color: #F8FAFC;">💻 Key Tech Stack:</div>
-          <div style="color: #38BDF8;">• Systems & OS: <span style="color: #F8FAFC;">Red Hat Enterprise Linux, Shell Scripting, Kernel Tuning</span></div>
+          <div style="color: #38BDF8;">• Systems & OS: <span style="color: #F8FAFC;">Red Hat Enterprise Linux, Shell Scripting, Proxmox VE, Kubernetes</span></div>
           <div style="color: #38BDF8;">• Cloud & Infra: <span style="color: #F8FAFC;">AWS (S3, CloudFront, Lambda, DynamoDB, Route53), Docker</span></div>
-          <div style="color: #38BDF8;">• Networking: <span style="color: #F8FAFC;">CCNA, Routing, Data Center Cabling, TCP/IP Stack</span></div>
-          <div style="color: #38BDF8;">• Observability: <span style="color: #F8FAFC;">Prometheus, Grafana, System Metrics</span></div>
+          <div style="color: #38BDF8;">• Networking: <span style="color: #F8FAFC;">CCNA, Routing, Data Center Operations</span></div>
+          <div style="color: #38BDF8;">• Observability: <span style="color: #F8FAFC;">Prometheus, Grafana</span></div>
           <div style="color: #38BDF8;">• Languages: <span style="color: #F8FAFC;">Python, Bash/Shell, JavaScript</span></div>
         `);
         break;
@@ -137,7 +144,7 @@ function initTerminal() {
       case 'certs':
         appendLine(`
           <div style="color: #F8FAFC; font-weight: bold;">🎓 Certifications:</div>
-          <div>• <span style="color: #EF4444; font-weight: bold;">RHCE</span> - Red Hat Certified Engineer (Linux & Automation)</div>
+          <div>• <span style="color: #EF4444; font-weight: bold;">RHCE</span> - Red Hat Certified Engineer</div>
           <div>• <span style="color: #3B82F6; font-weight: bold;">CCNA</span> - Cisco Certified Network Associate</div>
           <div>• <span style="color: #F59E0B; font-weight: bold;">AWS SAA</span> - AWS Solutions Architect Associate</div>
           <div>• <span style="color: #10B981; font-weight: bold;">CDCP</span> - Certified Data Centre Professional</div>
@@ -146,9 +153,9 @@ function initTerminal() {
 
       case 'aws':
         appendLine(`
-          <div style="color: #F8FAFC;">☁️ AWS Serverless Architecture:</div>
+          <div style="color: #F8FAFC;">☁️ AWS Architecture:</div>
           <div style="color: #94A3B8;">S3 Bucket ➔ CloudFront CDN ➔ Route53 Custom Domain</div>
-          <div style="color: #94A3B8;">Visitor Counter API ➔ API Gateway ➔ Lambda (Node.js) ➔ DynamoDB</div>
+          <div style="color: #94A3B8;">Visitor Counter API ➔ API Gateway ➔ Lambda ➔ DynamoDB</div>
         `);
         break;
 
@@ -166,7 +173,6 @@ function initTerminal() {
         break;
 
       case 'sudo':
-      case 'sudo su':
         appendLine(`<span style="color: #F59E0B;">Access Granted: User jerry already has root privileges.</span>`);
         break;
 
@@ -175,7 +181,7 @@ function initTerminal() {
         break;
 
       default:
-        appendLine(`<span style="color: #EF4444;">Command not found: ${escapeHTML(cmd)}. Type '<span style="color: #38BDF8;">help</span>' for available commands.</span>`);
+        appendLine(`<span style="color: #EF4444;">Command not found: ${escapeHTML(cmd)}. Type '<span style="color: #38BDF8;">help</span>' or '<span style="color: #38BDF8;">projects</span>'.</span>`);
         break;
     }
   }
