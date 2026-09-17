@@ -1,0 +1,725 @@
+/* ==========================================
+   Jerry Moo Kee Khong - Sketchbook Portfolio Stylesheet
+   ========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Fira+Code:wght@400;500;700&family=Kalam:wght@400;700&family=Permanent+Marker&family=Shadows+Into+Light&display=swap');
+
+:root {
+  --paper: #FFF8E7;
+  --paper-card: rgba(255, 248, 231, 0.96);
+  --paper-white: #FFFFFF;
+  --ink: #0A0A0A;
+  --blue: #0F4C75;
+  --red: #C1121F;
+  --green: #059669;
+  --grid: rgba(15, 76, 117, 0.08);
+  --border: rgba(10, 10, 10, 0.85);
+  --sidebar: 200px;
+  --hand: 255px 15px 225px 15px/15px 225px 15px 255px;
+  --hand-alt: 15px 225px 15px 255px/255px 15px 225px 15px;
+  --shadow: 3px 3px 0px var(--ink);
+}
+
+[data-theme="dark"] {
+  --paper: #0F172A;
+  --paper-card: rgba(30, 41, 59, 0.94);
+  --paper-white: #1E293B;
+  --ink: #F8FAFC;
+  --blue: #60A5FA;
+  --red: #F87171;
+  --green: #34D399;
+  --grid: rgba(255, 255, 255, 0.04);
+  --border: #475569;
+  --shadow: 3px 3px 0px #020617;
+}
+
+/* Reset & Layout Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  display: block;
+  min-height: 100vh;
+  background: var(--paper);
+  font-family: "Kalam", cursive, sans-serif;
+  color: var(--ink);
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 20px 20px;
+  line-height: 1.5;
+  font-size: 1.05rem;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+/* Typography */
+h1 {
+  font-family: "Permanent Marker", cursive, sans-serif;
+  font-size: clamp(2rem, 3.2vw, 2.8rem);
+  margin-bottom: 0.3em;
+  color: var(--ink);
+}
+
+h2 {
+  font-family: "Permanent Marker", cursive, sans-serif;
+  font-size: 1.7rem;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 6px;
+  margin-bottom: 14px;
+  position: relative;
+  color: var(--ink);
+}
+
+h2::after {
+  content: "→";
+  position: absolute;
+  right: -18px;
+  color: var(--red);
+}
+
+h3 {
+  margin: 12px 0 4px;
+  font-family: "Permanent Marker", cursive, sans-serif;
+  font-size: 1.2rem;
+  color: var(--ink);
+}
+
+h4 {
+  font-family: "Permanent Marker", cursive, sans-serif;
+  font-size: 1.05rem;
+  margin-top: 8px;
+  color: var(--ink);
+}
+
+p {
+  margin-bottom: 8px;
+}
+
+a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--red);
+  text-decoration: underline wavy var(--red);
+}
+
+/* Sidebar Navigation */
+nav {
+  position: fixed;
+  left: 16px;
+  top: 16px;
+  bottom: 16px;
+  width: var(--sidebar);
+  background: var(--paper-card);
+  border: 2px solid var(--border);
+  border-radius: var(--hand);
+  padding: 16px 12px;
+  z-index: 10;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow);
+}
+
+.frame {
+  width: 84px;
+  height: 84px;
+  margin: 0 auto 12px;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  padding: 3px;
+  background: var(--paper-white);
+  box-shadow: 2px 2px 0px var(--border);
+}
+
+.frame img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+nav ul {
+  list-style: none;
+}
+
+nav li {
+  margin: 5px 0;
+}
+
+nav a {
+  display: block;
+  padding: 7px 10px;
+  font-family: "Architects Daughter", cursive, sans-serif;
+  color: var(--ink);
+  text-decoration: none !important;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  transition: all 0.15s;
+}
+
+nav a:hover, nav a.active {
+  background: rgba(15, 76, 117, 0.1);
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+nav a.active::before {
+  content: "✓ ";
+  color: var(--red);
+}
+
+.sidebar-controls {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1.5px dashed var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn-ctrl {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 6px 10px;
+  font-family: "Architects Daughter", cursive, sans-serif;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: var(--ink);
+  background: var(--paper-white);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 2px 2px 0px var(--border);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-ctrl:hover {
+  background: rgba(15, 76, 117, 0.1);
+  color: var(--blue);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px var(--border);
+}
+
+.btn-ctrl:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px var(--border);
+}
+
+/* Main Content Area */
+.content {
+  width: 100%;
+  padding: 20px 24px 20px 236px;
+}
+
+.section {
+  margin-bottom: 20px;
+  padding: 24px;
+  background: var(--paper-card);
+  border: 2px solid var(--border);
+  border-radius: var(--hand);
+  scroll-margin-top: 28px;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+.annotation {
+  font-family: "Shadows Into Light", cursive, sans-serif;
+  color: var(--red);
+  margin-left: 6px;
+  font-weight: bold;
+}
+
+/* Projects Showcase */
+.project {
+  display: flex;
+  gap: 16px;
+  padding: 14px;
+  margin-bottom: 14px;
+  background: var(--paper-white);
+  border: 2px solid var(--border);
+  border-radius: var(--hand);
+  position: relative;
+  box-shadow: 2px 2px 0px var(--border);
+}
+
+.project img {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--paper);
+}
+
+.project-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  max-width: 560px;
+}
+
+.project-copy p {
+  margin: 0;
+  line-height: 1.45;
+}
+
+.project-meta {
+  font-family: "Architects Daughter", cursive, sans-serif;
+  color: var(--blue);
+  font-weight: bold;
+}
+
+.project-link {
+  align-self: flex-start;
+  padding: 6px 10px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  background: var(--paper);
+  font-family: "Architects Daughter", cursive, sans-serif;
+  color: var(--ink);
+  box-shadow: 2px 2px 0px var(--border);
+}
+
+.project-link:hover {
+  background: var(--blue);
+  color: #FFF;
+  text-decoration: none !important;
+}
+
+.overlay {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  width: 130px;
+  height: 130px;
+  background: rgba(0, 0, 0, 0.82);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+  border-radius: 12px;
+  text-align: center;
+  padding: 8px;
+}
+
+.overlay div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.overlay h3 {
+  font-size: 0.95rem;
+  margin: 0;
+  color: #fff;
+}
+
+.overlay p {
+  font-size: 0.72rem;
+  line-height: 1.25;
+  margin: 0;
+  color: #E2E8F0;
+}
+
+.overlay a {
+  font-size: 0.75rem;
+  color: #60A5FA;
+  text-decoration: underline;
+}
+
+.project:hover .overlay {
+  opacity: 1;
+}
+
+.small-project {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px;
+  margin-bottom: 10px;
+  background: var(--paper-white);
+  border: 2px solid var(--border);
+  border-radius: var(--hand);
+  box-shadow: 2px 2px 0px var(--border);
+}
+
+/* Skills Grid */
+.skills-logos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.skill-logo-container {
+  text-align: center;
+  padding: 12px;
+  background: var(--paper-white);
+  border: 2px solid var(--border);
+  border-radius: var(--hand);
+  box-shadow: 2px 2px 0px var(--border);
+  transition: transform 0.15s;
+}
+
+.skill-logo-container:hover {
+  transform: translateY(-2px);
+}
+
+.skill-logo {
+  width: 44px;
+  height: 44px;
+  padding: 5px;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.icon-name {
+  font-family: "Architects Daughter", cursive, sans-serif;
+  font-size: 12px;
+  margin-top: 5px;
+  display: block;
+  font-weight: bold;
+}
+
+/* Certifications Container */
+.certifications-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.certification {
+  flex: 1 1 140px;
+  text-align: center;
+  padding: 12px;
+  background: var(--paper-white);
+  border: 2px solid var(--border);
+  border-radius: var(--hand);
+  position: relative;
+  box-shadow: 2px 2px 0px var(--border);
+}
+
+.certification::after {
+  content: "VERIFIED";
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  font-size: 9px;
+  color: var(--red);
+  border: 1px solid var(--red);
+  padding: 0 3px;
+  background: var(--paper);
+  transform: rotate(11deg);
+  font-family: "Permanent Marker", cursive, sans-serif;
+}
+
+.cert-image {
+  width: 76px;
+  margin-top: 6px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+}
+
+/* Social & Contact */
+.social-icon {
+  width: 28px;
+  height: 28px;
+  padding: 4px;
+  background: var(--paper-white);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  box-shadow: 1px 1px 0px var(--border);
+  transition: transform 0.15s;
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
+}
+
+#contact form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  max-width: 680px;
+  margin-top: 10px;
+}
+
+#contact input, #contact textarea {
+  padding: 10px;
+  border: 2px solid var(--border);
+  border-radius: var(--hand);
+  font-family: "Kalam", cursive, sans-serif;
+  background: var(--paper-white);
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+#contact textarea {
+  grid-column: 1 / -1;
+  min-height: 130px;
+}
+
+#contact input[type=submit] {
+  grid-column: 1 / -1;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: "Permanent Marker", cursive, sans-serif;
+  font-size: 1.15rem;
+  padding: 10px;
+  border: 2px solid var(--border);
+  box-shadow: 2px 2px 0 var(--ink);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+#contact input[type=submit]:hover {
+  background: var(--blue);
+  color: #FFF;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  padding: 10px 14px;
+  background: rgba(10, 10, 10, 0.92);
+  color: var(--paper);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  font-family: "Architects Daughter", cursive, sans-serif;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 200;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* SRE Command Terminal Modal (Sketchbook Theme) */
+.terminal-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.75);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s;
+}
+
+.terminal-modal.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.terminal-window {
+  width: 100%;
+  max-width: 760px;
+  height: 500px;
+  background: #0A0F1D;
+  border: 3px solid var(--border);
+  border-radius: var(--hand);
+  box-shadow: 6px 6px 0px var(--ink);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: 'Fira Code', 'Consolas', monospace;
+  color: #38BDF8;
+}
+
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: #1E293B;
+  border-bottom: 2px solid var(--border);
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.terminal-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  cursor: pointer;
+}
+
+.dot-red { background: #EF4444; }
+.dot-yellow { background: #F59E0B; }
+.dot-green { background: #10B981; }
+
+.terminal-title {
+  font-family: "Architects Daughter", cursive, sans-serif;
+  font-size: 0.9rem;
+  color: #F8FAFC;
+  font-weight: bold;
+}
+
+.terminal-body {
+  flex-grow: 1;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.terminal-prompt {
+  color: #4ADE80;
+  font-weight: 700;
+}
+
+.terminal-input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.terminal-input {
+  flex-grow: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #F8FAFC;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.95rem;
+}
+
+.terminal-chips {
+  display: flex;
+  gap: 6px;
+  padding: 8px 12px;
+  background: #0F172A;
+  border-top: 1px dashed #334155;
+  overflow-x: auto;
+}
+
+.chip-btn {
+  padding: 3px 10px;
+  background: #1E293B;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: #38BDF8;
+  font-family: "Architects Daughter", cursive, sans-serif;
+  font-size: 0.85rem;
+  font-weight: bold;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.chip-btn:hover {
+  background: #0284C7;
+  color: #FFF;
+}
+
+/* Mobile Top Nav */
+.mobile-topnav, .mobile-menu {
+  display: none;
+}
+
+@media(max-width: 860px) {
+  nav {
+    display: none;
+  }
+  .mobile-topnav {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 52px;
+    background: var(--paper-card);
+    border-bottom: 2px solid var(--border);
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    z-index: 100;
+  }
+  .mobile-topnav span {
+    font-family: "Permanent Marker", cursive, sans-serif;
+    color: var(--blue);
+    font-size: 1.2rem;
+  }
+  .mobile-menu {
+    position: fixed;
+    top: 52px;
+    left: 0;
+    right: 0;
+    background: var(--paper-card);
+    border-bottom: 2px solid var(--border);
+    display: none;
+    flex-direction: column;
+    z-index: 99;
+  }
+  .mobile-menu.open {
+    display: flex;
+  }
+  .mobile-menu a {
+    padding: 12px 16px;
+    border-bottom: 1px solid #eee;
+    font-family: "Architects Daughter", cursive, sans-serif;
+    color: var(--ink);
+    text-decoration: none !important;
+  }
+  .content {
+    padding: 64px 14px 20px;
+  }
+  .project {
+    flex-direction: column;
+    text-align: left;
+    align-items: flex-start;
+  }
+  .project img {
+    width: 110px;
+    height: 110px;
+    transform: none;
+  }
+  .project-copy {
+    max-width: none;
+  }
+  .overlay {
+    width: 110px;
+    height: 110px;
+    left: 14px;
+    top: 14px;
+  }
+  #contact form {
+    grid-template-columns: 1fr;
+  }
+}

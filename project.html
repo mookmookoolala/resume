@@ -1,152 +1,139 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AWS Static Resume Website: S3, CloudFront, Route53, Lambda, and DynamoDB</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Permanent+Marker&display=swap" rel="stylesheet" />
-    <style>
-        :root {
-            --primary-color: #000;
-            --secondary-color: #f5f5dc;
-            --text-color: #333;
-            --accent-color: #3a5ca8;
-            --card-bg: rgba(245,245,220,0.92);
-        }
-        body {
-            font-family: 'Lexend', 'Arial', sans-serif;
-            background-color: var(--secondary-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 40px auto;
-            background-color: var(--card-bg);
-            padding: 32px 24px;
-            border-radius: 24px;
-            border: 4px solid #000;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-        }
-        h1, .section-title {
-            font-family: 'Permanent Marker', cursive, 'Lexend', sans-serif;
-            color: var(--accent-color);
-            font-size: 2.2rem;
-            margin-bottom: 0.7em;
-            letter-spacing: 1px;
-        }
-        h2 {
-            font-family: 'Permanent Marker', cursive, 'Lexend', sans-serif;
-            color: var(--primary-color);
-            font-size: 1.5rem;
-            margin-top: 2em;
-            margin-bottom: 0.5em;
-        }
-        .project-outline {
-            border: 3px solid #000;
-            border-radius: 16px;
-            background: #fffbe7;
-            padding: 20px;
-            margin-bottom: 32px;
-        }
-        .step {
-            border: 3px solid #000;
-            border-radius: 14px;
-            background: #fff;
-            margin-bottom: 24px;
-            padding: 18px 16px;
-        }
-        pre, code {
-            background: #f5f5dc;
-            color: #222;
-            border: 2px solid #000;
-            border-radius: 8px;
-            font-size: 1em;
-            font-family: 'Fira Mono', 'Consolas', monospace;
-            padding: 8px 12px;
-            display: block;
-            margin: 12px 0;
-            overflow-x: auto;
-        }
-        .image-container {
-            text-align: center;
-            margin-bottom: 24px;
-        }
-        .blog-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: 12px;
-            border: 4px solid #000;
-            background: #fff;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-        a {
-            color: var(--accent-color);
-            text-decoration: underline wavy var(--accent-color);
-            font-weight: 600;
-        }
-        a:hover {
-            color: #000;
-            background: #fffbe7;
-        }
-        .back-link {
-            display: inline-block;
-            margin-bottom: 16px;
-            padding: 8px 12px;
-            border: 3px solid #000;
-            border-radius: 12px;
-            background: #fff;
-            text-decoration: none;
-        }
-        @media (max-width: 600px) {
-            .container { padding: 12px 2vw; }
-            .project-outline, .step { padding: 10px 4px; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AWS Static Resume Website Case Study — Jerry Moo Kee Khong</title>
+  <meta name="description" content="Case study documenting AWS static hosting architecture with S3, CloudFront, Route53, Lambda, and DynamoDB.">
+  <link rel="icon" href="Image/jerry.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .case-study-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border: var(--border-width) solid var(--border);
+      border-radius: var(--hand);
+      background: var(--paper-card-solid);
+      color: var(--ink);
+      font-family: 'Architects Daughter', cursive, sans-serif;
+      font-weight: 700;
+      box-shadow: 3px 3px 0px var(--shadow-color);
+      margin-bottom: 24px;
+      transition: all var(--transition-fast);
+    }
+    .back-btn:hover {
+      background: var(--blue);
+      color: #FFF;
+      text-decoration: none;
+      box-shadow: 5px 5px 0px var(--shadow-color);
+      transform: translate(-2px, -2px);
+    }
+    .code-block {
+      background: #0F172A;
+      color: #38BDF8;
+      border: var(--border-width) solid var(--border);
+      border-radius: var(--radius-md);
+      box-shadow: 3px 3px 0px var(--shadow-color);
+      padding: 16px;
+      font-family: 'Fira Code', 'Consolas', monospace;
+      font-size: 0.92rem;
+      overflow-x: auto;
+      margin: 16px 0;
+      line-height: 1.5;
+    }
+    .hero-banner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 24px;
+      background: var(--paper-card-solid);
+      border: var(--border-width) solid var(--border);
+      border-radius: var(--hand);
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+    }
+    .hero-aws-logo {
+      width: 120px;
+      height: 80px;
+      object-fit: contain;
+      margin-bottom: 12px;
+    }
+  </style>
 </head>
 <body>
-<div class="container">
-    <a href="index.html" class="back-link">Back to Home</a>
-    <h1>AWS Static Resume Website</h1>
-    <div class="image-container">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS Logo" class="blog-image" loading="lazy" />
+
+  <div class="case-study-container">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+      <a href="index.html" class="back-btn">⬅ Back to Home Portfolio</a>
+      <button id="theme-toggle" class="btn-theme" style="width:auto;padding:6px 14px;" type="button">
+        <span>🌙 Terminal Dark</span>
+      </button>
     </div>
-    <div class="project-outline">
-        <strong>Project Overview:</strong>
-        <ul>
-            <li>Host a personal resume site on AWS using S3, CloudFront, and Route53.</li>
-            <li>Deliver a fast, globally accessible static site with low operational overhead.</li>
-            <li>Implement a shared visitor counter with Lambda, API Gateway, and DynamoDB.</li>
+
+    <header class="hero-banner">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS Logo" class="hero-aws-logo" onerror="this.outerHTML='<svg class=\'hero-aws-logo\' viewBox=\'0 0 100 60\' fill=\'%23D97706\'><text x=\'50\' y=\'35\' font-size=\'22\' font-weight=\'bold\' text-anchor=\'middle\'>AWS</text></svg>';">
+      <h1>AWS Static Resume Website</h1>
+      <p style="font-family:'Architects Daughter',cursive;color:var(--blue);font-size:1.2rem;font-weight:bold;margin:0;">
+        Architecture: S3 // CloudFront CDN // Route53 // Lambda // DynamoDB
+      </p>
+    </header>
+
+    <!-- Overview Box -->
+    <div class="section">
+      <h2>Project Overview</h2>
+      <div style="padding:16px;background:var(--paper-card-solid);border:var(--border-width) solid var(--border);border-radius:var(--hand-alt);box-shadow:3px 3px 0px var(--shadow-color);">
+        <ul style="margin-left:20px;display:flex;flex-direction:column;gap:8px;">
+          <li>Host a personal resume site on AWS using S3, CloudFront, and Route53.</li>
+          <li>Deliver a fast, globally accessible static site with minimal operational overhead and zero server maintenance.</li>
+          <li>Implement a real shared visitor counter powered by Lambda, API Gateway, and DynamoDB.</li>
         </ul>
+      </div>
     </div>
-    <div class="step">
-        <h2>Overview</h2>
-        <p>This project documents how I built and deployed my personal resume site on AWS. The goal was to create a lightweight portfolio that is easy to maintain, globally available, and backed by a simple serverless component for a real visitor counter.</p>
-        <p>The result is a static website architecture that is inexpensive to run, straightforward to update, and a practical example of combining core AWS services into a small production-style deployment.</p>
+
+    <!-- Overview Details -->
+    <div class="section">
+      <h2>Overview &amp; Objectives</h2>
+      <p>This project documents how I built and deployed my personal resume site on AWS. The goal was to create a lightweight portfolio that is easy to maintain, globally available, and backed by a simple serverless component for a real visitor counter.</p>
+      <p>The result is a static website architecture that is inexpensive to run, straightforward to update, and a practical example of combining core AWS services into a small production-style deployment.</p>
     </div>
-    <div class="step">
-        <h2>Architecture Overview</h2>
-        <ul>
-            <li><strong>S3</strong>: Stores the static website assets, including HTML, CSS, JavaScript, and images.</li>
-            <li><strong>CloudFront</strong>: Caches and serves the site globally with HTTPS support.</li>
-            <li><strong>Route53</strong>: Manages the custom domain and DNS routing.</li>
-            <li><strong>Lambda + DynamoDB</strong>: Powers a shared visitor counter through a serverless API.</li>
-        </ul>
-        <div class="image-container">
-            <img src="https://d1.awsstatic.com/architecture-diagrams/ArchitectureDiagrams/static-website-hosting-ra.png" alt="AWS Static Site Diagram" class="blog-image" style="max-width:500px;" loading="lazy" />
-        </div>
+
+    <!-- Architecture Diagram -->
+    <div class="section">
+      <h2>Architecture Overview</h2>
+      <ul style="margin-left:20px;margin-bottom:16px;display:flex;flex-direction:column;gap:6px;">
+        <li><strong>S3:</strong> Stores the static website assets, including HTML, CSS, JavaScript, and images.</li>
+        <li><strong>CloudFront:</strong> Caches and serves the site globally with HTTPS support and low latency.</li>
+        <li><strong>Route53:</strong> Manages the custom domain and DNS routing.</li>
+        <li><strong>Lambda + DynamoDB:</strong> Powers a shared visitor counter through a serverless REST API.</li>
+      </ul>
+
+      <div style="text-align:center;padding:16px;background:var(--paper-card-solid);border:var(--border-width) solid var(--border);border-radius:var(--hand);box-shadow:3px 3px 0px var(--shadow-color);">
+        <img src="https://d1.awsstatic.com/architecture-diagrams/ArchitectureDiagrams/static-website-hosting-ra.png" alt="AWS Static Website Architecture Diagram" style="max-width:100%;height:auto;border-radius:10px;border:1.5px solid var(--border);" loading="lazy" onerror="this.outerHTML='<div style=\'padding:20px;color:var(--blue);font-family:monospace;font-weight:bold;\'>[Browser] ➔ [Route53 DNS] ➔ [CloudFront CDN] ➔ [S3 Bucket] ➔ [Lambda + DynamoDB]</div>';">
+      </div>
     </div>
-    <div class="step">
-        <h2>Step 1: Prepare the Static Site</h2>
-        <p>The frontend was built with HTML, CSS, and a small amount of JavaScript. At a minimum, the deployment requires an <code>index.html</code> entry point and any supporting assets such as images, icons, or additional pages.</p>
-        <p>Because the site is static, updates are simple: modify the files locally and upload the latest version to the hosting bucket.</p>
+
+    <!-- Step 1 -->
+    <div class="section">
+      <h2>Step 1: Prepare the Static Site</h2>
+      <p>The frontend was built with HTML, CSS, and a small amount of JavaScript. At a minimum, the deployment requires an <code>index.html</code> entry point and any supporting assets such as images, icons, or additional pages.</p>
+      <p>Because the site is static, updates are simple: modify the files locally and upload the latest version to the hosting bucket.</p>
     </div>
-    <div class="step">
-        <h2>Step 2: Configure the S3 Bucket</h2>
-        <p>I created an S3 bucket aligned with the site domain and uploaded the static assets to it. S3 acts as the origin for the website content and provides a simple deployment target for future updates.</p>
-        <p>For a basic static hosting setup, the bucket can expose public read access to the site objects. An example policy is shown below:</p>
-        <pre><code>{
+
+    <!-- Step 2 -->
+    <div class="section">
+      <h2>Step 2: Configure the S3 Bucket</h2>
+      <p>I created an S3 bucket aligned with the site domain and uploaded the static assets to it. S3 acts as the origin for the website content and provides a simple deployment target for future updates.</p>
+      <p>For a basic static hosting setup, the bucket can expose public read access to the site objects. An example bucket policy is shown below:</p>
+      
+      <div class="code-block"><pre><code>{
   "Version": "2012-10-17",
   "Statement": [
     {
@@ -157,35 +144,42 @@
       "Resource": "arn:aws:s3:::mycoolwebsite.com/*"
     }
   ]
-}</code></pre>
+}</code></pre></div>
     </div>
-    <div class="step">
-        <h2>Step 3: Set Up CloudFront</h2>
-        <p>I placed CloudFront in front of the S3 origin to improve global performance, enable HTTPS, and provide a cleaner public entry point for the website.</p>
-        <p>In this setup, the S3 <strong>website endpoint</strong> is used as the origin rather than the REST endpoint.</p>
-        <ul>
-            <li>Origin Domain: <code>mycoolwebsite.com.s3-website-ap-southeast-1.amazonaws.com</code></li>
-            <li>Viewer Protocol Policy: Redirect HTTP to HTTPS</li>
-            <li>Default Root Object: <code>index.html</code></li>
-        </ul>
+
+    <!-- Step 3 -->
+    <div class="section">
+      <h2>Step 3: Set Up CloudFront</h2>
+      <p>I placed CloudFront in front of the S3 origin to improve global performance, enable HTTPS, and provide a cleaner public entry point for the website.</p>
+      <p>In this setup, the S3 <strong>website endpoint</strong> is used as the origin rather than the REST endpoint.</p>
+      <ul style="margin-left:20px;display:flex;flex-direction:column;gap:6px;">
+        <li>Origin Domain: <code>mycoolwebsite.com.s3-website-ap-southeast-1.amazonaws.com</code></li>
+        <li>Viewer Protocol Policy: Redirect HTTP to HTTPS</li>
+        <li>Default Root Object: <code>index.html</code></li>
+      </ul>
     </div>
-    <div class="step">
-        <h2>Step 4: Connect the Domain with Route53</h2>
-        <p>Route53 was used to manage DNS for the custom domain. The public record is an <strong>A alias record</strong> pointing to the CloudFront distribution, which keeps the URL clean and avoids exposing the distribution domain to visitors.</p>
-        <pre><code>Type: A (Alias)
+
+    <!-- Step 4 -->
+    <div class="section">
+      <h2>Step 4: Connect Domain with Route53</h2>
+      <p>Route53 was used to manage DNS for the custom domain. The public record is an <strong>A alias record</strong> pointing to the CloudFront distribution, which keeps the URL clean and avoids exposing the distribution domain to visitors.</p>
+      <div class="code-block"><pre><code>Type: A (Alias)
 Name: mycoolwebsite.com
-Alias Target: dxxxxxxxxxxxx.cloudfront.net</code></pre>
+Alias Target: dxxxxxxxxxxxx.cloudfront.net</code></pre></div>
     </div>
-    <div class="step">
-        <h2>Step 5: Add a Shared Visitor Counter</h2>
-        <p>To make the site slightly more dynamic, I added a visitor counter backed by DynamoDB and Lambda. Unlike a browser-only solution, this approach keeps a shared count that is visible to every visitor.</p>
-        <ol>
-            <li><strong>Create a DynamoDB table</strong> such as <code>VisitorCount</code> with a primary key like <code>id</code>.</li>
-            <li><strong>Create a Lambda function</strong> that increments the stored count and returns the updated value.</li>
-            <li><strong>Expose the function through API Gateway</strong> so the static site can request the current count from JavaScript.</li>
-        </ol>
-        <p><strong>Example Lambda function (Node.js):</strong></p>
-        <pre><code>const AWS = require('aws-sdk');
+
+    <!-- Step 5 -->
+    <div class="section">
+      <h2>Step 5: Add a Shared Visitor Counter</h2>
+      <p>To make the site slightly more dynamic, I added a visitor counter backed by DynamoDB and Lambda. Unlike a browser-only solution, this approach keeps a shared count that is visible to every visitor.</p>
+      <ol style="margin-left:20px;margin-bottom:14px;display:flex;flex-direction:column;gap:6px;">
+        <li><strong>Create a DynamoDB table</strong> such as <code>VisitorCount</code> with a primary key like <code>id</code>.</li>
+        <li><strong>Create a Lambda function</strong> that increments the stored count and returns the updated value.</li>
+        <li><strong>Expose the function through API Gateway</strong> so the static site can request the current count from JavaScript.</li>
+      </ol>
+
+      <p><strong>Example Lambda Function (Node.js):</strong></p>
+      <div class="code-block"><pre><code>const AWS = require('aws-sdk');
 const dynamo = new AWS.DynamoDB.DocumentClient();
 
 exports.handler = async (event) => {
@@ -203,29 +197,30 @@ exports.handler = async (event) => {
         headers: { 'Access-Control-Allow-Origin': '*' },
         body: JSON.stringify({ count: result.Attributes.count })
     };
-};
-</code></pre>
-        <p><strong>Example client-side request:</strong></p>
-        <pre><code>&lt;script&gt;
+};</code></pre></div>
+
+      <p><strong>Client-side Fetch Request:</strong></p>
+      <div class="code-block"><pre><code>&lt;script&gt;
 fetch('https://your-api-id.execute-api.ap-southeast-1.amazonaws.com/default/VisitorCounter')
-  .then(res => res.json())
-  .then(data => {
+  .then(res =&gt; res.json())
+  .then(data =&gt; {
     document.getElementById('visitors').textContent = data.count;
   });
-&lt;/script&gt;
-</code></pre>
-        <p>With this in place, each page load can retrieve and display a shared visitor count from the backend service.</p>
+&lt;/script&gt;</code></pre></div>
     </div>
-    <div class="step">
-        <h2>Deployment and Validation</h2>
-        <p>After the infrastructure was configured, I validated the deployment by checking content delivery through the custom domain, confirming HTTPS redirection, and verifying that the visitor counter updated successfully through the API.</p>
-        <p>For troubleshooting, the main checkpoints were S3 object access, CloudFront origin settings, and Lambda or API Gateway logs.</p>
+
+    <!-- Deployment & Outcome -->
+    <div class="section">
+      <h2>Deployment &amp; Key Takeaways</h2>
+      <p>After the infrastructure was configured, I validated the deployment by checking content delivery through the custom domain, confirming HTTPS redirection, and verifying that the visitor counter updated successfully through the API.</p>
+      <p>This project was a great exercise in building a complete cloud-hosted application. It combines static hosting, CDN delivery, DNS management, and serverless components in a way that is practical, low-cost, and easy to maintain.</p>
     </div>
-    <div class="step">
-        <h2>Outcome and Key Takeaways</h2>
-        <p>This project was a useful exercise in building a small but complete cloud-hosted application. It combines static hosting, CDN delivery, DNS management, and serverless components in a way that is practical, low-cost, and easy to reason about.</p>
-        <p>Beyond serving as my personal website, it also works as a compact case study for deploying frontend assets on AWS and extending a static site with lightweight backend functionality.</p>
+
+    <div style="text-align:center;margin-top:30px;">
+      <a href="index.html" class="back-btn">⬅ Return to Main Portfolio</a>
     </div>
-</div>
+  </div>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
