@@ -113,9 +113,10 @@ function initTerminal() {
           <div style="color: #F8FAFC; font-weight: bold;">🛠️ Projects & Labs:</div>
           <div>• <span style="color: #38BDF8;">AWS Static Resume Website</span> — Personal portfolio hosted on AWS (S3, CloudFront, Lambda, DynamoDB)</div>
           <div>• <span style="color: #38BDF8;">proxmox-k8s-lab</span> — Home lab on Proxmox VE running Kubernetes clusters</div>
+          <div>• <span style="color: #38BDF8;">letshangout.online</span> — Bill & expense splitting web app for hanging out with friends</div>
+          <div>• <span style="color: #38BDF8;">ScissorPaperStone</span> — Rock, paper, scissors game lobby</div>
           <div>• <span style="color: #38BDF8;">BusStopForSingaporeBot</span> — Telegram bot for real-time SG bus arrival timings</div>
           <div>• <span style="color: #38BDF8;">Princecryptobot</span> — Near-realtime crypto price bot</div>
-          <div>• <span style="color: #38BDF8;">GoidBot</span> — Telegram bot utility for getting user & chat IDs</div>
         `);
         break;
 
