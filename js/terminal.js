@@ -153,8 +153,8 @@ function initTerminal() {
 
       case 'aws':
         appendLine(`
-          <div style="color: #F8FAFC;">☁️ AWS Architecture:</div>
-          <div style="color: #94A3B8;">S3 Bucket ➔ CloudFront CDN ➔ Route53 Custom Domain</div>
+          <div style="color: #F8FAFC;">☁️ AWS Architecture & CI/CD:</div>
+          <div style="color: #38BDF8;">Git Push ➔ GitHub Actions CI/CD ➔ S3 Bucket ➔ CloudFront CDN ➔ Route53</div>
           <div style="color: #94A3B8;">Visitor Counter API ➔ API Gateway ➔ Lambda ➔ DynamoDB</div>
         `);
         break;

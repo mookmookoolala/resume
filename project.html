@@ -90,7 +90,7 @@
       <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS Logo" class="hero-aws-logo" onerror="this.outerHTML='<svg class=\'hero-aws-logo\' viewBox=\'0 0 100 60\' fill=\'%230F4C75\'><text x=\'50\' y=\'35\' font-size=\'22\' font-weight=\'bold\' text-anchor=\'middle\'>AWS</text></svg>';">
       <h1>AWS</h1>
       <p style="font-family:'Architects Daughter',cursive;color:var(--blue);font-size:1.15rem;font-weight:bold;margin-top:4px;">
-        S3 // CloudFront // Route53 // Lambda // DynamoDB
+        S3 // CloudFront // Route53 // GitHub Actions CI/CD // Lambda // DynamoDB
       </p>
     </header>
 
@@ -100,6 +100,7 @@
       <ul style="margin-left:20px;margin-top:8px;display:flex;flex-direction:column;gap:6px;">
         <li>Host a personal resume site on AWS using S3, CloudFront, and Route53.</li>
         <li>Deliver a fast, globally accessible static site with low operational overhead.</li>
+        <li>Automate site deployments with GitHub Actions CI/CD (S3 sync & CloudFront cache invalidation).</li>
         <li>Implement a shared visitor counter with Lambda, API Gateway, and DynamoDB.</li>
       </ul>
     </div>
@@ -107,14 +108,15 @@
     <!-- Step 1: Overview -->
     <div class="section">
       <h2>Overview</h2>
-      <p>This project documents how I built and deployed my personal resume site on AWS. The goal was to create a lightweight portfolio that is easy to maintain, globally available, and backed by a simple serverless component for a real visitor counter.</p>
-      <p>The result is a static website architecture that is inexpensive to run, straightforward to update, and a practical example of combining core AWS services into a small production-style deployment.</p>
+      <p>This project documents how I built and deployed my personal resume site on AWS. The goal was to create a lightweight portfolio that is easy to maintain, globally available, automated via CI/CD, and backed by a simple serverless component for a real visitor counter.</p>
+      <p>The result is a static website architecture that is inexpensive to run, straightforward to update, fully automated on code push, and a practical example of combining core AWS services into a small production-style deployment.</p>
     </div>
 
     <!-- Architecture Overview -->
     <div class="section">
       <h2>Architecture Overview</h2>
       <ul style="margin-left:20px;margin-bottom:16px;display:flex;flex-direction:column;gap:6px;">
+        <li><strong>GitHub Actions CI/CD:</strong> Automatically syncs repository updates to S3 and invalidates CloudFront cache on every push to <code>main</code>.</li>
         <li><strong>S3:</strong> Stores the static website assets, including HTML, CSS, JavaScript, and images.</li>
         <li><strong>CloudFront:</strong> Caches and serves the site globally with HTTPS support.</li>
         <li><strong>Route53:</strong> Manages the custom domain and DNS routing.</li>
@@ -122,7 +124,7 @@
       </ul>
 
       <div style="text-align:center;padding:16px;background:var(--paper-white);border:2px solid var(--border);border-radius:var(--hand);box-shadow:2px 2px 0px var(--border);">
-        <img src="https://d1.awsstatic.com/architecture-diagrams/ArchitectureDiagrams/static-website-hosting-ra.png" alt="AWS Static Website Architecture Diagram" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--border);" loading="lazy" onerror="this.outerHTML='<div style=\'padding:16px;color:var(--blue);font-family:monospace;font-weight:bold;\'>[Browser] ➔ [Route53 DNS] ➔ [CloudFront CDN] ➔ [S3 Bucket] ➔ [Lambda + DynamoDB]</div>';">
+        <img src="https://d1.awsstatic.com/architecture-diagrams/ArchitectureDiagrams/static-website-hosting-ra.png" alt="AWS Static Website Architecture Diagram" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--border);" loading="lazy" onerror="this.outerHTML='<div style=\'padding:16px;color:var(--blue);font-family:monospace;font-weight:bold;\'>[Developer Push] ➔ [GitHub Actions CI/CD] ➔ [S3 Bucket] ➔ [CloudFront CDN] ➔ [Route53 DNS] ➔ [Lambda + DynamoDB]</div>';">
       </div>
     </div>
 
@@ -216,11 +218,52 @@ fetch('https://lqk9r6hlp1.execute-api.ap-southeast-1.amazonaws.com/default/Visit
 &lt;/script&gt;</code></pre></div>
     </div>
 
+    <!-- Step 6: CI/CD Pipeline -->
+    <div class="section">
+      <h2>Step 6: Automate Deployments with GitHub Actions (CI/CD)</h2>
+      <p>Instead of manually logging into AWS or executing AWS CLI commands locally to upload files, I configured an automated continuous deployment pipeline using <strong>GitHub Actions</strong>.</p>
+      <p>Whenever new code is pushed to the <code>main</code> branch, the workflow triggers automatically to perform two primary actions:</p>
+      <ol style="margin-left:20px;margin-bottom:14px;display:flex;flex-direction:column;gap:6px;">
+        <li><strong>S3 Sync:</strong> Executes <code>aws s3 sync</code> to transfer only updated static assets to the S3 origin bucket while removing deleted files.</li>
+        <li><strong>CloudFront Cache Invalidation:</strong> Issues a <code>create-invalidation</code> request so CloudFront edge nodes instantly discard old cached assets and pull the fresh files from S3.</li>
+      </ol>
+
+      <p><strong>Example GitHub Actions Deployment Workflow (<code>.github/workflows/deploy.yml</code>):</strong></p>
+      <div class="code-block"><pre><code>name: Deploy Resume Website to AWS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-southeast-1
+
+      - name: Sync Static Assets to S3
+        run: |
+          aws s3 sync . s3://mycoolwebsite.com --delete --exclude ".git*" --exclude ".github*"
+
+      - name: Invalidate CloudFront Cache
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"</code></pre></div>
+    </div>
+
     <!-- Outcome and Key Takeaways -->
     <div class="section">
       <h2>Outcome and Key Takeaways</h2>
-      <p>This project was a useful exercise in building a small but complete cloud-hosted application. It combines static hosting, CDN delivery, DNS management, and serverless components in a way that is practical, low-cost, and easy to reason about.</p>
-      <p>Beyond serving as my personal website, it also works as a compact case study for deploying frontend assets on AWS and extending a static site with lightweight backend functionality.</p>
+      <p>This project was a practical exercise in building and operating a complete cloud-hosted application. It combines static asset hosting, CDN edge delivery, custom DNS management, automated CI/CD deployment pipelines, and serverless backend components in a way that is production-ready, low-cost, and easy to maintain.</p>
+      <p>Beyond serving as my personal website, it acts as a compact case study for deploying static frontend applications to AWS with automated DevOps practices.</p>
     </div>
 
     <div style="text-align:center;margin-top:28px;">

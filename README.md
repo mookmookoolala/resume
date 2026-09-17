@@ -4,6 +4,7 @@ Welcome! This is my personal resume/portfolio site, built and deployed on AWS wi
 
 ## Features
 - **Static website** hosted on S3
+- **Automated CI/CD** with GitHub Actions (S3 sync + CloudFront cache invalidation)
 - **Global CDN** with CloudFront
 - **Custom domain** via Route53
 - **Real visitor counter** using Lambda + DynamoDB
@@ -11,20 +12,23 @@ Welcome! This is my personal resume/portfolio site, built and deployed on AWS wi
 
 ## Architecture
 ```
-[Browser]
+[Git Push]
    |
-[Route53 DNS]
+[GitHub Actions CI/CD]
+   |
+[S3 Bucket (static origin)]
    |
 [CloudFront CDN]
    |
-[S3 Bucket (static site)]
+[Route53 DNS]
    |
-[Lambda + DynamoDB] (for visitor counter)
+[Browser] <---> [Lambda + DynamoDB] (visitor counter)
 ```
 
 ## Tech Stack
-- HTML, CSS (Lexend + Permanent Marker fonts)
+- HTML, CSS (Lexend + Architects Daughter fonts)
 - JavaScript
+- GitHub Actions (CI/CD Pipeline)
 - AWS S3, CloudFront, Route53
 - AWS Lambda (Node.js)
 - AWS DynamoDB
@@ -32,9 +36,10 @@ Welcome! This is my personal resume/portfolio site, built and deployed on AWS wi
 ## How to Use / Deploy
 1. **Clone this repo**
 2. Edit your site content in `index.html` and `project.html` (project case study)
-3. Upload to an S3 bucket (enable static website hosting)
-4. Set up CloudFront to point to your S3 website endpoint
-5. Use Route53 to point your domain to CloudFront
+3. Set up your S3 bucket and CloudFront distribution on AWS
+4. Configure GitHub Secrets (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `CLOUDFRONT_DISTRIBUTION_ID`)
+5. Push to `main` to trigger automated deployment via GitHub Actions
+6. Use Route53 to point your custom domain to CloudFront
 6. (Optional) Deploy the visitor counter Lambda and DynamoDB table (see `project.html` for code)
 
 ## Visitor Counter (Serverless)
