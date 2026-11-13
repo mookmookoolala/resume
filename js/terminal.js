@@ -80,7 +80,7 @@ function initTerminal() {
 
   function processCommand(rawCmd) {
     const cmd = rawCmd.toLowerCase().trim();
-    appendLine(`<span class="terminal-prompt">jerry@sgx-fx:~$</span> ${escapeHTML(rawCmd)}`, 'input-history');
+    appendLine(`<span class="terminal-prompt">jerry@coreweave:~$</span> ${escapeHTML(rawCmd)}`, 'input-history');
 
     switch (cmd) {
       case 'help':
@@ -102,9 +102,9 @@ function initTerminal() {
       case 'whoami':
         appendLine(`
           <div style="color: #4ADE80; font-weight: bold;">Jerry Moo Kee Khong</div>
-          <div style="color: #E2E8F0;">Site Reliability & Platform Engineer @ SGX FX</div>
+          <div style="color: #E2E8F0;">Production Engineer @ CoreWeave</div>
           <div style="color: #94A3B8; margin-top: 4px;">RHCE & CCNA Network Specialist.</div>
-          <div style="color: #94A3B8;">Focus: Linux systems, trade platform reliability, networking, and home lab experimentation.</div>
+          <div style="color: #94A3B8;">Focus: Linux systems, production engineering, networking, and home lab experimentation.</div>
         `);
         break;
 
@@ -133,7 +133,8 @@ function initTerminal() {
       case 'exp':
         appendLine(`
           <div style="color: #F8FAFC; font-weight: bold;">💼 Work Experience:</div>
-          <div><span style="color: #4ADE80;">2025 - Present:</span> SGX FX - Platform Engineer</div>
+          <div><span style="color: #4ADE80;">2026 - Present:</span> CoreWeave - Production Engineer</div>
+          <div><span style="color: #38BDF8;">2025 - 2026:</span> SGX FX - Platform Engineer</div>
           <div><span style="color: #38BDF8;">2024 - 2025:</span> Matrixport - DevOps Engineer</div>
           <div><span style="color: #38BDF8;">2022 - 2023:</span> VISA - Systems Engineer</div>
           <div><span style="color: #38BDF8;">2020 - 2022:</span> Sea Group - Data Center Engineer Site Lead</div>
@@ -169,7 +170,7 @@ function initTerminal() {
 
       case 'uname':
       case 'uname -a':
-        appendLine(`Linux sgx-fx-node01 6.1.0-21-redhat x86_64 GNU/Linux`);
+        appendLine(`Linux coreweave-node01 6.1.0-21-redhat x86_64 GNU/Linux`);
         break;
 
       case 'sudo':
