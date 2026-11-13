@@ -104,7 +104,7 @@ function initTerminal() {
           <div style="color: #4ADE80; font-weight: bold;">Jerry Moo Kee Khong</div>
           <div style="color: #E2E8F0;">Production Engineer @ CoreWeave</div>
           <div style="color: #94A3B8; margin-top: 4px;">RHCE & CCNA Network Specialist.</div>
-          <div style="color: #94A3B8;">Focus: Linux systems, production engineering, networking, and home lab experimentation.</div>
+          <div style="color: #94A3B8;">Focus: AI cloud infrastructure, Linux systems, trade platform reliability, networking, and home lab experimentation.</div>
         `);
         break;
 
